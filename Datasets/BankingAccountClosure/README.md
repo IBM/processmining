@@ -23,6 +23,10 @@ Do the same with the following datasets/projects
 * task_mining_evaluat_request_with_registered_letter.zip / Task Mining_ Evaluating Request (WITH registered letter)_2021-03-15_100925.idp
 * task_mining_network_service_closure.zip / Task Mining_ Network Service Closure_2021-03-15_101040.idp
 * task_mining_pending_liquidation_request.zip / Task Mining_ Pending Liquidation Request_2021-03-15_101054.idp
+* make sure you create the processes with the correct names:
+   * Task Mining: Evaluating Request (WITH registered letter)
+   * Task Mining: Network Service Closure
+   * Task Mining: Pending Liquidation Request
 
 ## Bank Account Closure Durations
 From the parent process, drill-down to the BO Service Closure activity process that results from task mining.
