@@ -9,4 +9,5 @@ The following use cases are provided with a sample dataset, and with a project b
 Each dataset is provided with a process mining project backup file (.IDP).
 1. Upload the event log file (CSV). Do not do the mapping
 1. From the top-right menu, select 'Manage History', load the IDP file and apply. This step will automatically map the fields, update the project settings, load the dashboards and the reference model.
-![](./images/ManageHistory.png)
+
+![](./images/ManageHistory.png?sanitize=true)
