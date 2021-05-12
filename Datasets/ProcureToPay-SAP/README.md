@@ -12,14 +12,16 @@ Steps:
 
 Note: IBM can provide a Talend-based ETL project to produce this dataset from your own SAP system upon request, as an accelerator (contribution). Contact patrick.megard@fr.ibm.com
 
-P2P Generated Model
+## P2P Generated Model
 ![](./Images/P2PModel.png?sanitize=true)
 
-P2P Conformance Checking
+## P2P Conformance Checking
 ![](./Images/P2PConformanceChecking.png?sanitize=true)
 
-Order Maverick (orders without requisition)
+## Order Maverick
+Among P2P sources of waste, and one of the more difficult to find and fix is “Maverick” buying, i.e. the expense resulting from purchases that are breaking the rules established by corporate procedures.
 ![](./Images/OrderMaverick.png?sanitize=true)
 
-Spent Under Management
+## Spent Under Management
+Spend Under Management measures the percentage of total spend that falls into the procurement department responsibility.
 ![](./Images/SpentUnderManagement.png?sanitize=true)
