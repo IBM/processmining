@@ -11,3 +11,15 @@ Steps:
 
 
 Note: IBM can provide a Talend-based ETL project to produce this dataset from your own SAP system upon request, as an accelerator (contribution). Contact patrick.megard@fr.ibm.com
+
+P2P Generated Model
+![](./Images/P2PModel.png?sanitize=true)
+
+P2P Conformance Checking
+![](./Images/P2PConformanceChecking.png?sanitize=true)
+
+Order Maverick (orders without requisition)
+![](./Images/OrderMaverick.png?sanitize=true)
+
+Spent Under Management
+![](./Images/SpentUnderManagement.png?sanitize=true)
