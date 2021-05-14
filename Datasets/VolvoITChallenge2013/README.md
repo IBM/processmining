@@ -18,20 +18,21 @@ Why we transformed the original dataset (using Excel):
 We created several filters to highlight the cases that follow the Push to Front strategy, and to reveal the cases where support 'play ping pong'. We illustrated the creation of filters using the UI and Scripts.
 
 Tickets should always follow this path: 
-L1
-L1->L2
-L1->L2->L3
+- L1
+- L1->L2
+- L1->L2->L3
+
 The support policy does not allow for L2 or L3 to start a ticket, nor to miss a level, nor to go down from a higher level to a lower one.
 
 
 ### Combining filters
 By combining a series of individual filters (see Compliant PushToFront saved template). Note that when adding filters, the logical operation is AND. By ANDing these exclusion filters, we are ORing their negation, ie we obtain the compliant cases. The exclusion filters are:
-Exclude cases that start with a L2 role
-Exclude cases that start with a L3 role
-Exclude cases that start with a L2L3 role
-Exclude cases that contain a sequence <L2>*<L1> (back)
-Exclude cases that contain a sequence <L3>*<L1> (back)
-Exclude cases that contain a sequence <L3>*<L2> (back)
+- Exclude cases that start with a L2 role
+- Exclude cases that start with a L3 role
+- Exclude cases that start with a L2L3 role
+- Exclude cases that contain a sequence <L2>*<L1> (back)
+- Exclude cases that contain a sequence <L3>*<L1> (back)
+- Exclude cases that contain a sequence <L3>*<L2> (back)
 
 ### Using JavaScript to create filters
 
