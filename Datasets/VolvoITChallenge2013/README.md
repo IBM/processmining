@@ -27,18 +27,20 @@ The support policy does not allow for L2 or L3 to start a ticket, nor to miss a 
 
 ### Combining filters
 By combining a series of individual filters (see Compliant PushToFront saved template). Note that when adding filters, the logical operation is AND. By ANDing these exclusion filters, we are ORing their negation, ie we obtain the compliant cases. The exclusion filters are:
+```
 - Exclude cases that start with a L2 role
 - Exclude cases that start with a L3 role
 - Exclude cases that start with a L2L3 role
-- Exclude cases that contain a sequence <L2>*<L1> (back)
-- Exclude cases that contain a sequence <L3>*<L1> (back)
-- Exclude cases that contain a sequence <L3>*<L2> (back)
+- Exclude cases that contain a sequence <L2>*<L1> (going backward)
+- Exclude cases that contain a sequence <L3>*<L1> (going backward)
+- Exclude cases that contain a sequence <L3>*<L2> (going backward)
+```
 
 ### Using JavaScript to create filters
 
 ```javascript
 var filter = {
-        keepTrace: function(trace) {
+      keepTrace: function(trace) {
       var event = trace.get(0);
       // exclude cases that start with L1
       if (event.getRole() !== 'L1') return true;
@@ -46,14 +48,14 @@ var filter = {
       for(var k = 1 ; k < trace.size(); k++) {
         event = trace.get(k);
         previousRole = currentRole;
-                                currentRole = event.getRole();
-                                var sequence = previousRole + currentRole;
-                                switch(sequence){
-                                        case 'L2L1': return true;
-                                        case 'L3L2': return true;
-                                        case 'L3L1': return true;
-                                        case 'L1L3': return true;
-                                        }
+        currentRole = event.getRole();
+        var sequence = previousRole + currentRole;
+        switch(sequence){
+            case 'L2L1': return true;
+            case 'L3L2': return true;
+            case 'L3L1': return true;
+            case 'L1L3': return true;
+        }
       }
       return false;
    }
