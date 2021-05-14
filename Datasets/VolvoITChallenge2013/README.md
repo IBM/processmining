@@ -35,7 +35,7 @@ Exclude cases that contain a sequence <L3>*<L2> (back)
 
 ### Using JavaScript to create filters
 
-'''
+```javascript
 var filter = {
         keepTrace: function(trace) {
       var event = trace.get(0);
@@ -57,3 +57,4 @@ var filter = {
       return false;
    }
 };
+```
