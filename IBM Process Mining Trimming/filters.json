@@ -1,0 +1,59 @@
+{
+  "caseFilters": [
+    {
+      "filterType": "aggregate",    
+      "expression": "((0 OR (1 AND NOT 2)) OR (3 AND NOT 1) OR (4 AND NOT 1))",
+      "filters": [
+        {
+          "filterType": "attribute",
+          "attributeKey": "attr-activity",
+          "attributeValue": "Invoice Cleared",
+          "startDate": "${TODAY-92}",
+          "endDate": "${TODAY}"
+        },
+        {
+          "filterType": "attribute",
+          "attributeKey": "attr-activity",
+          "attributeValue": "Invoice Registered"          
+        },
+        {
+          "filterType": "attribute",
+          "attributeKey": "attr-activity",
+          "attributeValue": "Invoice Cleared"          
+        },
+        {
+          "filterType": "attribute",
+          "attributeKey": "attr-activity",
+          "attributeValue": "SES Line Registered"          
+        },        
+        {
+          "filterType": "attribute",
+          "attributeKey": "attr-activity",
+          "attributeValue": "Goods Line Registered"
+        }
+      ]
+    }
+  ],
+  "entityFilters": [
+    {      
+      "filterType": "aggregate",      
+      "expression": "(0 AND NOT (1 OR 2))",
+      "filters": [
+        {
+          "filterType": "entity",
+          "entityKey": "attr-process-1"
+        },
+        {
+          "filterType": "attribute",
+          "attributeKey": "attr-activity",
+          "attributeValue": "Purchase Order Closed"
+        },
+        {
+          "filterType": "attribute",          
+          "attributeKey": "attr-activity",
+          "attributeValue": "Purchase Order Line Deleted"
+        }
+      ]
+    }
+  ]    
+}
