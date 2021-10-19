@@ -3,7 +3,7 @@ API client samples
 
 ## CSV data trimming
 
-The sample application will trim a process' data chunks, based of the case and entity filters specified in the input JSON.
+Data trimming is the capability introduced in the 1.12.0 release, that would truncate a process' data source by retaining only the cases that satisfy the filter conditions specified in the input JSON.
 
 Usage example:
 
