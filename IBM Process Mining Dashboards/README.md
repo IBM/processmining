@@ -3,7 +3,11 @@ API client samples
 
 ## Export dashboard data
 
-The sample application will execute the Analytics dashboards marked as "exportable" and outputs their results to server-side configured S3 bucket.
+The exporting of Analytics' dashboard results as CSV to an external S3 storage is a new capability introduced with the 1.12.0 release.
+
+The pre-requisites of using this capability are:
+- the S3 storage tier to be set up in the Process Mining server configuration
+- dashboards to be marked as "exportable" in their "Dashboard info" panel in the Analytics platform.
 
 Usage example:
 
