@@ -2,11 +2,11 @@
 IBM Process Mining assets
 
 ## Custom Metrics (javascript)
-- [Custom Metrics](./Custom%20Metrics/)
+Examples of custom metrics: [Custom Metrics](./Custom%20Metrics/)
 ## Custom Filters (javascript)
- [Custom Filters](./Custom%20Filters/)
+Examples of custom filters:  [Custom Filters](./Custom%20Filters/)
 ## Custom Widgets (javascript)
- [Custom Widgets](./Custom%20Widgets/)
+Examples of custom widgets:  [Custom Widgets](./Custom%20Widgets/)
 
 ## Custom Accelerators
 - BAW Accelerator for BPM (no code) : https://github.com/IBM/ibm-process-mining-BAW-accelerator
