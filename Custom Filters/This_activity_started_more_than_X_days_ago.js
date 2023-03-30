@@ -20,7 +20,7 @@ var filter = {
     keepTrace: function(trace) {
         for(var k = 0 ; k < trace.size(); k++) {
             var event = trace.get(k);
-            if (activityList.indexOf(event.getEventClass())>0 && ((today - event.getStartTime())>delay_ms)) 
+            if (activityList.indexOf(event.getEventClass())>0 && ((today - event.getStartTime()) > delay_ms)) 
                 return true;
         }
         return false;

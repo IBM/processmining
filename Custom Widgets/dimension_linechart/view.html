@@ -1,0 +1,34 @@
+<div>
+    <div class="main-grid">
+        <div class="kyp-wrapper">
+            Total number of cases for top 5 values:
+            <div class="kpi-card">
+                <h1>
+                    {{data.dataset[0].count}}
+                </h1>
+                <p>
+                    {{data.dataset[0].value.slice(0,10)}}
+                </p>
+            </div>
+
+            <div class="kpi-card">
+                <h1>
+                    {{data.dataset[1].count}}
+                </h1>
+                <p>
+                    {{data.dataset[1].value.slice(0,10)}}
+                </p>
+            </div>
+
+            <div class="kpi-card">
+                <h1>
+                    {{data.dataset[2].count}}
+                </h1>
+                <p>
+                    {{data.dataset[2].value.slice(0,10)}}
+                </p>
+            </div>
+        </div>
+        <canvas id="dimensions_LC"></canvas>
+    </div>
+</div>
