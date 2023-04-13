@@ -12,4 +12,4 @@ Read this [tutorial](./Custom%20Widgets/dimension_linechart/README.md) to learn 
 
 ## Custom Accelerators
 - BAW Accelerator for BPM (no code) : https://github.com/IBM/ibm-process-mining-BAW-accelerator
-- BAW Accelerator for Case (no code) : TBD
+- BAW Accelerator for Case (no code) : https://github.com/MalekJabri/BAWAccelerator
