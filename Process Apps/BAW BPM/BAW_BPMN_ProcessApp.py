@@ -248,7 +248,7 @@ def execute(context):
 
     # If the date validation goes wrong
     except Exception as e:   # printing the appropriate text if ValueError occurs
-        raise ProcessAppException("Incorrect date format, should be like this 2022-10-08")
+        raise ProcessAppException("Incorrect date format, should be like this 2022-10-08" + str(e))
 
     
     # check the optional fields. They key does not exist if the fields are ommitted
