@@ -50,6 +50,14 @@ def execute(context):
     # Get the input parameters
     config = context['config']
 
+    # Example testing that a input parameter from_date is matching the expected date format
+    try:
+        dateObject = datetime.datetime.strptime(config['from_date'], date_format)
+        config['from_date'] = dateObject.strftime(baw_date_format)
+    # If the date validation goes wrong
+    except Exception as e:   # printing the appropriate text if ValueError occurs
+        raise ProcessAppException("Incorrect date format, should be like this 2022-10-08" + str(e))
+
     # Get the data from the source (ex: call BAW REST API to fetch instances and tasks for each instance)
     event_list = everything_you_need_to_do_to_get_the_events(config)
 
