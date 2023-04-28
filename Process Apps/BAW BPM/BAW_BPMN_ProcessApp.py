@@ -167,7 +167,7 @@ def create_event(task_id, event_data, config):
             # append event to the event_data array
             event_data.append(event)
     except Exception as e:
-        message = f"Unexpected error while creating event for task : {task_id}"+str(e)
+        message = f"Unexpected error while creating event for task : {task_id} "+str(e)
         print(message)
         raise ProcessAppException(message)
 
@@ -200,17 +200,17 @@ def get_tasks(instance_list, config):
 # This is the entry function for the logic file.
 
 default_config = {
-        "root_url": "https://IBM_BAW_BPM/",
+        "root_url": "<BAW_URL>",
         "user": "admin",
         "password": "admin",
         "project": "HSS",
         "process_name": "Standard HR Open New Position",
         "from_date": "2022-10-08",
         "from_date_criteria": "createdAfter",
-        "to_date": "2022-11-23",
+        "to_date": "2022-12-08",
         "to_date_criteria": "modifiedBefore",
-        "instance_limit": '0',
-        "task_data_variables": "requisition.gmApproval,requisition.requester",
+        "instance_limit": '10',
+        #"task_data_variables": "requisition.gmApproval,requisition.requester",
     }
 
 import datetime
@@ -257,7 +257,9 @@ def execute(context):
     # remove any blank character
     # we have to split it and put each string in an array
         config['task_data_variables'] = config['task_data_variables'].replace(' ','')
-        config['task_data_variables'] = config['task_data_variables'].split(',');
+        config['task_data_variables'] = config['task_data_variables'].split(',')
+    else:
+        config['task_data_variables'] = []
 
     if 'instance_limit' in config:
         if config['instance_limit'].isnumeric():
