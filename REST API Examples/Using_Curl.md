@@ -32,5 +32,6 @@ curl -k '<URL>/integration/csv/job-status/<JOB>' -H "accept: application/json" -
 ```
 
 ## Querying data from the event log
-
+```
 curl -k -X POST '<URL>/analytics/integration/newbawextract/query?org=ca2b2685' -H "Authorization: Bearer <KEY>" --header 'Content-Type: application/x-www-form-urlencoded' --data-urlencode 'params={ "query": "SELECT count(*) FROM EVENTLOG" }' 
+```
