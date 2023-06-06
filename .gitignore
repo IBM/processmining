@@ -1,2 +1,17 @@
 .DS_Store
 REST API Examples/Pat_config.conf
+Process Apps/IT_Ticketing_ServiceNow/FixCloseDate.ipynb
+Process Apps/IT_Ticketing_ServiceNow/hold_reason_changes_df.csv
+Process Apps/IT_Ticketing_ServiceNow/eventlog.csv
+Process Apps/IT_Ticketing_ServiceNow/incident_audit.csv
+Process Apps/IT_Ticketing_ServiceNow/incidents_REST.csv
+Process Apps/IT_Ticketing_ServiceNow/instance_state_changes_df.csv
+Process Apps/IT_Ticketing_ServiceNow/my_config.json
+Process Apps/IT_Ticketing_ServiceNow/Curl.txt
+Process Apps/IT_Ticketing_ServiceNow/ServiceNowIT.csv
+Process Apps/IT_Ticketing_ServiceNow/state_changes_df.csv
+Process Apps/IT_Ticketing_ServiceNow/state_changes.csv
+Process Apps/IT_Ticketing_ServiceNow/testProcessApps.zip
+Process Apps/IT_Ticketing_ServiceNow/tests.ipynb
+Process Apps/IT_Ticketing_ServiceNow/user_groups_df.csv
+Process Apps/testProcessApps/justatest.csv
