@@ -4,7 +4,6 @@ Process Apps/IT_Ticketing_ServiceNow/FixCloseDate.ipynb
 Process Apps/IT_Ticketing_ServiceNow/hold_reason_changes_df.csv
 Process Apps/IT_Ticketing_ServiceNow/eventlog.csv
 Process Apps/IT_Ticketing_ServiceNow/incident_audit.csv
-Process Apps/IT_Ticketing_ServiceNow/incidents_REST.csv
 Process Apps/IT_Ticketing_ServiceNow/instance_state_changes_df.csv
 Process Apps/IT_Ticketing_ServiceNow/my_config.json
 Process Apps/IT_Ticketing_ServiceNow/Curl.txt
