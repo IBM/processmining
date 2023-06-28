@@ -5,13 +5,47 @@ import pandas as pd
 import datetime as dt
 from datetime import datetime
 
+# Utility function: get all tickets from all projects
+# Requires 'from_date' and optionnally 'to_date'
+def ws_count_all_tickets(config):
+    auth = HTTPBasicAuth(config['user'],config['token'])
+    # requires a from_date for query to be correct
+    if 'from_date' in config:
+        query = 'created >= ' + config['from_date']
+    if 'to_date' in config:
+        query = query + ' AND created <= ' + config['to_date']
+
+    params = {
+    'jql': query,
+    'fields':'created',
+    'maxResults' : 1,
+    'startAt': 0
+    }
+
+    headers = {
+    "Accept": "application/json"
+    }
+    url = config['url']+'search'
+    response = requests.request(
+        "GET",
+        url,
+        headers=headers,
+        params=params,
+        auth=auth)
+    if response.status_code == 200:
+        return json.loads(response.text)
+    else: 
+        print("error get all ticket %s " % response.status_code)
+        return None
+
+# Utility function to count the number of issues per project
 def ws_count_tickets(config):
     auth = HTTPBasicAuth(config['user'],config['token'])
 
     query = 'project = ' + config['project_key']
-    if 'from_date' in my_config:
+    if 'from_date' in config:
         query = query + ' AND created >= ' + config['from_date']
-    if 'to_date' in my_config:
+    if 'to_date' in config:
         query = query + ' AND created <= ' + config['to_date']
 
     params = {
@@ -49,9 +83,9 @@ def ws_get_tickets(config):
     auth = HTTPBasicAuth(config['user'],config['token'])
 
     query = 'project = ' + config['project_key']
-    if 'from_date' in my_config:
+    if 'from_date' in config:
         query = query + ' AND created >= ' + config['from_date']
-    if 'to_date' in my_config:
+    if 'to_date' in config:
         query = query + ' AND created <= ' + config['to_date']
     params = {
     'jql': query,
@@ -206,13 +240,23 @@ def execute(context):
     if 'minimalIssueNumber' not in my_config:
         my_config['minimalIssueNumber'] =  50
 
+    if 'maxResults' not in my_config:
+        my_config['maxResults'] =  50
+
+    if 'from_date' not in my_config:
+        my_config['from_date'] = '2000-01-01'
+
+    if 'projects' not in my_config:
+        my_config['projects'] = ''
+
+
+    res = ws_count_all_tickets(my_config)
+    print("Total number of issues for all projects: %s" % res['total'])
 
     # config['projects'] can be empty, or contain a list of projects separated by a comma
     # get the list of projects
-    if 'projects' not in my_config:
-        projects = ''
-    else:
-        projects = my_config['projects']
+
+    projects = my_config['projects']
     if projects == '':
         # get all the projects
         projects = ws_get_projects(my_config)

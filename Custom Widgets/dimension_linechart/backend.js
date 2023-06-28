@@ -11,7 +11,7 @@
             var event = trace.get(i);
 
             if (event.getEventClass() == ACTIVITY) {
-                metrics.value = event.getStringCustomAttributeValue(DIMENSION);
+                metrics.value = event.getStringAttributeValue(DIMENSION);
                 if (metrics.value == '') {
                     if (KEEP_EMPTY_VALUES[0] == 'n') { // exclude cases with no value for DIMENSION
                         metrics.exclude = 1;
@@ -87,7 +87,12 @@
             var groupByChoices = ['day', 'week', 'month', 'year'];
             var keepEmptyValuesChoices = ['yes', 'no'];
 
-            DIMENSION = params.DIMENSION.replace('attr-custom-', '');
+            DIMENSION = params.DIMENSION;
+            // If the dimension is a column, the name starts with 'attr-custom-'
+            // If the dimension is a custom metric, the name starts with ''attr-custom-metrics' (no dash in the end)
+            DIMENSION_DISPLAY = DIMENSION.replace('attr-custom-metrics', '');
+            DIMENSION_DISPLAY = DIMENSION_DISPLAY.replace('attr-custom-', '');
+            // if the DIMENSION is a custom metric, attr-custom-metrics is before the name
             GROUPBY = params.GROUPBY;
             if (groupByChoices.indexOf(GROUPBY) < 0)
                 GROUPBY = 'month';
@@ -157,7 +162,7 @@
         },
 
         finalize: function (output) {
-            output.DIMENSION = DIMENSION;
+            output.DIMENSION = DIMENSION_DISPLAY;
             output.GROUPBY = GROUPBY;
             output.TIME_LABEL_UNIT = TIME_LABEL_UNIT;
             output.MAX_NUMBER_OF_VALUES_DISPLAYED = MAX_NUMBER_OF_VALUES_DISPLAYED;

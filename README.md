@@ -14,6 +14,8 @@ Read this [tutorial](./Custom%20Widgets/dimension_linechart/README.md) to learn 
 - BAW BPM process app : [BAW BPM](./Process%20Apps/BAW%20BPM)
 - Service Now process app : [ServiceNow](./Process%20Apps/IT_Ticketing_ServiceNow)
 - Process app test: [testProcessApps](./Process%20Apps/testProcessApps)
+- Redmine Ticketing process app: https://github.com/IBM/japan-technology/tree/main/usecases/process-mining/ProcessApps/Redmine_ticketing -- Thanks to Tatsuya.Miyazaki@ibm.com
+
 
 Pandas is required to create process apps: understand useful pandas code (under construction) and save time
 - Pandas tutorial: [Pandas Tutorial](./Process%20Apps/Pandas%20Tuto/pandas_basics_process_apps.ipynb)
