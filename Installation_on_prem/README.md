@@ -125,8 +125,20 @@ Create the nginx ssl directory and copy the certificates from /opt/cert
 ```
 mkdir /etc/nginx/ssl
 cp /opt/cert/server.* /etc/nginx/ssl/.
+```
+
+Check if SELinux is enabled:
+```
+getenforce
+```
+
+If SELinux is enabled:
+```
 chcon -h system_u:object_r:ttpd_config_t /etc/nginx/ssl/server.*
 ```
+
+
+
 
 Update the nginx config file to do the following:
 - Replace certificate names
@@ -266,8 +278,22 @@ openssl x509 -req -in server.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateseria
 cat server.crt server.key > server.pem
 mkdir /etc/nginx/ssl
 cp /opt/cert/server.* /etc/nginx/ssl/.
-chcon -h system_u:object_r:ttpd_config_t /etc/nginx/ssl/*.*
+```
+
+Check if SELinux is enabled:
+```
+getenforce
+```
+
+If SELinux is enabled:
+```
 chcon -t httpd_config_t /etc/nginx/ssl/*.*
+```
+or 
+```
+chcon -h system_u:object_r:ttpd_config_t /etc/nginx/ssl/server.*
+```
+setsebool -P httpd_can_network_connect 1
 ```
 
 
