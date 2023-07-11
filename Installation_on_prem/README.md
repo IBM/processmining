@@ -56,6 +56,12 @@ Update $PM_HOME/etc/processmining.conf to update Task Mining URL (task mining UR
 vi $PM_HOME/etc/processmining.conf
 ```
 
+## Install python 9
+```
+yum install python3.9
+apt install python3.9-venv
+```
+
 
 ## Create Self Signed Certificates
 If you have official certificates from your company, better using them.
@@ -243,6 +249,14 @@ Add the CA certificate from process mining to the keystore:
 ```
 $TM_HOME/ibm-openjdk-semeru/bin/keytool -import -keystore $TM_HOME/ibm-openjdk-semeru/lib/security/cacerts -trustcacerts -alias "Process Mining CA" -file /opt/cert/rootCA.pem
 ```
+You can list the CA certificates registered in the keystore:
+```
+$TM_HOME/ibm-openjdk-semeru/bin/keytool -v -list -keystore $TM_HOME/ibm-openjdk-semeru/lib/security/cacerts | grep Process
+```
+You can delete a certificate registered in the keystore:
+```
+$TM_HOME/ibm-openjdk-semeru/bin/keytool -delete -noprompt -alias "Process Mining CA" -keystore $TM_HOME/ibm-openjdk-semeru/lib/security/cacerts
+```
 
 Create the certificates:
 ```
@@ -255,6 +269,7 @@ cp /opt/cert/server.* /etc/nginx/ssl/.
 chcon -h system_u:object_r:ttpd_config_t /etc/nginx/ssl/*.*
 chcon -t httpd_config_t /etc/nginx/ssl/*.*
 ```
+
 
 ## NGINX Configuration
 
