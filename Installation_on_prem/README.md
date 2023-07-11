@@ -134,7 +134,15 @@ getenforce
 
 If SELinux is enabled:
 ```
+chcon -t httpd_config_t /etc/nginx/ssl/*.*
+```
+or 
+```
 chcon -h system_u:object_r:ttpd_config_t /etc/nginx/ssl/server.*
+```
+And enable the connection from the network (when SELlinux is enforcing)
+```
+setsebool -P httpd_can_network_connect 1
 ```
 
 
@@ -285,13 +293,16 @@ Check if SELinux is enabled:
 getenforce
 ```
 
-If SELinux is enabled:
+If SELinux is enforcing:
 ```
 chcon -t httpd_config_t /etc/nginx/ssl/*.*
 ```
 or 
 ```
 chcon -h system_u:object_r:ttpd_config_t /etc/nginx/ssl/server.*
+```
+
+And enable the connection from the network (when SELlinux is enforcing)
 ```
 setsebool -P httpd_can_network_connect 1
 ```
