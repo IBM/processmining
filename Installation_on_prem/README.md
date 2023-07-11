@@ -380,7 +380,8 @@ chmod +x $TM_HOME/bin/start.sh
 chmod +x $TM_HOME/bin/stop.sh
 ```
 
-Start Task Mining
+Start Task Mining.
+Warning! the first start initialize the database, you should not interrompt it too early.
 ```
 service nginx start
 $TM_HOME/bin/start.sh
@@ -401,6 +402,10 @@ $PM_HOME/bin/start.sh
 
 ```
 
+## login Task Mining web page
+Since version 1.14.1, task mining web is only accessed via processmining web page.
+
+https://PM_HOST/taskmining
 
 
 
