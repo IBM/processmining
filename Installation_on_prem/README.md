@@ -12,6 +12,6 @@ That's the easiest.
 
 ## Installing PM and TM on distinct servers
 A bit more difficult, but largely feasible
-[Installing PM and TM on distinc servers](processmining_taskmining_on_prem_distinct_servers.md)
+[Installing PM and TM on distinct servers](processmining_taskmining_on_prem_distinct_servers.md)
 
 
