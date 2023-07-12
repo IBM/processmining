@@ -12,20 +12,16 @@ Examples of custom widgets:  [Custom Widgets](./Custom%20Widgets/)
 
 Read this [tutorial](./Custom%20Widgets/dimension_linechart/README.md) to learn how to create advanced custom widgets with charts, that could be useful in any project.
 
-## Process Apps (public)
-- BAW BPM process app: [BAW BPM](./Process%20Apps/BAW%20BPM)
-- Service Now process app: [ServiceNow](./Process%20Apps/IT_Ticketing_ServiceNow)
-- Jira Ticketing process app: [Jira Ticketing](./Process%20Apps/Jira_ticketing)
-- Redmine Ticketing process app: [Redmine](https://github.com/IBM/japan-technology/tree/main/usecases/process-mining/ProcessApps/Redmine_ticketing) -- Thanks to Tatsuya.Miyazaki@ibm.com
-- Salesforce opportunity management process app: [Salesforce](https://github.ibm.com/automation-base-pak/pm-process-apps/tree/main/salesforce-opportunity-management) -- Thanks to emmanuel.tissandier@fr.ibm.com. This asset is still in the IBM github enterprise repository. Please contact Emmanuel Tissandier or patrick.megard@fr.ibm.com to get it.
+## Process Apps
+Process Apps can be developed by IBM, consultants, partners, clients. They provide connectors, filters, kpis, dashboards that address a specific use case.
+If you want to contribute a process app that would be useful to other process mining practitionners, don't hesitate to use pull requests.
 
-- Process app test: [testProcessApps](./Process%20Apps/testProcessApps)
-Pandas is required to create process apps: understand useful pandas code (under construction) and save time
-- Pandas tutorial: [Pandas Tutorial](./Process%20Apps/Pandas%20Tuto/pandas_basics_process_apps.ipynb)
+Check the [current list of process apps](./Process%20Apps/README.md)
 
 ## Custom Accelerators (public)
 - BAW Accelerator for BPM (no code) : https://github.com/IBM/ibm-process-mining-BAW-accelerator
 - BAW Accelerator for Case (no code) : https://github.com/MalekJabri/BAWAccelerator
 
-## Custom Accelerators (IBM only)
+## Custom Accelerators (IBM consultants only)
 - SAP AP, SAP P2P, SAP O2C with Talend: https://github.ibm.com/automation-base-pak/ibm-process-mining-etl/
+- Maximo (contact laurence_may@uk.ibm.com)
