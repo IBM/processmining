@@ -1,6 +1,8 @@
 # IBM Process Mining
 IBM Process Mining assets
 
+## Installation scripts
+Install process mining and task mining on prem [Installation scripts](./Installation_on_prem/README.md)
 ## Custom Metrics (javascript)
 Examples of custom metrics: [Custom Metrics](./Custom%20Metrics/)
 ## Custom Filters (javascript)
