@@ -131,7 +131,7 @@ Check if SELinux is enabled:
 ```
 getenforce
 ```
-I do not recommend to keep SELinux enforced as it also requires changes on the mongodb side. ttps://www.mongodb.com/docs/v4.4/tutorial/install-mongodb-on-red-hat/#configure-selinux
+I do not recommend to keep SELinux enforced as it also requires changes on the mongodb side. https://www.mongodb.com/docs/v4.4/tutorial/install-mongodb-on-red-hat/#configure-selinux
 
 If SELinux is enabled:
 ```
