@@ -4,7 +4,7 @@ These process apps are delivered as python source code that you can use to creat
 - BAW BPM : [BAW BPM](BAW%20BPM)
 - Service Now Ticketing: [ServiceNow](IT_Ticketing_ServiceNow)
 - Jira Ticketing: [Jira Ticketing](Jira_ticketing)
-- Redmine Ticketing: [Readmine](https://github.com/IBM/japan-technology/tree/main/usecases/process-mining/ProcessApps/Redmine_ticketing) -- Thanks to Tatsuya.Miyazaki@ibm.com
+- Redmine Ticketing: [Redmine](https://github.com/IBM/japan-technology/tree/main/usecases/process-mining/ProcessApps/Redmine_ticketing) -- Thanks to Tatsuya.Miyazaki@ibm.com
 
 These process apps are delivered as a .pma binary file that can be imported in IBM Process Mining. The python code can be downloaded from the imported process app.
 - Aha! Ideas Management : [Aha! Ideas Management](./Open_apps/Aha!%20Ideas%20Management%20open.pma)
