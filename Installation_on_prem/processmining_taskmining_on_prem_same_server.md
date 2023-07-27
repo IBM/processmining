@@ -60,7 +60,6 @@ vi $PM_HOME/etc/processmining.conf
 ## Install python 9
 ```
 yum install python3.9
-apt install python3.9-venv
 ```
 
 
@@ -132,6 +131,7 @@ Check if SELinux is enabled:
 ```
 getenforce
 ```
+I do not recommend to keep SELinux enforced as it also requires changes on the mongodb side. ttps://www.mongodb.com/docs/v4.4/tutorial/install-mongodb-on-red-hat/#configure-selinux
 
 If SELinux is enabled:
 ```
@@ -208,6 +208,14 @@ Default credentials:
 
 New Password (choose your own) : IBMDem0s!
 
+### Troubles accessing process mining?
+If SELinux is enforced, mongodb is also having a problem. https://www.mongodb.com/docs/v4.4/tutorial/install-mongodb-on-red-hat/#configure-selinux
+
+If possible, we recommend to disable SELinux dynamically ```setenforce 0``` or by editing ```/etc/selinux/config``` and rebooting.
+
+```
+grep -e "setroubleshoot" /var/log/messages
+```
 
 # Install Task Mining in the same server
 Upload the taskminer tar.gz file onto the process mining VM
@@ -242,26 +250,6 @@ $TM_HOME/ibm-openjdk-semeru/bin/keytool -v -list -keystore $TM_HOME/ibm-openjdk-
 You can delete a certificate registered in the keystore:
 ```
 $TM_HOME/ibm-openjdk-semeru/bin/keytool -delete -noprompt -alias "Process Mining CA" -keystore $TM_HOME/ibm-openjdk-semeru/lib/security/cacerts
-```
-
-
-Check if SELinux is enabled:
-```
-getenforce
-```
-
-If SELinux is enforcing:
-```
-chcon -t httpd_config_t /etc/nginx/ssl/*.*
-```
-or 
-```
-chcon -h system_u:object_r:ttpd_config_t /etc/nginx/ssl/server.*
-```
-
-And enable the connection from the network (when SELlinux is enforcing)
-```
-setsebool -P httpd_can_network_connect 1
 ```
 
 

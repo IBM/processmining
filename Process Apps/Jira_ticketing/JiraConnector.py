@@ -191,6 +191,10 @@ def create_ticket(issue):
     return(ticket)
 
 def create_ticket_changelog(ticket_id, author, datestr, item):
+    # Only keep changes of status and assignee (you can change this)
+    field_changes_to_keep = ['status', 'assignee']
+    if item['field'] not in field_changes_to_keep:
+        return 0
     ticket_change = {}
     ticket_change['ticket_id'] = ticket_id
     ticket_change['author'] = author
@@ -341,7 +345,8 @@ def execute(context):
             # there could be several item changes in each history
             for item in history['items']:
                 ticket_changelog = create_ticket_changelog(changelog['ticket_id'], history['author']['key'], history['created'], item)
-                ticket_changes_list.append(ticket_changelog)
+                if ticket_changelog:
+                    ticket_changes_list.append(ticket_changelog)
 
     print("Total number of changelogs: %s" % len(ticket_changes_list))
     all_ticket_changes_df = pd.DataFrame(ticket_changes_list)

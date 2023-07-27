@@ -296,3 +296,4 @@ if __name__ == "__main__":
     context = {'config': default_config}
     df = execute(context) 
     print (df)
+    df.to_csv('BPMEvents.csv', index=None)

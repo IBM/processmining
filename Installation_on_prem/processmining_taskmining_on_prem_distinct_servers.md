@@ -61,7 +61,6 @@ vi $PM_HOME/etc/processmining.conf
 ## Install python 9
 ```
 yum install python3.9
-apt install python3.9-venv
 ```
 
 
@@ -133,6 +132,7 @@ Check if SELinux is enabled:
 ```
 getenforce
 ```
+I do not recommend to keep SELinux enforced as it also requires changes on the mongodb side. ttps://www.mongodb.com/docs/v4.4/tutorial/install-mongodb-on-red-hat/#configure-selinux
 
 If SELinux is enabled:
 ```
@@ -464,4 +464,4 @@ $PM_HOME/bin/start.sh
 ## login Task Mining web page
 Since version 1.14.1, task mining web is only accessed via processmining web page.
 
-https://PM_HOST/taskmining
+https://PM_HOST/taskmining/
