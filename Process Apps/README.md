@@ -17,6 +17,7 @@ These process apps are delivered as a .pma binary file that can be imported in I
 ## Process Apps: How to
 - Process app test: [testProcessApps](testProcessApps)
 - Process app with uploaded file test: [more](./testProcessAppWithFile)
+- Jira Ticketing Tutorial: [JiraConnectorTutorial notebook](./Jira_ticketing/JiraConnectorTutorial.ipynb)
 
 Pandas is required to create process apps: understand useful pandas code (under construction) and save time
 - Pandas tutorial: [Pandas Tutorial](Pandas%20Tuto/pandas_basics_process_apps.ipynb)
