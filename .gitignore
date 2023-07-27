@@ -29,3 +29,5 @@ Process Apps/Jira_ticketing/tt.csv
 Process Apps/Jira_ticketing/uncompress.zip
 Process Apps/Jira_ticketing/issues.csv
 Custom Widgets/dimension_linechart/test.js
+Process Apps/Jira_ticketing/JiraConnectorTutorial.zip
+Process Apps/Jira_ticketing/eventlog.csv
