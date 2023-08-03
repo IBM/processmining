@@ -1,6 +1,6 @@
 import pandas as pd
 
-def execute(config):
+def execute(context):
     justatest = [
     {'processid':'p1', 'activity':'analyze request', 'date':'2023-01-01'},
     {'processid':'p1', 'activity':'approve request', 'date':'2023-01-02'},
