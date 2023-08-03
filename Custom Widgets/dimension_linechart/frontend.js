@@ -11,7 +11,11 @@ return {
     // compute time labels
     data.labels = [];
     for (var i = 0; i < data.timeScale.length; i++) {
-      data.labels.push(new Date(data.timeScale[i]).toString());
+      // chartjs takes into account the local timezone. Remove hours to ignore the possible difference between the server and the client
+      aDate = new Date(data.timeScale[i]);
+      aDate.setHours(0, 0, 0, 0);
+      data.labels.push(aDate.toString());
+      // data.labels.push(new Date(data.timeScale[i]).toString());
     }
 
     // compute sum of each value

@@ -31,3 +31,12 @@ Process Apps/Jira_ticketing/issues.csv
 Custom Widgets/dimension_linechart/test.js
 Process Apps/Jira_ticketing/JiraConnectorTutorial.zip
 Process Apps/Jira_ticketing/eventlog.csv
+Process Apps/P2P_data_xform_lab/__MACOSX/._invoice.csv
+Process Apps/P2P_data_xform_lab/__MACOSX/._procurement.csv
+Process Apps/P2P_data_xform_lab/__MACOSX/._requisition.csv
+Process Apps/P2P_data_xform_lab/procurement.csv
+.gitignore
+Process Apps/P2P_data_xform_lab/P2Peventlog.csv
+Process Apps/P2P_data_xform_lab/requisition.csv
+.gitignore
+Process Apps/P2P_data_xform_lab/invoice.csv

@@ -14,6 +14,7 @@ def execute(context):
     # Therefore, all the unzipped files are accessible in the current directory
     # sleep a while until all files are extracted
     time.sleep(5)
+
     requisitions = pd.read_csv('./requisition.csv')
     create_requisitions = requisitions.copy()
     create_requisitions['activity'] = 'Requisition Created'
@@ -24,15 +25,13 @@ def execute(context):
 
     release_requisitions = requisitions.copy()
     release_requisitions['activity'] = 'Requisition Released'
+    release_requisitions.rename(columns={'Release_DateTime': 'datetime', 'Release_User': 'user',
+                        'Release_Role': 'role', 'Release_Type': 'type', 'Release_Source': 'source'}, inplace=True)
     release_requisitions.drop(['Create_Date', 'Create_User', 'Create_Role',
                             'Create_Type', 'Create_Source'], axis=1, inplace=True)
-
-
-    requisition_events = pd.concat([create_requisitions, release_requisitions])
-    # just in case there are null dates
-    requisition_events[requisition_events['datetime'].notna()]
-    # Convert columns to best possible dtypes using dtypes supporting
-    requisition_events.convert_dtypes()
+    # If some requisition cases are not complete, we remove rows where the requisition release date is NaN, as in
+    # this case, the activity did not yet occur. This is actually never the case.
+    release_requisitions = release_requisitions[release_requisitions['datetime'].notna()]
 
     # procurements
     procurements = pd.read_csv('./procurement.csv', low_memory=False)
@@ -41,15 +40,32 @@ def execute(context):
     invoices = pd.read_csv('./invoice.csv')
 
     # Merging invoice.csv information into procurement.csv
-    procurement_events = procurements.merge(invoices, on="Invoice_ID", how="left")
-    # Convert columns to best possible dtypes using dtypes supporting
-    procurement_events.convert_dtypes()
+    procurements = procurements.merge(invoices, on="Invoice_ID", how="left")
 
     # Finally we append the requisition and the procurement event logs to create the final event log. Again, we can remove the events with a null `datetime`P2P_events = pd.concat([P2P_events, procurement_events])
-    P2P_events = pd.concat([requisition_events, procurement_events])
+    P2P_events = pd.concat([create_requisitions, release_requisitions, procurements])
     # removing rows with no datetime if any
     P2P_events = P2P_events[P2P_events["datetime"].notna()]
     P2P_events = P2P_events.convert_dtypes()  # applying the best known types
+    # Reordering columns to simplify mapping
+    P2P_events = P2P_events[['activity','datetime', 'user', 'role', 'type',
+       'source',  'Req_ID','Req_Header', 'Req_Line', 'PO_Header', 'PO_Line', 'PO_ID', 'MatDoc_Header',
+       'MatDoc_Line', 'MatDoc_Year', 'MatDoc_ID', 'gr_h_y', 'Invoice_ID',
+       'rses_h', 'rses_l', 'rses_y', 'mandt', 'bukrs', 'xblnr', 'fl_h', 'fl_y',
+       'value_old', 'value_new', 'clear_doc', 'qmnum', 'data_gr_effettiva',
+       'usertype', 'Order_Type', 'Purchasing_Group', 'Purch_Group_Type',
+       'Material_Group_Area', 'Accounting_Type', 'Order_Vendor',
+       'Order_Source', 'Department', 'Order_Amount', 'Material',
+       'lead_time_material', 'Material_Type', 'Purch_Group_Area',
+       'Requisition_Plant', 'Order_Plant', 'Material_Plant', 'data_gr_ordine',
+       'data_gr_stat', 'data_gr_ipo', 'Paid_Amount', 'Paid_Vendor',
+       'split_ordine', 'split_riga_ordine', 'missmatch_riga_oda',
+       'check_riga_gagm', 'consegna_ipotetica', 'consegna_oda_ipotetica',
+       '_consegna_statistica_ipotetica_', 'pay_delay', 'pay_type',
+       'Req_Required_Vendor', 'Material_Group', 'Invoice_Date',
+       'Requisition_Vendor', 'Purchase_Organization', 'insert_date',
+       'Invoice_Header', 'Invoice_Year', 'Invoice_Amount', 'Invoice_Vendor',
+       'Invoice_Due_Date', 'Invoice_Vendor_City']]
 
     return(P2P_events)
 
