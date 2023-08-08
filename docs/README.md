@@ -1,4 +1,4 @@
-# IBM Process Mining
+# IBM Process Mining Open Source Assets
 IBM Process Mining assets
 
 ## Installation scripts
