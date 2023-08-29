@@ -35,8 +35,12 @@ Process Apps/P2P_data_xform_lab/__MACOSX/._invoice.csv
 Process Apps/P2P_data_xform_lab/__MACOSX/._procurement.csv
 Process Apps/P2P_data_xform_lab/__MACOSX/._requisition.csv
 Process Apps/P2P_data_xform_lab/procurement.csv
-.gitignore
 Process Apps/P2P_data_xform_lab/P2Peventlog.csv
 Process Apps/P2P_data_xform_lab/requisition.csv
-.gitignore
 Process Apps/P2P_data_xform_lab/invoice.csv
+Process Apps/P2P_data_xform_lab/P2P_data_extraction_tutorial copy.ipynb
+Process Apps/P2P_data_xform_lab/proc_and_invoices.csv
+Process Apps/P2P_data_xform_lab/P2Peventlogtest.csv
+Custom Widgets/v_barchart/view copy.html
+REST API Examples/test.js
+.gitignore
