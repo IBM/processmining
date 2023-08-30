@@ -1,7 +1,7 @@
 (function () {
     return {
         init: function (params) {
-            
+            canvasName = params.canvasName;
         },
 
         update: function (trace) {
@@ -12,6 +12,7 @@
         },
 
         finalize: function (output) {
+            output.canvasName = canvasName;
         }
     };
 })();

@@ -7,6 +7,18 @@ return {
 
 
     context.scope.data = data;
+
+    // Create a div and a canvas to display the chart
+    var widget = document.getElementById(context.scope.widgetId);
+    var random_num = Math.floor(Math.random() * 1000);
+    var canv = document.createElement('canvas'); // creates new canvas element
+    canv.id = 'canvas_' + random_num; // gives canvas id
+    // create a div
+    var div = document.createElement('div');
+    div.id = 'div_' + random_num;
+    widget.appendChild(div); // adds the div to the widget
+    div.appendChild(canv); // adds the canvas to the div
+
     // compute time labels
     data.labels = [];
     for (var i = 0; i < data.timeScale.length; i++) {
@@ -57,7 +69,7 @@ return {
 
     var chartTitle = 'avg leadtime for top ' + data.MAX_NUMBER_OF_VALUES_DISPLAYED + ' values of ' + data.DIMENSION + ' (total # of values : ' + data.dataset.length + ').';
 
-    new Chart(document.getElementById('dimensions_leadtime_LC'), {
+    new Chart(canv, {
       type: 'line',
       data: {
         labels: data.labels,
