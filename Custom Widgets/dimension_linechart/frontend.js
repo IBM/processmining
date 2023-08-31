@@ -6,6 +6,14 @@ return {
 
     var colorPalette = ["#A1A417", "#5EBCD6", "#EEB206", "#216AF0", "#DAEFFC", "#A846F1", "#9328F6", "#7DEC05", "#C446A7", "#0F1697", "#DA621F", "#0BAF94", "#5F2C8D", "#58F49B", "#31855A", "#D58842", "#A0C8E8", "#A3C115", "#943136", "#EB5FA5", "#9471C1", "#C87FDB", "#D626B9", "#61030F", "#E1B961", "#561B8C", "#DB7589", "#7E84BD", "#2F3ADA", "#718486", "#5609B6", "#F44CB5", "#F213AB", "#CF99F8", "#6E7F30", "#A8E929", "#013369", "#650422", "#F14672", "#132A15", "#9800CA", "#062F93", "#10B959", "#9968AE", "#B8CF92", "#902571", "#0574FF", "#6F5C16", "#58B0F1", "#8C457F"];
 
+    // Create a div and a canvas to display the chart
+    var widget = document.getElementById(context.scope.widgetId);
+    var canv = document.createElement('canvas'); // creates new canvas element
+    canv.id = context.scope.widgetId + '_canvas'; // gives a unique canvas id
+    var div = document.createElement('div');
+    div.id = context.scope.widgetId + '_div'; // creates a unique div id
+    widget.appendChild(div); // adds the div to the widget
+    div.appendChild(canv); // adds the canvas to the div
 
     context.scope.data = data;
     // compute time labels
@@ -43,7 +51,7 @@ return {
 
     var chartTitle = '# cases for top ' + data.MAX_NUMBER_OF_VALUES_DISPLAYED + ' values of ' + data.DIMENSION + ' (total # of values : ' + data.dataset.length + ').';
 
-    new Chart(document.getElementById('dimensions_LC'), {
+    new Chart(canv, {
       type: 'line',
       data: {
         labels: data.labels,
