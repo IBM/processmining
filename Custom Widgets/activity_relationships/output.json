@@ -1,0 +1,986 @@
+data.activities = [
+    {
+        "previous_activities": [
+            {
+                "count": 1,
+                "pathtime_sum": 0,
+                "activity": "Network Adjustment Requested"
+            },
+            {
+                "count": 5,
+                "pathtime_sum": 552200000,
+                "activity": "BO Service Closure"
+            },
+            {
+                "count": 7622,
+                "pathtime_sum": 483397000,
+                "activity": "Back-Office Adjustment Requested "
+            },
+            {
+                "count": 73582,
+                "pathtime_sum": 318279000,
+                "activity": "Pending Liquidation Request"
+            },
+            {
+                "count": 79,
+                "pathtime_sum": 319816000,
+                "activity": "Pending Request for Reservation Closure"
+            },
+            {
+                "count": 7079,
+                "pathtime_sum": 28627000,
+                "activity": "Pending Request for acquittance of heirs"
+            },
+            {
+                "count": 1,
+                "pathtime_sum": 0,
+                "activity": "Authorization Requested"
+            },
+            {
+                "count": 20,
+                "pathtime_sum": 40000,
+                "activity": "Pending Request for Network Information"
+            }
+        ],
+        "next_activities": [
+            {
+                "count": 1,
+                "pathtime_sum": 17498000,
+                "activity": "Back-Office Adjustment Requested "
+            },
+            {
+                "count": 7,
+                "pathtime_sum": 0,
+                "activity": "Pending Liquidation Request"
+            },
+            {
+                "count": 2,
+                "pathtime_sum": 0,
+                "activity": "Pending Request for acquittance of heirs"
+            },
+            {
+                "count": 1,
+                "pathtime_sum": 0,
+                "activity": "Authorization Requested"
+            },
+            {
+                "count": 2,
+                "pathtime_sum": 0,
+                "activity": "Network Service Closure"
+            },
+            {
+                "count": 1,
+                "pathtime_sum": 0,
+                "activity": "Pending Request for Reservation Closure"
+            },
+            {
+                "count": 1,
+                "pathtime_sum": 0,
+                "activity": "BO Service Closure"
+            }
+        ],
+        "activity": "Request completed with account closure"
+    },
+    {
+        "previous_activities": [
+            {
+                "count": 1,
+                "pathtime_sum": 17498000,
+                "activity": "Request completed with account closure"
+            },
+            {
+                "count": 9081,
+                "pathtime_sum": 139171000,
+                "activity": "Pending Liquidation Request"
+            },
+            {
+                "count": 1217,
+                "pathtime_sum": 244000,
+                "activity": "Pending Request for Reservation Closure"
+            },
+            {
+                "count": 2,
+                "pathtime_sum": 259000,
+                "activity": "BO Service Closure"
+            }
+        ],
+        "next_activities": [
+            {
+                "count": 7622,
+                "pathtime_sum": 1463970896000,
+                "activity": "Request completed with account closure"
+            },
+            {
+                "count": 242,
+                "pathtime_sum": 60883909000,
+                "activity": "Network Adjustment Requested"
+            },
+            {
+                "count": 653,
+                "pathtime_sum": 266243262000,
+                "activity": "Pending Request for Reservation Closure"
+            },
+            {
+                "count": 74,
+                "pathtime_sum": 59391314000,
+                "activity": "Request deleted"
+            },
+            {
+                "count": 51,
+                "pathtime_sum": 9608396000,
+                "activity": "Pending Request for acquittance of heirs"
+            },
+            {
+                "count": 20,
+                "pathtime_sum": 8538517000,
+                "activity": "Pending Request for Network Information"
+            }
+        ],
+        "activity": "Back-Office Adjustment Requested "
+    },
+    {
+        "previous_activities": [
+            {
+                "count": 92819,
+                "pathtime_sum": 615507000,
+                "activity": "BO Service Closure"
+            },
+            {
+                "count": 87,
+                "pathtime_sum": 703604000,
+                "activity": "Network Service Closure"
+            },
+            {
+                "count": 1,
+                "pathtime_sum": 0,
+                "activity": "Request completed with account closure"
+            },
+            {
+                "count": 16,
+                "pathtime_sum": 0,
+                "activity": "Pending Liquidation Request"
+            },
+            {
+                "count": 89,
+                "pathtime_sum": 683784000,
+                "activity": "Authorization Requested"
+            },
+            {
+                "count": 81,
+                "pathtime_sum": 199249000,
+                "activity": "Request created"
+            },
+            {
+                "count": 653,
+                "pathtime_sum": 265086000,
+                "activity": "Back-Office Adjustment Requested "
+            },
+            {
+                "count": 10,
+                "pathtime_sum": 1200201000,
+                "activity": "Network Adjustment Requested"
+            },
+            {
+                "count": 1126,
+                "pathtime_sum": 444772000,
+                "activity": "Pending Request for Network Information"
+            },
+            {
+                "count": 4,
+                "pathtime_sum": 530435000,
+                "activity": "Evaluating Request (WITH registered letter)"
+            },
+            {
+                "count": 5,
+                "pathtime_sum": 1538079000,
+                "activity": "Evaluating Request (NO registered letter)"
+            }
+        ],
+        "next_activities": [
+            {
+                "count": 4,
+                "pathtime_sum": 0,
+                "activity": "BO Service Closure"
+            },
+            {
+                "count": 93611,
+                "pathtime_sum": 231096280000,
+                "activity": "Pending Liquidation Request"
+            },
+            {
+                "count": 1,
+                "pathtime_sum": 0,
+                "activity": "Request created"
+            },
+            {
+                "count": 79,
+                "pathtime_sum": 22592225000,
+                "activity": "Request completed with account closure"
+            },
+            {
+                "count": 1,
+                "pathtime_sum": 0,
+                "activity": "Network Service Closure"
+            },
+            {
+                "count": 1217,
+                "pathtime_sum": 36686031000,
+                "activity": "Back-Office Adjustment Requested "
+            },
+            {
+                "count": 5,
+                "pathtime_sum": 1140528000,
+                "activity": "Pending Request for acquittance of heirs"
+            }
+        ],
+        "activity": "Pending Request for Reservation Closure"
+    },
+    {
+        "previous_activities": [
+            {
+                "count": 4,
+                "pathtime_sum": 0,
+                "activity": "Pending Request for Reservation Closure"
+            },
+            {
+                "count": 44651,
+                "pathtime_sum": 1494000,
+                "activity": "Network Service Closure"
+            },
+            {
+                "count": 44560,
+                "pathtime_sum": 187305000,
+                "activity": "Authorization Requested"
+            },
+            {
+                "count": 2,
+                "pathtime_sum": 0,
+                "activity": "Request deleted"
+            },
+            {
+                "count": 1,
+                "pathtime_sum": 0,
+                "activity": "Request completed with account closure"
+            },
+            {
+                "count": 1,
+                "pathtime_sum": 0,
+                "activity": "Pending Liquidation Request"
+            },
+            {
+                "count": 8928,
+                "pathtime_sum": 86431000,
+                "activity": "Network Adjustment Requested"
+            },
+            {
+                "count": 5715,
+                "pathtime_sum": 25000,
+                "activity": "Request created"
+            },
+            {
+                "count": 10,
+                "pathtime_sum": 1026280000,
+                "activity": "Evaluating Request (NO registered letter)"
+            },
+            {
+                "count": 1274,
+                "pathtime_sum": 10210000,
+                "activity": "Evaluating Request (WITH registered letter)"
+            }
+        ],
+        "next_activities": [
+            {
+                "count": 1,
+                "pathtime_sum": 0,
+                "activity": "Authorization Requested"
+            },
+            {
+                "count": 5,
+                "pathtime_sum": 2042170000,
+                "activity": "Request completed with account closure"
+            },
+            {
+                "count": 92819,
+                "pathtime_sum": 59876518288000,
+                "activity": "Pending Request for Reservation Closure"
+            },
+            {
+                "count": 4,
+                "pathtime_sum": 6045749000,
+                "activity": "Pending Request for acquittance of heirs"
+            },
+            {
+                "count": 61,
+                "pathtime_sum": 30710947000,
+                "activity": "Pending Liquidation Request"
+            },
+            {
+                "count": 1,
+                "pathtime_sum": 0,
+                "activity": "Request created"
+            },
+            {
+                "count": 9478,
+                "pathtime_sum": 6517233906000,
+                "activity": "Network Adjustment Requested"
+            },
+            {
+                "count": 256,
+                "pathtime_sum": 270967921000,
+                "activity": "Request deleted"
+            },
+            {
+                "count": 6,
+                "pathtime_sum": 84000,
+                "activity": "Network Service Closure"
+            },
+            {
+                "count": 2,
+                "pathtime_sum": 264938000,
+                "activity": "Back-Office Adjustment Requested "
+            }
+        ],
+        "activity": "BO Service Closure"
+    },
+    {
+        "previous_activities": [
+            {
+                "count": 1,
+                "pathtime_sum": 0,
+                "activity": "BO Service Closure"
+            },
+            {
+                "count": 1,
+                "pathtime_sum": 0,
+                "activity": "Request completed with account closure"
+            },
+            {
+                "count": 68,
+                "pathtime_sum": 74000,
+                "activity": "Request created"
+            },
+            {
+                "count": 2,
+                "pathtime_sum": 0,
+                "activity": "Pending Liquidation Request"
+            },
+            {
+                "count": 45583,
+                "pathtime_sum": 46000,
+                "activity": "Network Service Closure"
+            },
+            {
+                "count": 1,
+                "pathtime_sum": 0,
+                "activity": "Request deleted"
+            },
+            {
+                "count": 739,
+                "pathtime_sum": 294000,
+                "activity": "Network Adjustment Requested"
+            }
+        ],
+        "next_activities": [
+            {
+                "count": 876,
+                "pathtime_sum": 543206279000,
+                "activity": "Network Adjustment Requested"
+            },
+            {
+                "count": 44560,
+                "pathtime_sum": 12690807586000,
+                "activity": "BO Service Closure"
+            },
+            {
+                "count": 89,
+                "pathtime_sum": 122476089000,
+                "activity": "Pending Request for Reservation Closure"
+            },
+            {
+                "count": 1,
+                "pathtime_sum": 0,
+                "activity": "Request completed with account closure"
+            },
+            {
+                "count": 419,
+                "pathtime_sum": 1026761812000,
+                "activity": "Request deleted"
+            },
+            {
+                "count": 1,
+                "pathtime_sum": 17000,
+                "activity": "Request created"
+            },
+            {
+                "count": 1,
+                "pathtime_sum": 20000,
+                "activity": "Network Service Closure"
+            }
+        ],
+        "activity": "Authorization Requested"
+    },
+    {
+        "previous_activities": [
+            {
+                "count": 876,
+                "pathtime_sum": 1033408000,
+                "activity": "Authorization Requested"
+            },
+            {
+                "count": 9,
+                "pathtime_sum": 1309389000,
+                "activity": "Network Service Closure"
+            },
+            {
+                "count": 9478,
+                "pathtime_sum": 955797000,
+                "activity": "BO Service Closure"
+            },
+            {
+                "count": 242,
+                "pathtime_sum": 80731000,
+                "activity": "Back-Office Adjustment Requested "
+            },
+            {
+                "count": 1,
+                "pathtime_sum": 8989523000,
+                "activity": "Request created"
+            }
+        ],
+        "next_activities": [
+            {
+                "count": 1,
+                "pathtime_sum": 0,
+                "activity": "Request completed with account closure"
+            },
+            {
+                "count": 583,
+                "pathtime_sum": 1738877430000,
+                "activity": "Request deleted"
+            },
+            {
+                "count": 8928,
+                "pathtime_sum": 7556187498000,
+                "activity": "BO Service Closure"
+            },
+            {
+                "count": 739,
+                "pathtime_sum": 442971971000,
+                "activity": "Authorization Requested"
+            },
+            {
+                "count": 1,
+                "pathtime_sum": 3624808000,
+                "activity": "Network Service Closure"
+            },
+            {
+                "count": 10,
+                "pathtime_sum": 22068800000,
+                "activity": "Pending Request for Reservation Closure"
+            }
+        ],
+        "activity": "Network Adjustment Requested"
+    },
+    {
+        "previous_activities": [
+            {
+                "count": 7,
+                "pathtime_sum": 0,
+                "activity": "Request completed with account closure"
+            },
+            {
+                "count": 93611,
+                "pathtime_sum": 38000,
+                "activity": "Pending Request for Reservation Closure"
+            },
+            {
+                "count": 61,
+                "pathtime_sum": 317424000,
+                "activity": "BO Service Closure"
+            },
+            {
+                "count": 1,
+                "pathtime_sum": 0,
+                "activity": "Network Service Closure"
+            },
+            {
+                "count": 1,
+                "pathtime_sum": 1471362000,
+                "activity": "Pending Request for Network Information"
+            }
+        ],
+        "next_activities": [
+            {
+                "count": 9081,
+                "pathtime_sum": 10931843756000,
+                "activity": "Back-Office Adjustment Requested "
+            },
+            {
+                "count": 73582,
+                "pathtime_sum": 18998214516000,
+                "activity": "Request completed with account closure"
+            },
+            {
+                "count": 3,
+                "pathtime_sum": 0,
+                "activity": "Network Service Closure"
+            },
+            {
+                "count": 2,
+                "pathtime_sum": 0,
+                "activity": "Authorization Requested"
+            },
+            {
+                "count": 16,
+                "pathtime_sum": 0,
+                "activity": "Pending Request for Reservation Closure"
+            },
+            {
+                "count": 1,
+                "pathtime_sum": 0,
+                "activity": "BO Service Closure"
+            },
+            {
+                "count": 7027,
+                "pathtime_sum": 1899968782000,
+                "activity": "Pending Request for acquittance of heirs"
+            },
+            {
+                "count": 3,
+                "pathtime_sum": 1057493000,
+                "activity": "Pending Request for Network Information"
+            }
+        ],
+        "activity": "Pending Liquidation Request"
+    },
+    {
+        "previous_activities": [
+            {
+                "count": 2,
+                "pathtime_sum": 0,
+                "activity": "Request completed with account closure"
+            },
+            {
+                "count": 4,
+                "pathtime_sum": 1181040000,
+                "activity": "BO Service Closure"
+            },
+            {
+                "count": 7027,
+                "pathtime_sum": 140730000,
+                "activity": "Pending Liquidation Request"
+            },
+            {
+                "count": 51,
+                "pathtime_sum": 402872000,
+                "activity": "Back-Office Adjustment Requested "
+            },
+            {
+                "count": 5,
+                "pathtime_sum": 138905000,
+                "activity": "Pending Request for Reservation Closure"
+            }
+        ],
+        "next_activities": [
+            {
+                "count": 7079,
+                "pathtime_sum": 784083710000,
+                "activity": "Request completed with account closure"
+            }
+        ],
+        "activity": "Pending Request for acquittance of heirs"
+    },
+    {
+        "previous_activities": [
+            {
+                "count": 1,
+                "pathtime_sum": 0,
+                "activity": "Pending Request for Reservation Closure"
+            },
+            {
+                "count": 1,
+                "pathtime_sum": 0,
+                "activity": "Request deleted"
+            },
+            {
+                "count": 1,
+                "pathtime_sum": 0,
+                "activity": "BO Service Closure"
+            },
+            {
+                "count": 1,
+                "pathtime_sum": 17000,
+                "activity": "Authorization Requested"
+            },
+            {
+                "count": 4,
+                "pathtime_sum": 23000,
+                "activity": "Network Service Closure"
+            },
+            {
+                "count": 4,
+                "pathtime_sum": 22000,
+                "activity": "Evaluating Request (NO registered letter)"
+            }
+        ],
+        "next_activities": [
+            {
+                "count": 41115,
+                "pathtime_sum": 1018564211000,
+                "activity": "Evaluating Request (NO registered letter)"
+            },
+            {
+                "count": 68,
+                "pathtime_sum": 2774621000,
+                "activity": "Authorization Requested"
+            },
+            {
+                "count": 81,
+                "pathtime_sum": 20233408000,
+                "activity": "Pending Request for Reservation Closure"
+            },
+            {
+                "count": 47652,
+                "pathtime_sum": 6114778576000,
+                "activity": "Network Service Closure"
+            },
+            {
+                "count": 10780,
+                "pathtime_sum": 4546771090000,
+                "activity": "Request deleted"
+            },
+            {
+                "count": 6931,
+                "pathtime_sum": 182840848000,
+                "activity": "Evaluating Request (WITH registered letter)"
+            },
+            {
+                "count": 5715,
+                "pathtime_sum": 1277611736000,
+                "activity": "BO Service Closure"
+            },
+            {
+                "count": 1332,
+                "pathtime_sum": 83997631000,
+                "activity": "Pending Request for Network Information"
+            },
+            {
+                "count": 1,
+                "pathtime_sum": 8989523000,
+                "activity": "Network Adjustment Requested"
+            }
+        ],
+        "activity": "Request created"
+    },
+    {
+        "previous_activities": [
+            {
+                "count": 41115,
+                "pathtime_sum": 9000,
+                "activity": "Request created"
+            }
+        ],
+        "next_activities": [
+            {
+                "count": 40039,
+                "pathtime_sum": 21312470561000,
+                "activity": "Network Service Closure"
+            },
+            {
+                "count": 304,
+                "pathtime_sum": 564258393000,
+                "activity": "Request deleted"
+            },
+            {
+                "count": 236,
+                "pathtime_sum": 331749204000,
+                "activity": "Request completed with customer recovery"
+            },
+            {
+                "count": 10,
+                "pathtime_sum": 6649240000,
+                "activity": "BO Service Closure"
+            },
+            {
+                "count": 4,
+                "pathtime_sum": 106000,
+                "activity": "Request created"
+            },
+            {
+                "count": 5,
+                "pathtime_sum": 6284453000,
+                "activity": "Pending Request for Reservation Closure"
+            }
+        ],
+        "activity": "Evaluating Request (NO registered letter)"
+    },
+    {
+        "previous_activities": [
+            {
+                "count": 40039,
+                "pathtime_sum": 165430000,
+                "activity": "Evaluating Request (NO registered letter)"
+            },
+            {
+                "count": 3,
+                "pathtime_sum": 0,
+                "activity": "Pending Liquidation Request"
+            },
+            {
+                "count": 2,
+                "pathtime_sum": 0,
+                "activity": "Request completed with account closure"
+            },
+            {
+                "count": 1,
+                "pathtime_sum": 0,
+                "activity": "Pending Request for Reservation Closure"
+            },
+            {
+                "count": 47652,
+                "pathtime_sum": 53000,
+                "activity": "Request created"
+            },
+            {
+                "count": 5753,
+                "pathtime_sum": 158619000,
+                "activity": "Evaluating Request (WITH registered letter)"
+            },
+            {
+                "count": 1,
+                "pathtime_sum": 3624808000,
+                "activity": "Network Adjustment Requested"
+            },
+            {
+                "count": 6,
+                "pathtime_sum": 3000,
+                "activity": "BO Service Closure"
+            },
+            {
+                "count": 1,
+                "pathtime_sum": 20000,
+                "activity": "Authorization Requested"
+            }
+        ],
+        "next_activities": [
+            {
+                "count": 44651,
+                "pathtime_sum": 8883659026000,
+                "activity": "BO Service Closure"
+            },
+            {
+                "count": 87,
+                "pathtime_sum": 79693673000,
+                "activity": "Pending Request for Reservation Closure"
+            },
+            {
+                "count": 9,
+                "pathtime_sum": 7472701000,
+                "activity": "Network Adjustment Requested"
+            },
+            {
+                "count": 1,
+                "pathtime_sum": 0,
+                "activity": "Pending Liquidation Request"
+            },
+            {
+                "count": 45583,
+                "pathtime_sum": 11133769311000,
+                "activity": "Authorization Requested"
+            },
+            {
+                "count": 1420,
+                "pathtime_sum": 2141781043000,
+                "activity": "Request deleted"
+            },
+            {
+                "count": 4,
+                "pathtime_sum": 116000,
+                "activity": "Request created"
+            },
+            {
+                "count": 183,
+                "pathtime_sum": 7385850000,
+                "activity": "Evaluating Request (WITH registered letter)"
+            }
+        ],
+        "activity": "Network Service Closure"
+    },
+    {
+        "previous_activities": [
+            {
+                "count": 236,
+                "pathtime_sum": 35000,
+                "activity": "Evaluating Request (NO registered letter)"
+            },
+            {
+                "count": 14,
+                "pathtime_sum": 1411000,
+                "activity": "Evaluating Request (WITH registered letter)"
+            },
+            {
+                "count": 11,
+                "pathtime_sum": 700406000,
+                "activity": "Pending Request for Network Information"
+            }
+        ],
+        "next_activities": [],
+        "activity": "Request completed with customer recovery"
+    },
+    {
+        "previous_activities": [
+            {
+                "count": 583,
+                "pathtime_sum": 1026630000,
+                "activity": "Network Adjustment Requested"
+            },
+            {
+                "count": 1420,
+                "pathtime_sum": 779393000,
+                "activity": "Network Service Closure"
+            },
+            {
+                "count": 10780,
+                "pathtime_sum": 35000,
+                "activity": "Request created"
+            },
+            {
+                "count": 74,
+                "pathtime_sum": 2006290000,
+                "activity": "Back-Office Adjustment Requested "
+            },
+            {
+                "count": 304,
+                "pathtime_sum": 965369000,
+                "activity": "Evaluating Request (NO registered letter)"
+            },
+            {
+                "count": 419,
+                "pathtime_sum": 4823673000,
+                "activity": "Authorization Requested"
+            },
+            {
+                "count": 256,
+                "pathtime_sum": 192808000,
+                "activity": "BO Service Closure"
+            },
+            {
+                "count": 31,
+                "pathtime_sum": 157000,
+                "activity": "Evaluating Request (WITH registered letter)"
+            },
+            {
+                "count": 90,
+                "pathtime_sum": 3610030000,
+                "activity": "Pending Request for Network Information"
+            }
+        ],
+        "next_activities": [
+            {
+                "count": 2,
+                "pathtime_sum": 0,
+                "activity": "BO Service Closure"
+            },
+            {
+                "count": 1,
+                "pathtime_sum": 0,
+                "activity": "Request created"
+            },
+            {
+                "count": 1,
+                "pathtime_sum": 0,
+                "activity": "Authorization Requested"
+            }
+        ],
+        "activity": "Request deleted"
+    },
+    {
+        "previous_activities": [
+            {
+                "count": 6931,
+                "pathtime_sum": 77000,
+                "activity": "Request created"
+            },
+            {
+                "count": 183,
+                "pathtime_sum": 24000,
+                "activity": "Network Service Closure"
+            }
+        ],
+        "next_activities": [
+            {
+                "count": 5753,
+                "pathtime_sum": 2414724363000,
+                "activity": "Network Service Closure"
+            },
+            {
+                "count": 31,
+                "pathtime_sum": 7218786000,
+                "activity": "Request deleted"
+            },
+            {
+                "count": 14,
+                "pathtime_sum": 8308592000,
+                "activity": "Request completed with customer recovery"
+            },
+            {
+                "count": 1274,
+                "pathtime_sum": 88916429000,
+                "activity": "BO Service Closure"
+            },
+            {
+                "count": 4,
+                "pathtime_sum": 1471559000,
+                "activity": "Pending Request for Reservation Closure"
+            }
+        ],
+        "activity": "Evaluating Request (WITH registered letter)"
+    },
+    {
+        "previous_activities": [
+            {
+                "count": 1332,
+                "pathtime_sum": 514000,
+                "activity": "Request created"
+            },
+            {
+                "count": 20,
+                "pathtime_sum": 25216000,
+                "activity": "Back-Office Adjustment Requested "
+            },
+            {
+                "count": 3,
+                "pathtime_sum": 316139000,
+                "activity": "Pending Liquidation Request"
+            }
+        ],
+        "next_activities": [
+            {
+                "count": 90,
+                "pathtime_sum": 411704159000,
+                "activity": "Request deleted"
+            },
+            {
+                "count": 1126,
+                "pathtime_sum": 1497688307000,
+                "activity": "Pending Request for Reservation Closure"
+            },
+            {
+                "count": 20,
+                "pathtime_sum": 2669261000,
+                "activity": "Request completed with account closure"
+            },
+            {
+                "count": 11,
+                "pathtime_sum": 13115021000,
+                "activity": "Request completed with customer recovery"
+            },
+            {
+                "count": 1,
+                "pathtime_sum": 1471362000,
+                "activity": "Pending Liquidation Request"
+            }
+        ],
+        "activity": "Pending Request for Network Information"
+    }
+]

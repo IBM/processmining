@@ -10,12 +10,10 @@ return {
 
     // Create a div and a canvas to display the chart
     var widget = document.getElementById(context.scope.widgetId);
-    var random_num = Math.floor(Math.random() * 1000);
     var canv = document.createElement('canvas'); // creates new canvas element
-    canv.id = 'canvas_' + random_num; // gives canvas id
-    // create a div
+    canv.id = context.scope.widgetId + '_canvas'; // gives a unique canvas id
     var div = document.createElement('div');
-    div.id = 'div_' + random_num;
+    div.id = context.scope.widgetId + '_div'; // creates a unique div id
     widget.appendChild(div); // adds the div to the widget
     div.appendChild(canv); // adds the canvas to the div
 

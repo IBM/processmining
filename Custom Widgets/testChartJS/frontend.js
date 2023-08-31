@@ -5,8 +5,45 @@ return {
     update: function (data, context) {
 
         context.scope.data = data;
-        data.canvasName = 'mycanvas';
-  
+
+        // Create a div and a canvas to display the chart
+        var widget = document.getElementById(context.scope.widgetId);
+        var canv = document.createElement('canvas'); // creates new canvas element
+        canv.id = context.scope.widgetId + '_canvas'; // gives a unique canvas id
+        var div = document.createElement('div');
+        div.id = context.scope.widgetId + '_div'; // creates a unique div id
+        widget.appendChild(div); // adds the div to the widget
+        div.appendChild(canv); // adds the canvas to the div
+
+        new Chart(canv, {
+            type: 'bar',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [12, 19, 3, 5, 2, 3],
+                    borderWidth: 1
+                },
+                {
+                    label: '# of People',
+                    data: [120, 190, 30, 50, 20, 30],
+                    borderWidth: 1,
+                    yAxisID: 'y2'
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    },
+                    y2: {
+                        beginAtZero: true,
+                        position: 'right'
+                    }
+                }
+            }
+        });
+
     },
 
     resize: function (size, context) {
