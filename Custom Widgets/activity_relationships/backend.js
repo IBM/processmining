@@ -22,6 +22,7 @@
                 /* ACTIVITIES IS A GLOBAL VARIABLE THAT HOLDS ALL THE DATA WE NEED FOR EACH ACTIVITY
                                 activities = [{
                                     'activity': "activity1",
+                                    'frequency': 134,
                                     next_activities: [{ 'activity': "activity2", 'count': 120, 'pathtime_sum': 123434 },
                                     { activity: "activity3", count: 120, pathtime_sum: 123434 }],
                                     previous_activities: [{ activity: "activity2", count: 120, pathtime_sum: 123434 },
@@ -29,6 +30,7 @@
                                 },
                                 {
                                     'activity': "activity2",
+                                    'frequency': 134,
                                     next_activities: [{ 'activity': "activity2", 'count': 120, 'pathtime_sum': 123434 },
                                     { activity: "activity3", count: 120, pathtime_sum: 123434 }],
                                     previous_activities: [{ activity: "activity2", count: 120, pathtime_sum: 123434 },
@@ -44,14 +46,14 @@
                 }
                 if (index == -1) {
                     // create a new entry for the current activity
-                    index = this.activities.push({activity: current_activity_name, previous_activities: [], next_activities: []});
+                    index = this.activities.push({activity: current_activity_name, count:0 , previous_activities: [], next_activities: []});
                     index = index - 1;
                 }
+                var current_activity = this.activities[index];
+                current_activity.count +=1;
+
                 // update the next activities
                 var next_activity_index = -1;
-                var current_activity = this.activities[index];
-
-
                 if (k < trace.size() - 1) { // this event is not the last event
                     var next_activity_name = trace.get(k + 1).getEventClass();
 
@@ -62,18 +64,18 @@
                         }
                     }
 
-
                     if (next_activity_index == -1) {
-                        // create
+                        // create the activity
                         next_activity_index = current_activity.next_activities.push({activity: next_activity_name , count: 0, pathtime_sum: 0});
                         next_activity_index = next_activity_index - 1;
                     }
                     current_activity.next_activities[next_activity_index].count += 1;
 
-                    current_activity.next_activities[next_activity_index].pathtime_sum += trace.get(k + 1).getStartTime() - trace.get(k).getStartTime();
+                    current_activity.next_activities[next_activity_index].pathtime_sum += trace.get(k + 1).getStartTime() - trace.get(k).getEndTime();
                 }
+
+                // update the previous activities if current activity is not the first
                 if (k > 0){
-                    // update the previous activities if current activity is not the first
                     var previous_activity_index = -1;
                     var previous_activity_name = trace.get(k - 1).getEventClass();
                     for (var j = 0; j < current_activity.previous_activities.length; j++) {
@@ -88,7 +90,7 @@
                         previous_activity_index = previous_activity_index - 1;
                     }
                     current_activity.previous_activities[previous_activity_index].count += 1;
-                    current_activity.previous_activities[previous_activity_index].pathtime_sum = trace.get(k).getStartTime() - trace.get(k - 1).getStartTime();
+                    current_activity.previous_activities[previous_activity_index].pathtime_sum += trace.get(k).getStartTime() - trace.get(k - 1).getEndTime();
 
                 }
             }

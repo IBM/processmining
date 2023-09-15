@@ -399,3 +399,40 @@ $PM_HOME/bin/start.sh
 Since version 1.14.1, task mining web is only accessed via processmining web page.
 
 https://PM_HOST/taskmining
+
+
+# Tricks
+## maintenance.admin password forgotten
+
+When no email is in place, we can simulate that we received an email with a token.
+
+Pre-requisite: Query the mongo database to get the accounts.
+
+In mongo:
+```
+> use processmining
+> db.accounts.find()
+{ "_id" : ObjectId("64c1247d184bab5851f4df39"), "username" : "maintenance.admin", "email" : "maintenance.admin@mycompanydomain.com", "home" : "__maintenanceadmin", "groupId" : "-1", "firstName" : "Account", "lastName" : "Maintenance", "organization" : "processmining", "country" : "IT", "lastIP" : "127.0.0.1", "lastLogin" : ISODate("2023-09-14T12:26:55.004Z"), "created" : ISODate("2023-07-26T13:49:49.548Z"), "agentEnabled" : false, "active" : true, "tutorial" : true, "password" : "8888a8ebedd0ee4f810302708d609831de32dd3772e031b97f4c0e66b623ba8b57468c1d2de4d41e580687573efb6385", "passwordState" : "LOST_PASSWORD", "role" : "USER", "authToken" : "ng2spps94b6qhse13qqcdf8uho", "authTokenValidity" : ISODate("2023-09-14T12:35:46.500Z"), "projectLimit" : 1, "sessionLimit" : 2, "apiKey" : "k5siu71a93c61asf", "apiKeyEnabled" : true, "roles" : [ "ROLE_FREE_USER", "ROLE_USER", "ROLE_ADMIN" ], "permissions" : [ "PERM_EXPORT_BPMN", "PERM_ACTIVITY_MAP", "PERM_DASHBOARD", "PERM_USER_MANAGEMENT", "PERM_BPA", "PERM_ANALYTICS", "PERM_CONFORMANCE", "PERM_SOCIAL_NET" ], "permissionOverride" : [ ], "totpAuthEnabled" : false, "blocked" : false, "lockedSNA" : false, "passwordHistory" : [ "8888a8ebedd0ee4f810302708d609831de32dd3772e031b97f4c0e66b623ba8b57468c1d2de4d41e580687573efb6385" ], "lastPasswordUpdate" : ISODate("2023-09-14T12:26:37.863Z"), "applicationUser" : false, "lastModDate" : ISODate("2023-09-14T12:30:46.502Z"), "isProjected" : false, "_class" : "account" }
+```
+
+- Login as maintenance.admin
+- Click 'Forgot your password?'
+- Login as maintenance.admin, (enter), click reset
+
+At this point you see the UI that requests the previous password, and that invite to create a new one.
+Do nothing with that UI.
+
+Call this URL
+https:://<PM_HOST>/signin?emailResetPasswordSent=true&emailToken=true&resetPassword=LOST_PASSWORD&usr=maintenance.admin
+
+The new UI requires you to enter a Token, and invite to create a new one.
+You have 5 minutes...
+
+```
+> db.accounts.find()
+{ "_id" : ObjectId("64c1247d184bab5851f4df39"), "username" : "maintenance.admin", "email" : "maintenance.admin@mycompanydomain.com", "home" : "__maintenanceadmin", "groupId" : "-1", "firstName" : "Account", "lastName" : "Maintenance", "organization" : "processmining", "country" : "IT", "lastIP" : "127.0.0.1", "lastLogin" : ISODate("2023-09-14T12:26:55.004Z"), "created" : ISODate("2023-07-26T13:49:49.548Z"), "agentEnabled" : false, "active" : true, "tutorial" : true, "password" : "8888a8ebedd0ee4f810302708d609831de32dd3772e031b97f4c0e66b623ba8b57468c1d2de4d41e580687573efb6385", "passwordState" : "LOST_PASSWORD", "role" : "USER", "authToken" : "ng2spps94b6qhse13qqcdf8uho", "authTokenValidity" : ISODate("2023-09-14T12:35:46.500Z"), "projectLimit" : 1, "sessionLimit" : 2, "apiKey" : "k5siu71a93c61asf", "apiKeyEnabled" : true, "roles" : [ "ROLE_FREE_USER", "ROLE_USER", "ROLE_ADMIN" ], "permissions" : [ "PERM_EXPORT_BPMN", "PERM_ACTIVITY_MAP", "PERM_DASHBOARD", "PERM_USER_MANAGEMENT", "PERM_BPA", "PERM_ANALYTICS", "PERM_CONFORMANCE", "PERM_SOCIAL_NET" ], "permissionOverride" : [ ], "totpAuthEnabled" : false, "blocked" : false, "lockedSNA" : false, "passwordHistory" : [ "8888a8ebedd0ee4f810302708d609831de32dd3772e031b97f4c0e66b623ba8b57468c1d2de4d41e580687573efb6385" ], "lastPasswordUpdate" : ISODate("2023-09-14T12:26:37.863Z"), "applicationUser" : false, "lastModDate" : ISODate("2023-09-14T12:30:46.502Z"), "isProjected" : false, "_class" : "account" }
+```
+
+Copy the authToken and enter the token in the UI, then create the new password.
+You are done.
+
