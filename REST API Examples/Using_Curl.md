@@ -35,3 +35,12 @@ curl -k '<URL>/integration/csv/job-status/<JOB>' -H "accept: application/json" -
 ```
 curl -k -X POST '<URL>/analytics/integration/newbawextract/query?org=ca2b2685' -H "Authorization: Bearer <KEY>" --header 'Content-Type: application/x-www-form-urlencoded' --data-urlencode 'params={ "query": "SELECT count(*) FROM EVENTLOG" }' 
 ```
+
+## Trimming events (using Bank Account Closure)
+
+Replace <URL>, <UID>, <APIKEY>, <ORG>
+And <KEY> returned by the command below:
+curl -X POST -k '<URL>/integration/sign' -H "Content-Type: application/json"  --data '{"uid" : "<UID>", "apiKey" : "<APIKEY>"}'
+ 
+ 
+curl -k -X POST ‘<URL>/integration/csv/bank-account-closure/trimming?org=<ORG>' -H "Authorization: Bearer <KEY>" --header 'Content-Type: application/json' --data '{"caseFilters": [{"filterType": "attribute","attributeKey": "attr-CLOSURE_TYPE","attributeValue": "Client Recess"}]}'

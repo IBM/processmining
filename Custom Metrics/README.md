@@ -1,6 +1,6 @@
 # Custom Metrics
 
-Custom metrics are javascript functions called for each case. The function access the events of a case to retrieve values and to compute a new metric. In version 1.13.2, only metrics at the case level can be computed.
+Custom metrics are javascript functions called for each case. The function access the events of a case to retrieve values and to compute a new metric. Custom metrics are case-level metrics.
 
 - Refer to the documentation for more details.
 - Refer also to the Advanced Filters documentation to list the functions available for each event.
