@@ -5,7 +5,6 @@ return {
 
     update: function (data, context) {
 
-
         const formatDuration = ms => {
             if (ms < 0) ms = -ms;
             const time = {
@@ -34,7 +33,7 @@ return {
 
             // Create table header row
             var headerCell = document.createElement('th');
-            headerCell.textContent = text + ' activities';
+            headerCell.textContent = text;
             headerRow.appendChild(headerCell);
             headerCell = document.createElement('th');
             headerCell.textContent = 'Frequency';
@@ -58,9 +57,7 @@ return {
                 dataCell.textContent = obj.count;
                 dataRow.appendChild(dataCell);
                 dataCell = document.createElement('td');
-                if (obj.count > 0){
-                    dataCell.textContent = formatDuration(obj.pathtime_sum / obj.count);
-                }
+                dataCell.textContent = formatDuration(obj.pathtime_avg);
                 dataRow.appendChild(dataCell);
                 table.appendChild(dataRow);
             }
@@ -69,9 +66,6 @@ return {
         };
 
         context.scope.data = data;
-
-        // Sort the activities array by their frequency
-        data.activities = data.activities.sort((a,b) => {return b.count - a.count});
 
         var widget = document.getElementById(context.scope.widgetId);
         var widget_first_div = widget.getElementsByTagName('div')[0];
@@ -91,7 +85,7 @@ return {
             table.appendChild(row);
             cell = document.createElement('th');
             cell.classList.add("table-headings");
-            cell.textContent = 'Activity: ' + current_activity.activity;
+            cell.textContent = current_activity.activity;
             row.appendChild(cell);
             cell = document.createElement('th');
             cell.classList.add("table-headings");
@@ -100,22 +94,22 @@ return {
 
             tableContainer.appendChild(table);
             // table for next activities of each activity
-            if (current_activity.previous_activities.length > 0) {
-                var previous_activities = current_activity.previous_activities;
-                previous_activities = previous_activities.sort((a, b) => {
+            if (current_activity.predecessors.length > 0) {
+                var predecessors = current_activity.predecessors;
+                predecessors = predecessors.sort((a, b) => {
                    return b.count - a.count;
                 });
                 
-                table = createTableFromObjects(previous_activities,'Previous');
+                table = createTableFromObjects(predecessors,'Predecessors');
                 tableContainer.appendChild(table);
                 tableContainer.appendChild(document.createElement('p'));
             }
-            if (current_activity.next_activities.length > 0) {
-                var next_activities = current_activity.next_activities;
-                next_activities = next_activities.sort((a, b) => {
+            if (current_activity.successors.length > 0) {
+                var successors = current_activity.successors;
+                successors = successors.sort((a, b) => {
                     return b.count - a.count;
                   });
-                table = createTableFromObjects(next_activities, 'Next');
+                table = createTableFromObjects(successors, 'Successors');
                 tableContainer.appendChild(table);
 
             }
