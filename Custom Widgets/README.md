@@ -18,3 +18,8 @@ Displays the evolution of the average leadtime of cases along the time axis. The
 Displays different values of a dimension, for each value the # of cases and the average leadtime.
 
 ![Image](./v_barchart/v_barcharts.jpg)
+
+## activity relationships
+Displays the relationship between all the activities and the average pathtime. This is a nice complement to the activity relationship view
+
+![Image](./activity_relationships/activity_relationship.jpg)
