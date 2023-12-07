@@ -65,10 +65,28 @@ return {
             return table;
         };
 
+      
+      	function removeAllChildNodes(parent) {
+    		while (parent.firstChild) {
+        		parent.removeChild(parent.firstChild);
+    		}
+		};
+      
         context.scope.data = data;
-
-        var widget = document.getElementById(context.scope.widgetId);
-        var widget_first_div = widget.getElementsByTagName('div')[0];
+      
+      	var widgetId = context.scope.widgetId;
+        var widget = document.getElementById(widgetId);
+      	var first_widget_div = widget.getElementsByTagName('div')[0];
+      	var mydiv;     
+      	if (mydiv = document.getElementById(widgetId + '_div_table')){
+          removeAllChildNodes(mydiv);
+        }
+      	else{
+          mydiv = document.createElement('div');
+          mydiv.id = widgetId + '_div_table';
+          first_widget_div.appendChild(mydiv);
+        }
+        
         var tableContainer;
         var table;
         var row;
@@ -77,9 +95,9 @@ return {
         for (var i = 0; i < data.activities.length; i++) {
             var current_activity = data.activities[i];
             tableContainer = document.createElement('div');
-            tableContainer.id = 'div_' + i;
+            tableContainer.id = widgetId + '_div_' + i;
             tableContainer.classList.add('table-wrapper');
-            widget_first_div.appendChild(tableContainer);
+            mydiv.appendChild(tableContainer);
             table = document.createElement('table');
             row = document.createElement('tr');
             table.appendChild(row);

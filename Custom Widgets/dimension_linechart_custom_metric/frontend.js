@@ -1,5 +1,6 @@
 return {
 
+  // init is at the bottom, it include charts.js code
 
   update: function (data, context) {
 
@@ -7,19 +8,10 @@ return {
 
 
     context.scope.data = data;
-          	
-    function removeAllChildNodes(parent) {
-    	while (parent.firstChild) {
-        	parent.removeChild(parent.firstChild);
-    	}
-	  };
     
-
+    
     // Create a div and a canvas to display the chart
     var widget = document.getElementById(context.scope.widgetId);
-    
-    removeAllChildNodes(widget);
-    
     var canv = document.createElement('canvas'); // creates new canvas element
     canv.id = context.scope.widgetId + '_canvas'; // gives a unique canvas id
     var div = document.createElement('div');
@@ -27,29 +19,13 @@ return {
     widget.appendChild(div); // adds the div to the widget
     div.appendChild(canv); // adds the canvas to the div
     
-
+    
     // compute time labels
     data.labels = [];
     for (var i = 0; i < data.timeScale.length; i++) {
-      // chartjs takes into account the local timezone. Remove hours to ignore the possible difference between the server and the client
-      aDate = new Date(data.timeScale[i]);
-      aDate.setHours(0, 0, 0, 0);
-      data.labels.push(aDate.toString());
-      // data.labels.push(new Date(data.timeScale[i]).toString());
+      data.labels.push(new Date(data.timeScale[i]).toString());
     }
-
-    // compute leadtime average
-    
-    var aDay = 24*60*60*1000;
-    for (var i = 0; i < data.dataset.length; i++) { // avoid division by zero
-      data.dataset[i].leadtime_avg = [];
-      for (var j = 0; j < data.dataset[i].leadtime_sums.length; j++)
-        if (data.dataset[i].leadtime_sums[j] && data.dataset[i].counters[j])
-          data.dataset[i].leadtime_avg.push(data.dataset[i].leadtime_sums[j] / data.dataset[i].counters[j] / aDay);
-        else 
-          data.dataset[i].leadtime_avg.push(0);
-    }
-
+    console.log("Labels: " + data.labels);
 
     // compute sum of each value
     for (var i = 0; i < data.dataset.length; i++) {
@@ -65,18 +41,10 @@ return {
     data.chartDataset = [];
     var maxchart = Math.min(50, data.MAX_NUMBER_OF_VALUES_DISPLAYED, data.dataset.length);
     for (var i = 0; i < maxchart; i++) {
-      data.chartDataset.push({
-        data: data.dataset[i].leadtime_avg, 
-        label: data.dataset[i].value, 
-        borderColor: colorPalette[i], 
-        tension: 0.1, 
-        fill: false 
-      });
+      data.chartDataset.push({ "data": data.dataset[i].counters, "label": data.dataset[i].value, "borderColor": colorPalette[i], "tension": 0.1, "fill": false });
     }
 
-
-
-    var chartTitle = 'avg leadtime for top ' + data.MAX_NUMBER_OF_VALUES_DISPLAYED + ' values of ' + data.DIMENSION + ' (total # of values : ' + data.dataset.length + ').';
+    var chartTitle = '# cases for top ' + data.MAX_NUMBER_OF_VALUES_DISPLAYED + ' values of ' + data.DIMENSION + ' (total # of values : ' + data.dataset.length + ').';
 
     new Chart(canv, {
       type: 'line',
@@ -112,12 +80,13 @@ return {
             display: true,
             scaleLabel: {
               display: true,
-              labelString: 'Avg leadtime (days)'
+              labelString: '# cases'
             }
           }]
         }
       }
     });
+    
 
 
   },

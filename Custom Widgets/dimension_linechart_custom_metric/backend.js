@@ -7,23 +7,30 @@
             value: 0,
             eventTime: 0
         };
-        for (var i = 0; i < trace.size(); i++) {
-            var event = trace.get(i);
-
-            if (event.getEventClass() == ACTIVITY) {
-                metrics.value = event.getStringAttributeValue(DIMENSION);
-                if (metrics.value == '') {
-                    if (KEEP_EMPTY_VALUES[0] == 'n') { // exclude cases with no value for DIMENSION
-                        metrics.exclude = 1;
-                    }
-                    else { // keep the case and replace the value with None
-                        metrics.value = "None";
-                    }
-                }
+        metrics.value = API.getCustomMetricValue(CUSTOM_METRIC, trace);
+        if (metrics.value == null){
+            metrics.exclude = 1;
+            return metrics;
+        }
+        var event=trace.get(0);
+        if (ACTIVITY == "PROCESS"){
+            // eventTime start 
                 metrics.eventTime = event.getStartTime();
-                break;
+        }
+        else { // pick the event time from the activity passed as parameter
+            for (var i = 0; i < trace.size(); i++) {
+                event = trace.get(i);
+    
+                if (event.getEventClass() == ACTIVITY) {
+                    if (EVENT_TIME == 'ENDTIME')
+                        metrics.eventTime = event.getEndTime();
+                    else 
+                        metrics.eventTime = event.getStartTime();
+                    break;
+                }
             }
         }
+
         if (metrics.eventTime == 0) metrics.exclude = 1; // ACTIVITY NOT FOUND
         return metrics;
     }
@@ -85,11 +92,11 @@
             var groupByChoices = ['day', 'week', 'month', 'year'];
             var keepEmptyValuesChoices = ['yes', 'no'];
 
-            DIMENSION = params.DIMENSION;
-            // If the dimension is a column, the name starts with 'attr-custom-'
-            // If the dimension is a custom metric, the name starts with ''attr-custom-metrics' (no dash in the end)
-            DIMENSION_DISPLAY = DIMENSION.replace('attr-custom-metrics', '');
-            DIMENSION_DISPLAY = DIMENSION_DISPLAY.replace('attr-custom-', '');
+            CUSTOM_METRIC = params.CUSTOM_METRIC;
+            // Which date to use: PROCESS or ACTIVITY_NAME
+            // Which time to use: STARTTIME, ENDTIME
+            ACTIVITY = params.ACTIVITY; // can be 'PROCESS' or an activity name
+            EVENT_TIME = params.EVENT_TIME; // can be 'STARTTIME' or 'ENDTIME'
             // if the DIMENSION is a custom metric, attr-custom-metrics is before the name
             GROUPBY = params.GROUPBY;
             if (groupByChoices.indexOf(GROUPBY) < 0)
@@ -98,7 +105,6 @@
             if (groupByChoices.indexOf(TIME_LABEL_UNIT) < 0)
                 TIME_LABEL_UNIT = 'month';
 
-            ACTIVITY = params.ACTIVITY; // the activity in which we find the value of the dimension
             KEEP_EMPTY_VALUES = params.KEEP_EMPTY_VALUES; // "yes"=keep cases when value=='', "no"= exclude these cases
             if (keepEmptyValuesChoices.indexOf(KEEP_EMPTY_VALUES) < 0)
                 KEEP_EMPTY_VALUES = 'no';
@@ -143,7 +149,7 @@
             if (valueindex < 0) {// value not yet added; add it to dataset
                 valueindex = dataset.push({
                     value: metrics.value,
-                    counters: []
+                    counters: [],
                 }) - 1;
                 // update counters
                 for (var i = 0; i < dataset[0].counters.length; i++) {
@@ -156,7 +162,7 @@
         },
 
         finalize: function (output) {
-            output.DIMENSION = DIMENSION_DISPLAY;
+            output.DIMENSION = CUSTOM_METRIC;
             output.GROUPBY = GROUPBY;
             output.TIME_LABEL_UNIT = TIME_LABEL_UNIT;
             output.MAX_NUMBER_OF_VALUES_DISPLAYED = MAX_NUMBER_OF_VALUES_DISPLAYED;

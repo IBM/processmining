@@ -23,3 +23,9 @@ Displays different values of a dimension, for each value the # of cases and the 
 Displays the relationship between all the activities and the average pathtime. This is a nice complement to the activity relationship view
 
 ![Image](./activity_relationships/activity_relationship.jpg)
+
+## Custom Metric Line Chart
+Displays a custom metric along time. The timestamp can be chosen like this:
+- an activity, then enter STARTTIME or ENDTIME
+- a process; then enter PROCESS in the ACTIVITY field
+![Image](./dimension_linechart_custom_metric/custom_metric_linechart.jpg)
