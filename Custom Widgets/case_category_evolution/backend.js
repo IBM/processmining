@@ -1,5 +1,6 @@
 (function () {
 
+
     function filterAndComputeMetrics(trace) {
         // Use this metrics variable for your own metrics (add more if needed)
         var metrics = {
@@ -8,27 +9,46 @@
             'eventTime': 0,
             'leadtime': 0
         };
+
         var firstevent = trace.get(0).getStartTime();
         var lastevent = firstevent;
+        if (CUSTOM_METRIC) {
+            metrics.value = API.getCustomMetricValue(CUSTOM_METRIC, trace);
+            if (metrics.value == null) {
+                metrics.exclude = 1;
+                return metrics;
+            }
+        }
+        // Compute the leadtime, get the starttime of ACTIVITY, get DIMENSION value
         for (var k = 0; k < trace.size(); k++) {
             var event = trace.get(k);
+            // needed to compute the leadtime
             if (event.getStartTime() < firstevent) {
                 firstevent = event.getStartTime();
             }
             else if (event.getStartTime() > lastevent)
                 lastevent = event.getStartTime();
 
-            if (event.getEventClass() == ACTIVITY) { // don't break if found, we need parse all the events for the leadtime
-                metrics.value = event.getStringCustomAttributeValue(DIMENSION);
-                if (metrics.value == '') {
-                    if (KEEP_EMPTY_VALUES[0] == 'n') { // exclude cases with no value for DIMENSION
-                        metrics.exclude = 1;
-                    }
-                    else { // keep the case and replace the value with None
-                        metrics.value = "None";
-                    }
-                }
+            // select the start time we want to use for the trend
+            // in case of DIMENSION, get the value from a specific ACTIVITY 
+            // if ACTIVITY=='PROCESS' we take the starttime of the process
+            if (ACTIVITY == 'PROCESS' && k==0) {
                 metrics.eventTime = event.getStartTime();
+                if (DIMENSION) // get the DIMENSION value from the first event
+                    metrics.value = event.getStringCustomAttributeValue(DIMENSION);
+            }
+            else if (event.getEventClass() == ACTIVITY) {
+                metrics.eventTime = event.getStartTime();
+                if (DIMENSION) // get the DIMENSION value from this event
+                    metrics.value = event.getStringCustomAttributeValue(DIMENSION);
+            }
+        }
+        if (metrics.value == '') {
+            if (KEEP_EMPTY_VALUES[0] == 'n') { // exclude cases with no value for DIMENSION
+                metrics.exclude = 1;
+            }
+            else { // keep the case and replace the value with None
+                metrics.value = "None";
             }
         }
         metrics.leadtime = lastevent - firstevent;
@@ -92,17 +112,39 @@
     return {
         init: function (params) {
             var groupByChoices = ['day', 'week', 'month', 'year'];
+            CUSTOM_METRIC = 0;
+            DIMENSION = 0;
+            // Is the selected dimension a standard dimension or a custom metric? Check the name
+            if (params.DIMENSION.indexOf('attr-custom-metrics') >= 0)
+                CUSTOM_METRIC = params.DIMENSION.replace('attr-custom-metrics', '');
+            else if (params.DIMENSION.indexOf('attr-custom-') >= 0)
+                DIMENSION = params.DIMENSION.replace('attr-custom-', '');
 
-            DIMENSION = params.DIMENSION.replace('attr-custom-', '');
+            // Which date to use: PROCESS or ACTIVITY_NAME
+            // Which time to use: STARTTIME, ENDTIME
             GROUPBY = params.GROUPBY;
-            if (groupByChoices.indexOf(GROUPBY) < 0)
+            EVENT_TIME = params.EVENT_TIME; // can be 'STARTTIME' or 'ENDTIME'
+            var groupByIndex = groupByChoices.indexOf(GROUPBY);
+            if (groupByIndex < 0){
                 GROUPBY = 'month';
+                groupByIndex = groupByChoices.indexOf(GROUPBY);
+            }
             TIME_LABEL_UNIT = params.TIME_LABEL_UNIT;
-            if (groupByChoices.indexOf(TIME_LABEL_UNIT) < 0)
+            var time_label_unit_index = groupByChoices.indexOf(TIME_LABEL_UNIT);
+            if (time_label_unit_index < 0){
                 TIME_LABEL_UNIT = 'month';
+                time_label_unit_index = groupByChoices.indexOf(TIME_LABEL_UNIT);
+            } 
+            if (time_label_unit_index < groupByIndex)
+                TIME_LABEL_UNIT = groupByChoices[groupByIndex]
 
-            ACTIVITY = params.ACTIVITY; // the activity in which we find the value of the dimension
+            ACTIVITY = params.ACTIVITY; // the activity in which we find the value of the dimension and from which we take the timestamp
+            if (ACTIVITY == '') ACTIVITY = 'PROCESS';
+
             KEEP_EMPTY_VALUES = params.KEEP_EMPTY_VALUES; // "yes"=keep cases when value=='', "no"= exclude these cases
+            if (KEEP_EMPTY_VALUES == '') KEEP_EMPTY_VALUES= 'no';
+            else if (KEEP_EMPTY_VALUES[0] == 'y') KEEP_EMPTY_VALUES = 'yes';
+            else KEEP_EMPTY_VALUES = 'no';
 
             MAX_NUMBER_OF_VALUES_DISPLAYED = params.MAX_NUMBER_OF_VALUES_DISPLAYED; // show top N values (max is hardcoded at 50)
             if (MAX_NUMBER_OF_VALUES_DISPLAYED == '')
@@ -110,8 +152,15 @@
             else
                 MAX_NUMBER_OF_VALUES_DISPLAYED = Math.min(50, Number(MAX_NUMBER_OF_VALUES_DISPLAYED));
 
+            DISPLAY_LEGEND = params.DISPLAY_LEGEND;
+            if (DISPLAY_LEGEND == '') DISPLAY_LEGEND = true;
+            else if (DISPLAY_LEGEND[0] == 'n') DISPLAY_LEGEND = false;
+            else DISPLAY_LEGEND = true;
+
             timeScale = [];
             dataset = [];
+            console.log('init() ends');
+
         },
 
         update: function (trace) {
@@ -162,13 +211,15 @@
         },
 
         finalize: function (output) {
-            output.DIMENSION = DIMENSION;
+            output.DIMENSION = (DIMENSION ? DIMENSION: CUSTOM_METRIC);
             output.GROUPBY = GROUPBY;
             output.TIME_LABEL_UNIT = TIME_LABEL_UNIT;
             output.MAX_NUMBER_OF_VALUES_DISPLAYED = MAX_NUMBER_OF_VALUES_DISPLAYED;
             output.ACTIVITY = ACTIVITY;
-            output.timeScale = timeScale;
-            output.dataset = dataset;
+            output.TIMESCALE = timeScale;
+            output.DATASET = dataset;
+            output.DISPLAY_LEGEND = DISPLAY_LEGEND;
+            console.log('finalize() done');
         }
     };
 })();

@@ -44,10 +44,13 @@ Process Apps/P2P_data_xform_lab/P2Peventlogtest.csv
 Custom Widgets/v_barchart/view copy.html
 REST API Examples/test.js
 .gitignore
-Custom Widgets/testECharts/frontend.js
 Custom Widgets/activity_relationships/test.js
 Custom Widgets/activity_relationships/backend.js
 Custom Widgets/activity_relationships/frontend.js
 Custom Widgets/activity_relationships/output.json
 REST API Examples/Patrick_Curl.md
 REST API Examples/PM-REST-API-oas.json
+Process Apps/Jira_ticketing/my_config_ibm.json
+Custom Widgets/ECharts_examples/frontend timeaxis only year.js
+Custom Widgets/ECharts_examples/frontend timeaxis type time.js
+Custom Widgets/ECharts_examples/frontend timeaxis.js
