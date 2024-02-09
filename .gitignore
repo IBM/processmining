@@ -54,3 +54,7 @@ Process Apps/Jira_ticketing/my_config_ibm.json
 Custom Widgets/ECharts_examples/frontend timeaxis only year.js
 Custom Widgets/ECharts_examples/frontend timeaxis type time.js
 Custom Widgets/ECharts_examples/frontend timeaxis.js
+REST_API_Examples/pharoses1_config.json
+REST_API_Examples/Pat_config.conf
+REST_API_Examples/Patrick_Curl.md
+REST_API_Examples/view.html
