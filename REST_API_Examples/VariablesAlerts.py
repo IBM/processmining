@@ -3,6 +3,7 @@ import ProcessMining_API as IPM
 import json
 import time
 import sys
+import pandas as pd
 
 
 def is_same_alert(variableValues, widgetAlert):
@@ -118,27 +119,36 @@ def main(argv):
     print(myconfig)
     
     IPM.ws_post_sign(myconfig)
-    # Read the widget, create new variables if needed, retrieve existing variables, retrieve obsolete variables
-    variable_sets = update_variables_from_widget(myconfig)
 
+    # Get the current values from the widget
+    widgetAlerts = IPM.ws_get_widget_values(myconfig)
+    print("%d widget alerts" % len(widgetAlerts))    
+    
+    # Classify the variables (current or obsolete) 
+    variablesSets = classify_alerts_from_widget(myconfig, widgetAlerts)
+    
+    # Create new variables if not yet in current_alerts
+    create_variables_from_widget(myconfig, variablesSets, widgetAlerts)
+    
     # Variables that were already created, the alerts are still in the widget (current)
-    current_alerts = variable_sets['current_alerts']
+    current_alerts = variablesSets['current_alerts']
     # Variables that were already created, the alerts are not anymore in the widget (obsolete)
-    obsolete_alerts = variable_sets['obsolete_alerts']
+    obsolete_alerts = variablesSets['obsolete_alerts']
     # Alerts that appear for the first time in the widget (new)
-    new_alerts = variable_sets['new_alerts']
+    new_alerts = variablesSets['new_alerts']
 
     print("%d obsolete alerts for %s" % (len(obsolete_alerts), myconfig['widget_id'])) 
     print("%d current alerts for %s" % (len(current_alerts), myconfig['widget_id'])) 
     print("%d new alerts from %s" % (len(new_alerts), myconfig['widget_id']))
-    print('Alert processing rate since last update is %s' % (len(obsolete_alerts)/(len(current_alerts)+len(obsolete_alerts))))
+    former_alerts = len(current_alerts)+len(obsolete_alerts)
+    if (former_alerts > 0):
+        print('Alert processing rate since last update is %s percent' % (len(obsolete_alerts)/former_alerts*100))
 
     # Do something with obsolete variables
     # Delete the obsolete variables that came from this widget, but that are not anymore in the widget
     for v in obsolete_alerts:
         IPM.ws_delete_variable(myconfig, v['name'])
     print("%d deleted variables" % (len(obsolete_alerts)))
-    
 
 if __name__ == "__main__":
     main(sys.argv)
