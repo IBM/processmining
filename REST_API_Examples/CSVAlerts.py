@@ -69,13 +69,13 @@ def main(argv):
             histo_df.to_csv(history_file, index=None)
             summary = {
                 'update_date': dt.now().isoformat(),
-                'last_update_date': 0,
-                'last_new': 0,
-                'last_pending': 0,
-                'last_closed': 0,
-                'current_new': len(histo_df),
-                'current_pending': 0,
-                'current_closed': 0,
+                #'last_update_date': 0,
+                #'last_new': 0,
+                #'last_pending': 0,
+                #'last_closed': 0,
+                'new': len(histo_df),
+                'pending': 0,
+                'closed': 0,
                 'new_to_pending': 0,
                 'new_to_closed': 0,
                 'pending_to_closed': 0,
@@ -90,7 +90,7 @@ def main(argv):
 
     # Load summary history for this widget
     try: 
-        summary_df = pd.read_csv(summary_file, dtype=str)
+        summary_df = pd.read_csv(summary_file)
         print('Loading summary file: %s' % summary_file)
         last_summary = summary_df.loc[len(summary_df) - 1]
     except:
@@ -98,13 +98,9 @@ def main(argv):
         summary_df = pd.DataFrame()
         last_summary = {
             'update_date': 0,
-            'last_update_date': 0,
-            'last_new': 0,
-            'last_pending': 0,
-            'last_closed': 0,
-            'current_new': 0,
-            'current_pending': 0,
-            'current_closed': 0,
+            'new': 0,
+            'pending': 0,
+            'closed': 0,
             'new_to_pending': 0,
             'new_to_closed': 0,
             'pending_to_closed': 0,
@@ -114,13 +110,9 @@ def main(argv):
         }
     summary = {
         'update_date': dt.now().isoformat(),
-        'last_update_date': last_summary['update_date'],
-        'last_new': int(last_summary['current_new']),
-        'last_pending': int(last_summary['current_pending']),
-        'last_closed': int(last_summary['current_closed']),
-        'current_new': 0,
-        'current_pending': 0,
-        'current_closed': int(last_summary['current_closed']),
+        'new': 0,
+        'pending': 0,
+        'closed': last_summary['closed'],
         'new_to_pending': 0,
         'new_to_closed': 0,
         'pending_to_closed': 0,
@@ -134,18 +126,18 @@ def main(argv):
     final_df = histo_closed_df # we keep the closed alerts
 
     # History: CLOSED alerts in histo are still closed
-    if (summary['last_closed']):
-        print('%d alerts already CLOSED' % summary['last_closed'])
+    if (last_summary['closed']):
+        print('%d alerts already CLOSED' % last_summary['closed'])
 
     # If widget is empty, all the alerts are CLOSED
     if (len(widget_df) == 0):
         print("Empty widget, all alerts are closed")
-        summary['current_new'] = 0
-        summary['current_pending'] = 0
-        summary['current_closed'] = len(histo_df)
-        summary['new_to_closed'] = summary['last_new']
-        summary['pending_to_closed'] = summary['last_pending']
-        summary['any_to_closed'] = summary['last_new'] + summary['last_pending']
+        summary['new'] = 0
+        summary['pending'] = 0
+        summary['closed'] = len(histo_df)
+        summary['new_to_closed'] = last_summary['new']
+        summary['pending_to_closed'] = last_summary['pending']
+        summary['any_to_closed'] = summary['new_to_closed'] + summary['pending_to_closed']
         summary['pending_to_pending'] = 0
 
         histo_any_to_close_df = histo_df[histo_df['alert_status'] != 'CLOSED']
@@ -164,12 +156,12 @@ def main(argv):
         widget_new_df = widget_df.merge(histo_not_closed_df, on=widget_df.columns.tolist(), how='left', indicator='alert_is_present_on')
         # Alerts in the widget with 'exist'==left_only are NEW
         widget_new_df = widget_new_df[widget_new_df['alert_is_present_on'] == 'left_only']
-        summary['current_new'] = len(widget_new_df)
-        if (summary['current_new']):
+        summary['new'] = len(widget_new_df)
+        if (summary['new']):
             widget_new_df['alert_status'] = 'NEW'
             widget_new_df['alert_creation_date'] = dt.now().isoformat()
             widget_new_df['alert_closed_date'] = ''
-            print('%d new alerts' % summary['current_new'])
+            print('%d new alerts' % summary['new'])
             final_df = pd.concat([final_df, widget_new_df.drop(columns=['alert_is_present_on'])])
 
 
@@ -178,7 +170,7 @@ def main(argv):
         # NEW to PENDING  
         histo_new_to_pending_df = histo_not_closed_df.query('alert_status=="NEW" & alert_is_present_on=="both"')
         summary['new_to_pending'] = len(histo_new_to_pending_df)
-        summary['current_pending'] =  summary['new_to_pending']                                
+        summary['pending'] =  summary['new_to_pending']                                
         if (summary['new_to_pending']):
             print('%d alerts moved from NEW to PENDING' % summary['new_to_pending'])
             histo_new_to_pending_df['alert_status'] = 'PENDING'
@@ -187,7 +179,7 @@ def main(argv):
         # NEW to CLOSE
         histo_new_to_close_df = histo_not_closed_df.query('alert_status=="NEW" & alert_is_present_on=="left_only"')
         summary['new_to_closed'] = len(histo_new_to_close_df)
-        summary['current_closed'] += summary['new_to_closed']                              
+        summary['closed'] += summary['new_to_closed']                              
         if (summary['new_to_closed']):
             print('%d alerts moved from NEW to CLOSED' % summary['new_to_closed'])
             histo_new_to_close_df['alert_status'] = 'CLOSED'
@@ -197,7 +189,7 @@ def main(argv):
         # PENDING to PENDING
         histo_pending_to_pending_df = histo_not_closed_df.query('alert_status=="PENDING" & alert_is_present_on=="both"')
         summary['pending_to_pending'] = len(histo_pending_to_pending_df)
-        summary['current_pending'] += summary['pending_to_pending']
+        summary['pending'] += summary['pending_to_pending']
         if (summary['pending_to_pending']):
             print('%d alerts still PENDING' % summary['pending_to_pending'])
             final_df = pd.concat([final_df, histo_pending_to_pending_df.drop(columns=['alert_is_present_on'])])
@@ -205,24 +197,22 @@ def main(argv):
         # PENDING to CLOSE
         histo_pending_to_close_df = histo_not_closed_df.query('alert_status=="PENDING" & alert_is_present_on=="left_only"')
         summary['pending_to_closed'] = len(histo_pending_to_close_df)
-        summary['current_closed'] += summary['pending_to_closed']                              
+        summary['closed'] += summary['pending_to_closed']                              
 
         if (summary['pending_to_closed']):
             print('%d alerts moved from PENDING to CLOSE' % summary['pending_to_closed'])
             final_df = pd.concat([final_df, histo_pending_to_close_df.drop(columns=['alert_is_present_on'])]) 
 
     # Save final_df in the history file
-    #final_df.dtypes(str)
     final_df.to_csv(history_file, index=None)
 
     # Add the summary object to the summary dataframe
-    if (summary['last_pending'] + summary['last_new']):
-        summary['progression_rate'] = summary['any_to_closed'] / (summary['last_pending'] + summary['last_new'])
+    if (last_summary['pending'] + last_summary['new']):
+        summary['progression_rate'] = summary['any_to_closed'] / (last_summary['pending'] + last_summary['new'])
     else:
         summary['progression_rate'] = 0.0
     print('Progression rate: %d' % summary['progression_rate'])
     summary_df.loc[len(summary_df)] = summary
-    #summary_df.dtypes(str)
     summary_df.to_csv(summary_file, index=None)
 
 if __name__ == "__main__":
