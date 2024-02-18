@@ -340,8 +340,11 @@ def ws_get_widget_values(config):
                                                                         config['widget_id'])
 
     r = requests.get(url, verify=False, params=params, headers=headers )
-    values = r.json()
-    return values['data']
+    if (r.status_code == 200):
+        values = r.json()
+        return {'status_code': r.status_code, 'data': values['data']}
+    else:
+        return {'status_code': r.status_code, 'data': None}
 
 def ws_create_update_variables(config, variablesArray):
     headers={}
