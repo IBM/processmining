@@ -22,10 +22,13 @@ class processMiningConnector():
     def __init__(self, config):
         self.config = config
 
+    def copy(self):
+        return processMiningConnector(self.config.copy())
 
 class widgetAlerts():
     def __init__(self, connector, dashboardName, widgetId, matchingColumnIndexes): # config is a json with the widget properties
-        self.connector = connector
+        # create a copy of the connector because connector.config holds the dashboard_id when it is found the first time
+        self.connector = connector.copy()
         self.dashboardName = dashboardName
         self.widgetId = widgetId
         self.matchingColumnIndexes = matchingColumnIndexes # replaced when the widget columns are known
@@ -33,8 +36,8 @@ class widgetAlerts():
             self.matchingColumnIndexes = [0]
         self.logFileName = 'alert_log_' + self.dashboardName + '_' + self.widgetId +'.csv'
         self.summaryFileName = 'alert_summary_' + self.dashboardName + '_' + self.widgetId +'.csv'
-        connector.config['dashboard_name'] = dashboardName
-        connector.config['widget_id'] = widgetId
+        self.connector.config['dashboard_name'] = dashboardName
+        self.connector.config['widget_id'] = widgetId
 
 
     def loadLog(self):
@@ -257,7 +260,7 @@ def main(argv):
     print(alerts1.getLogs().head())
     print(alerts1.getSummary().head())
 
-    alerts2 = widgetAlerts(connector, 'alerts', 'invoices-blocked-account', [0,1,2,3])
+    alerts2 = widgetAlerts(connector, 'alerts2', 'invoices-blocked-account2', [0,1,2,3])
     alerts2.updateAlertsAndSave()
     print(alerts2.getLogs().head())
     print(alerts2.getSummary().head())

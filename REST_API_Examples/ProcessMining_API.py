@@ -286,14 +286,18 @@ def ws_get_dashboards(config):
     r = requests.get(url, verify=False, params=params, headers=headers)
     if (r.status_code == 200):
         values = r.json()
-        return values['data']['dashboards']
+        return {'status_code': r.status_code, 'data' : values['data']['dashboards']}
     else:
-        return r
+        return {'status_code': r.status_code, 'data' : None}
 
 # Returns only the table widgets in the dashboard_name
 def ws_get_widgets(config):
-    dashboards = ws_get_dashboards(config)
-    dashboard = 0
+    res = ws_get_dashboards(config)
+
+    if (res['status_code'] == 200): dashboards = res['data']
+    else:
+        return {'status_code': res['status_code'], 'data': None}
+
     for aDashboard in dashboards:
         if (aDashboard['name'] == config['dashboard_name']):
             dashboard = aDashboard
@@ -308,24 +312,29 @@ def ws_get_widgets(config):
     init_params_headers(config, headers, params)
 
     url = "%s/analytics/integration/dashboard/%s/%s/list" % (config['url'], config['project_key'], dashboard_id)
-
     r = requests.get(url, verify=False, params=params, headers=headers )
-    widgets = r.json()
-    return widgets['data']['widgets']
+    if (res['status_code'] == 200):
+        widgets = r.json() 
+        return {'status_code': res['status_code'], 'data': widgets['data']['widgets']}
+    else:
+        return {'status_code': res['status_code'], 'data': None}
 
 def ws_get_widget_values(config):
     dashboard_id = config.get('dashboard_id')
     if dashboard_id is None:
         # add the dashboard_id to the widget data
         print("....searching dashboard_id")
-        dashboards = ws_get_dashboards(config)
+        res = ws_get_dashboards(config)
+        if (res['status_code'] == 200): dashboards = res['data']
+        else:
+            return {'status_code': res['status_code'], 'data': None}
         dashboard = 0
         for aDashboard in dashboards:
             if (aDashboard['name'] == config['dashboard_name']):
                 dashboard = aDashboard
         if (dashboard == 0) :
-            print("ERROR: dashboard does not exist")
-            return 0
+            print("ERROR: dashboard %s does not exist" % config['dashboard_name'])
+            return {'status_code': 200, 'data': None}
         else:
             # Store the dashboard id in the widget to avoid calling again the rest API to retrieve the dashboard by name
             config['dashboard_id'] = dashboard['id']
