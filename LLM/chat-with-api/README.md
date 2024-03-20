@@ -28,7 +28,7 @@ setup the environement variables.
 
 ### Create a virtual env and install the Python package
 ```shell
-python3 -m venv ~/pm-llm
+python -m venv ~/pm-llm
 source ~/pm-llm/bin/activate
 pip install -r requirements.txt
 ```
@@ -38,7 +38,7 @@ pip install -r requirements.txt
 
 Open a new terminal
 ```
-python3 app.py
+python app.py
 ```
 
 

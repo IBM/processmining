@@ -106,7 +106,7 @@ css="""
 
 title = """
 <div style="text-align: center;max-width: 700px;">
-    <h1>Chat with Process Mining</h1>
+    <h1>Chat with IBM Process Mining</h1>
     <p style="text-align: center;">This sample allow to interact with IBM Process Mining projects:
     <li>how many events in project XX</li>
     <li>how many cases in project XX</li>
@@ -121,7 +121,7 @@ title = """
  </div>
 """
 
-with gr.Blocks(css=css) as demo:
+with gr.Blocks(css=css, title='Chat with IBM Process Mining') as demo:
     with gr.Column(elem_id="col-container"):
         gr.HTML(title)
         
