@@ -36,7 +36,6 @@
                 if (nbCalendarDays == 0){ // done within a working day
                   return leadTimeMs;
                 }
-;
                 // Remove number of non-working hours for each calendar day
                 // Remove number of week-end hours - non-working hours (already removed)
                 return leadTimeMs - (millisecondsPerNonWorkingHours * nbCalendarDays) - (countWeekendDays(d0, d1, nbCalendarDays) * (millisecondsPerDay-millisecondsPerNonWorkingHours));
@@ -56,7 +55,7 @@
             // Sort the events by starttime
             events.sort(function (a, b) { return a.start - b.start });
 
-            // For each activity, the successor is an activity that starts after and end time of the current activity
+            // For each activity, the successor is an activity that starts after the end time of the current activity
             for (var i = 0; i < events.length; i++) {
                 for (var j = i + 1; j < events.length; j++) {
                     if (events[i].end <= events[j].start) {
@@ -68,14 +67,15 @@
                 }
             }
             // for all activities with no predecessor, search events with a starttime and endtime before the starttime of the event
+            // A predecessor is the first activity (count down) where the start and the end time are before the start of the current activity
+            // testing the endtime is enough
             for (var i = events.length - 1; i > 0; i--) {
                 if (events[i].predecessor)
                     break;
                 for (var j = i - 1; j >= 0; j--) {
-                    if (events[i].end < events[j].start) {
-                        events[i].successor = events[j];
-                        events[j].predecessor = events[i];
-                        break;
+                    if (events[i].start < events[j].end){
+                        events[i].predecessor = events[j];
+                        events[j].successor = events[i];
                     }
                 }
             }
@@ -132,7 +132,7 @@
                     current_activity.predecessors[pred_index].count += 1;
                     //just keep working hours/days
                     if (this.workingHours)
-                        current_activity.predecessors[pred_index].pathtime_sum += NetLeadTime(current_event.predecessor.end, current_event.start, 8) ;
+                        current_activity.predecessors[pred_index].pathtime_sum += NetLeadTime(current_event.predecessor.end, current_event.start, this.workingHours) ;
                     else
                         current_activity.predecessors[pred_index].pathtime_sum += current_event.start - current_event.predecessor.end;
 
@@ -153,7 +153,7 @@
                     // update the predecessor pred_index
                     current_activity.successors[succ_index].count += 1;
                     if (this.workingHours)
-                        current_activity.successors[succ_index].pathtime_sum += NetLeadTime(current_event.end, current_event.successor.start, 8);   
+                        current_activity.successors[succ_index].pathtime_sum += NetLeadTime(current_event.end, current_event.successor.start, this.workingHours);   
                     else 
                         current_activity.successors[succ_index].pathtime_sum +=  current_event.successor.start - current_event.end;
 
