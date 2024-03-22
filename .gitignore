@@ -63,3 +63,9 @@ REST_API_Examples/alert_summary_Alerts Dashboard_alerts-widget-1.csv
 REST_API_Examples/.vscode/launch.json
 REST_API_Examples/__pycache__/ProcessMining_API.cpython-310.pyc
 REST_API_Examples/tests.ipynb
+IPMClient/__pycache__/*
+REST_API_Examples/__pycache__/*
+mylog.csv
+mysummary.csv
+IPMClient/IPMConfig.json
+REST_API_Examples/__pycache__/ProcessMining_API.cpython-310.pyc

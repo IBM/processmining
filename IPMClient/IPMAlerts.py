@@ -1,9 +1,11 @@
 import random
 import json
 import time
+import os
 from datetime import datetime as dt, timedelta
 import sys
-import ProcessMining_API as IPM
+import IPMClient as ipm
+import IPMBase as ipmb
 import pandas as pd
 
 def join_and_cleanup(df1, df2, cols, suffix, suffix_for):
@@ -18,26 +20,17 @@ def join_and_cleanup(df1, df2, cols, suffix, suffix_for):
             kept_cols.append(col)
     return df[kept_cols]
 
-class processMiningConnector():
-    def __init__(self, config):
-        self.config = config
-
-    def copy(self):
-        return processMiningConnector(self.config.copy())
-
-class widgetAlerts():
-    def __init__(self, connector, dashboardName, widgetId, matchingColumnIndexes): # config is a json with the widget properties
+class widgetAlerts(ipmb.Base):
+    def __init__(self, client, dashboard, widget, matchingColumnIndexes): # config is a json with the widget properties
         # create a copy of the connector because connector.config holds the dashboard_id when it is found the first time
-        self.connector = connector.copy()
-        self.dashboardName = dashboardName
-        self.widgetId = widgetId
+        self.client = client
+        self.dashboard = dashboard
+        self.widget = widget
         self.matchingColumnIndexes = matchingColumnIndexes # replaced when the widget columns are known
         if (self.matchingColumnIndexes == 0 or self.matchingColumnIndexes == ''):
             self.matchingColumnIndexes = [0]
-        self.logFileName = 'alert_log_' + self.dashboardName + '_' + self.widgetId +'.csv'
-        self.summaryFileName = 'alert_summary_' + self.dashboardName + '_' + self.widgetId +'.csv'
-        self.connector.config['dashboard_name'] = dashboardName
-        self.connector.config['widget_id'] = widgetId
+        self.logFileName = 'alert_log_' + self.dashboard.name + '_' + self.widget.name +'.csv'
+        self.summaryFileName = 'alert_summary_' + self.dashboard.name + '_' + self.widget.name +'.csv'
 
 
     def loadLog(self):
@@ -57,10 +50,9 @@ class widgetAlerts():
             self.summary_df = pd.DataFrame()
 
     def loadWidgetData(self):
-        IPM.ws_post_sign(self.connector.config)
-        res = IPM.ws_get_widget_values(self.connector.config)
-        if (res['status_code'] == 200):
-            self.widget_df = pd.DataFrame(res['data'])
+        values = self.widget.retrieveValues()
+        if values:
+            self.widget_df = self.widget.toDataFrame()
             self.setMatchingColumns() # matching columns: indexes replaced with column names
 
         else: 
@@ -232,25 +224,34 @@ class widgetAlerts():
         self.matchingColumnIndexes = cols
 
 def main(argv):
-    if (len(argv)==2):
-        try:
-            with open(argv[1], 'r') as file:
-                connectorConfig = json.load(file)
-                print('Loading connector configuration file')
-                print(connectorConfig)
-        except:
-            print('Error connector configuration file not found') 
-    else:
-        connectorConfig = {
-            "url":"https://ProcessMining.com",
-            "user_id": "john.smith",
-            "api_key":"8a5kga87eqvd1180",
-            "project_key": "procure-to-pay",
-            "org_key": "",
-        }
-    # Constructors
-    connector = processMiningConnector(connectorConfig)
-    alerts1 = widgetAlerts(connector, 'alerts', 'invoices-withholding-tax', [0,1,2,3])
+    getConfigFrom = 'FILE'
+    configFileName = 'IPMClient/IPMConfig.json'
+
+    # update the clienturation with your environment
+    # retrieve from OS variables
+    if getConfigFrom == 'OS':
+        url :str= os.getenv('PM_API_URL')
+        userid :str  = os.getenv('PM_API_USER')
+        apikey :str =os.getenv('PM_API_KEY')
+    elif getConfigFrom == 'VARS':
+    # or update these variables
+        url = 'PROCESSMININGURL'
+        userid = 'PROCESSMINGUSERID'
+        apikey= 'USER_APIKEY'
+    elif getConfigFrom == 'FILE':
+    # or load a file that contains JSON config
+        with open(configFileName, 'r') as file:
+            config = json.load(file)
+            url = config['url']
+            userid = config['userid']
+            apikey = config['apikey']
+    
+    client = ipm.Client(url, userid, apikey)
+    client.setTrace(True, 0)
+    project = client.getProjectByKey('procure-to-pay')
+    dashboard = project.getDashboardByName('alerts')
+    widget = dashboard.getWidgetByName('invoices-withholding-tax')
+    alerts1 = widgetAlerts(client, dashboard, widget, [0,1,2,3])
     # Optionnaly, the default filenames can be changed like this:
     alerts1.setLogFilename('mylog.csv')
     alerts1.setSummaryFilename('mysummary.csv')
@@ -260,10 +261,10 @@ def main(argv):
     print(alerts1.getLogs().head())
     print(alerts1.getSummary().head())
 
-    alerts2 = widgetAlerts(connector, 'alerts2', 'invoices-blocked-account2', [0,1,2,3])
-    alerts2.updateAlertsAndSave()
-    print(alerts2.getLogs().head())
-    print(alerts2.getSummary().head())
+    #alerts2 = widgetAlerts(client, 'alerts2', 'invoices-blocked-account2', [0,1,2,3])
+    #alerts2.updateAlertsAndSave()
+    #print(alerts2.getLogs().head())
+    #print(alerts2.getSummary().head())
 
 
 if __name__ == "__main__":
