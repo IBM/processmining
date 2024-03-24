@@ -4,18 +4,18 @@ import IPMProject as ipmp
 import json
 
 class Organization(ipmb.Base):
-    def __init__(self, client, data):
+    def __init__(self, client, jsondata):
         ipmb.Base.__init__(self)
         self.client = client
         self.accounts = []
         self.projects = []
-        self.name = data['name']
-        self.key = data['key']
-        self.realKey = data['realKey']
-        self.description = data['description']
-        self.owner = data['owner']
+        self.name = jsondata['name']
+        self.key = jsondata['key']
+        self.realKey = jsondata['realKey']
+        self.description = jsondata['description']
+        self.owner = jsondata['owner']
         self.status = True
-        self.data = data
+        self.jsondata = jsondata
         
     
     def getHeaders(self):
@@ -39,7 +39,7 @@ class Organization(ipmb.Base):
             data=json.dumps({ "name": name, "description": description}),
             functionName='patch organization'):
           
-            self.data = self.getResponseData()
+            self.jsondata = self.getResponseData()
             return self
 
     # MANAGE ACCOUNTS

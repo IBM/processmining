@@ -11,7 +11,7 @@ class Account(ipmb.Base):
         self.lastname = jsondata['lastName']
         self.firstname = jsondata['firstName']
         self.key = jsondata['accountId']
-        self.data = jsondata
+        self.jsondata = jsondata
         self.status = True
         dataExample = {
             "firstName": "John",
@@ -49,7 +49,7 @@ class Account(ipmb.Base):
             functionName='patch account'):
 
             self.status = True
-            self.data = self.getResponseData()
+            self.jsondata = self.getResponseData()
             return self
             
 

@@ -15,9 +15,10 @@ class Base():
         self.verify = False
         self.traceChoice = False
         self.traceDetails = 0 # 0=No details, 1=Print the URL, 2=print the response data
-
+        self.jsondata = None
+    
+    def getJSONData(self):return self.jsondata    
     def getHeaders(self): return {"content-type": "application/json", "Authorization": "Bearer %s" % self.token } 
-    def getResponseSuccess(self): return self.response_data['success']
     def getResponseData(self): return self.response_data['data']
     def getResponseStatusCode(self): return self.response_data['status_code']
     def isResponseKO(self): return not self.response_data['success']
@@ -76,27 +77,27 @@ class Base():
     
     def sendGetRequest(self, url, verify, headers, params, functionName):
         self.handleResponse(requests.get(url, verify=verify, headers=headers, params=params), functionName)
-        if self.getResponseSuccess():
+        if self.isResponseOK():
             return self.getResponseData()
     
     def sendPostRequest(self, url=str, verify=False, headers=json, params=json, data=None, files=None, functionName=str):
         self.handleResponse(requests.post(url, verify=verify, headers=headers, params=params, data=data, files=files), functionName)
-        if self.getResponseSuccess():
+        if self.isResponseOK():
             return self.getResponseData()   
 
     def sendDeleteRequest(self, url, verify, headers, params, functionName):
         self.handleResponse(requests.delete(url, verify=verify, headers=headers, params=params), functionName)
-        if self.getResponseSuccess():
+        if self.isResponseOK():
             return self.getResponseData()   
         
     def sendPatchRequest(self, url, verify, headers, params, data, functionName):
         self.handleResponse(requests.patch(url, verify=verify, headers=headers, params=params, data=data), functionName)
-        if self.getResponseSuccess():
+        if self.isResponseOK():
             return self.getResponseData()   
         
     def sendPutRequest(self, url, verify, headers, params, functionName):
         self.handleResponse(requests.put(url, verify=verify, headers=headers, params=params), functionName)
-        if self.getResponseSuccess():
+        if self.isResponseOK():
             return self.getResponseData()
     
     

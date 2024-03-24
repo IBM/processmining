@@ -7,9 +7,9 @@ class Widget(ipmb.Base):
         ipmb.Base.__init__(self)
         self.dashboard = dashboard
         self.name = jsonWidget['title']
-        self.data = jsonWidget
+        self.jsondata = jsonWidget
         self.values = None
-        self.dataframe = None
+        self.jsondata = None
 
     def getHeaders(self):
         return self.dashboard.getHeaders()
