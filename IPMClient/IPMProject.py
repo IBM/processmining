@@ -15,7 +15,7 @@ def spinning_cursor():
             yield cursor
 
 class Project(ipmb.Base):
-    def __init__(self, organization, name, key, data=None):
+    def __init__(self, organization, name, key, jsondata=None):
         ipmb.Base.__init__(self)
         self.client = organization.client
         self.organization = organization
@@ -23,10 +23,10 @@ class Project(ipmb.Base):
         self.name = name
         self.dashboards = []
         self.backupList = []
-        if data: # project retrieved from retrieveProjects, the project is alive
-            self.data = data
+        if jsondata: # project retrieved from retrieveProjects
+            self.data = jsondata
             return
-        # else project created
+        # else project created by the client
 
     def getHeaders(self):
         return self.client.getHeaders()
@@ -109,11 +109,11 @@ class Project(ipmb.Base):
             params={'org' : self.organization.key},
             functionName='apply backup'
         ):
-            return self.getResponseSuccess()
+            return self.isResponseOK()
     
     def uploadApplyBackup(self, idpfile):
         backup = self.uploadBackup(idpfile)
-        if self.getResponseSuccess():
+        if self.isResponseOK():
             self.applyBackup(backup['id'])
 
     def uploadCSVApplyBackupRunMining(self, csvfilename, ipdfilename):
@@ -149,6 +149,9 @@ class Project(ipmb.Base):
             sys.stdout.flush()
             sys.stdout.write('\b')
             time.sleep(SPINNING_RATE)
+        
+        # Retrieve the information from the project
+        self.retrieveInformation()
 
     
     def retrieveMetaInfo(self):

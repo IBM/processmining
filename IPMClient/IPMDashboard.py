@@ -7,7 +7,7 @@ class Dashboard(ipmb.Base):
         self.project = project
         self.name = jsondata['name']
         self.id = jsondata['id']
-        self.data = jsondata
+        self.jsondata = jsondata
         self.widgets = None
     
     def getHeaders(self):
