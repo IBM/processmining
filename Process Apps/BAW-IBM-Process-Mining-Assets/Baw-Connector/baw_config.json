@@ -1,0 +1,18 @@
+{
+   "root_url": "<your BAW host for BAW APIs>",
+   "process_name": "<your BAW process name>",
+   "project": "<the BAW project's acronym>",
+   "from_date": "2011-08-04T03:12:53Z",
+   "from_date_criteria": "<one of: createdAfter/modifiedAfter/closedAfter>",
+   "to_date": "2024-08-04T03:12:53Z",
+   "to_date_criteria": "<one of: createdBefore/modifiedBefore/closedBefore>",
+   "status_filter": "Active,Completed,Failed,Terminated,Suspended,Late,At_Risk",
+   "instance_limit": 10,
+   "offset": 0,
+   "thread_count": 1,
+   "csvpath": "<path to where your csv and log file will be stored>",
+   "csvfilename": "<csv filename>",
+   "logfile": "<log filename>",
+   "user_name": "<your username for BAW>",
+   "password": "<your password for BAW>"
+}
