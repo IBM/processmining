@@ -1,0 +1,34 @@
+[
+    {
+        "filterType": "running",
+        "label": "Exclude running cases",
+        "excludeCases": "running"
+    },
+    {
+        "filterType": "attribute",
+        "label": "CLOSURE_REASON is \"1 - Client lost\"",
+        "attributeKey": "CLOSURE_REASON",
+        "attributeValue": "1 - Client lost",
+        "matchCases": true,
+        "matchingRule": "ANY",
+        "inclusiveTimeSpan": false
+    },
+    {
+        "filterType": "attribute",
+        "label": "Activity is \"Authorization Requested\"",
+        "attributeKey": "activity",
+        "attributeValue": "Authorization Requested",
+        "matchCases": true,
+        "matchingRule": "ANY",
+        "inclusiveTimeSpan": false
+    },
+    {
+        "filterType": "customMetric",
+        "label": "countActivities > 5",
+        "matchCases": true,
+        "customMetricName": "COUNTACTIVITIES",
+        "customMetricDataType": "DOUBLE",
+        "operator": "GT",
+        "customMetricValue": "5"
+    }
+]

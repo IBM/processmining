@@ -1,0 +1,24 @@
+{
+    "computeDurationInBusinessHours": true,
+    "excludeWeekends": true,
+    "businessHours": "8-18",
+    "selectedCalendars": [],
+    "automatedFieldTruthValues": "Robot",
+    "automatedActivityAttribute": "attr-custom-AUTOMATIC",
+    "customExcludedFields": [
+        "attr-custom-AUTOMATIC",
+        "attr-custom-CE_STATE",
+        "attr-custom-INSTITUTE_NR"
+    ],
+    "timeZoneOffset": "+0000",
+    "defaultPage": "Model",
+    "displayReferenceActivities": false,
+    "keepDefinedRoles": true,
+    "defaultMetric": "avg",
+    "projectCurrency": "EUR",
+    "enableRunningTime": true,
+    "modelRelationDetails": 1,
+    "modelActivityDetail": "100",
+    "blueWorksliveProcess": null,
+    "defaultBucketLimit": 2048
+}

@@ -22,11 +22,12 @@ class Project(ipmb.Base):
         self.key = key
         self.name = name
         self.dashboards = []
-        self.backupList = []
+
         if jsondata: # project retrieved from retrieveProjects
             self.data = jsondata
             return
         # else project created by the client
+
 
     def getHeaders(self):
         return self.client.getHeaders()
@@ -50,7 +51,7 @@ class Project(ipmb.Base):
         print("Process Mining: loading event log (please wait)")
         spinner = spinning_cursor()
         while  runningCall :
-            job_status = self.getCSVJobStatus(job_key)
+            job_status = self.retrieveCSVJobStatus(job_key)
             if job_status == 'complete': 
                 runningCall = 0
             if job_status == 'error': 
@@ -63,7 +64,7 @@ class Project(ipmb.Base):
             time.sleep(SPINNING_RATE)
         return self
         
-    def getCSVJobStatus(self, job_key):
+    def retrieveCSVJobStatus(self, job_key):
         if self.sendGetRequest(
             f'{self.getURL()}/integration/csv/job-status/{job_key}',
             verify=self.verify,
@@ -72,6 +73,17 @@ class Project(ipmb.Base):
             functionName='get CSV job status'):
 
             return self.getResponseData()
+
+    def retrieveModelStatisticsJobStatus(self, job_key):
+        if self.sendGetRequest(
+            f'{self.getURL()}/integration/jobs/model-statistics/{job_key}',
+            verify=self.verify,
+            params={},   
+            headers=self.getHeaders(),
+            functionName='get model-statistics job status'):
+
+            return self.getResponseData()      
+    
         
     def uploadBackup(self, backupfilename):
 
@@ -92,14 +104,17 @@ class Project(ipmb.Base):
             params={'org' : self.organization.key},      
             headers=self.getHeaders(),
             functionName='retrieve backup list'):
-
-            self.backupList = self.getResponseData()['backups']
-            return self.backupList
+            return self.getResponseData()['backups']
     
-    def getBackupList(self):
-        if self.backupList:
-            return self.backupList
-        return self.retrieveBackupList()
+    def deleteBackup(self, backupId):
+        if self.sendDeleteRequest(
+            url=f'{self.getURL()}/integration/processes/{self.key}/backups/{backupId}',
+            verify=self.verify,
+            headers=self.getHeaders(),
+            params={'org' : self.organization.key},
+            functionName='delete backup'
+        ):
+            return self.isResponseKO()
 
     def applyBackup(self, backupId):
         if self.sendPutRequest(
@@ -138,7 +153,7 @@ class Project(ipmb.Base):
         print("Process Mining: refreshing model (please wait)")
         spinner = spinning_cursor()
         while  runningCall :
-            job_status = self.getCSVJobStatus(job_key)
+            job_status = self.retrieveCSVJobStatus(job_key)
             if (job_status == 'complete') :
                 runningCall = 0
             if (job_status == 'error') :
@@ -152,15 +167,6 @@ class Project(ipmb.Base):
         
         # Retrieve the information from the project
         self.retrieveInformation()
-
-    
-    def retrieveMetaInfo(self):
-        url=f"{self.getURL()}/integration/csv/{self.key}/meta"
-        params={'org' : self.organization.key}
-        headers=self.getHeaders()
-        if self.sendGetRequest(url=url, verify=self.verify,params=params,headers=headers, functionName='retrieve meta info'):
-            self.info = self.getResponseData()
-            return self.getResponseData()
     
     def retrieveInformation(self):
         if self.sendGetRequest(
@@ -175,10 +181,6 @@ class Project(ipmb.Base):
             self.performance = self.getResponseData()['performance']
             return self.getResponseData()
         return None
-    
-    def getInfo(self) : return self.info
-    def getPerformance(self) : return self.performance
-    def getNavigation(self) :  return self.navigation
     
     def getDashboards(self):
         if (self.dashboards): return self.dashboards
@@ -220,7 +222,6 @@ class Project(ipmb.Base):
         ):
             return self.getResponseData()
 
-
     def getDashboardByName(self, name):
         dashboards = self.getDashboards()
         for dashboard in dashboards:
@@ -229,31 +230,180 @@ class Project(ipmb.Base):
         print("ERROR: unkwown dashboard %s" % name)
         self._setResponseKO()
         return None
-    
-    def retrieveWorkflow(self, viewType):
-        viewTypes = [
-            {'type':'Frequency view', 'value':0},
-            {'type':'Performance view (Avg)', 'value':1},
-            {'type':'Performance view (Min)', 'value':2},
-            {'type':'Performance view (Max)', 'value':3},
-            {'type':'Performance view (Median)', 'value':4},
-            {'type':'Rework view', 'value':5},
-            {'type':'Performance view (Weighted)', 'value':6},
-            {'type':'Cost view', 'value':7},
-            {'type':'Overall cost view', 'value':8},
-            ]
-
-        params = {'org' : self.organization.key, 'viewType': viewType}    
-        headers = self.getHeaders()
-        url = f"{self.getURL()}/integration/csv/{self.key}/workflow"
-        verify=self.verify,
-        if self.sendGetRequest(url=url,params=params,headers=headers, verify=verify, functionName='retrieve dashboards'):
-            return self.getResponseData()  
+  
         
-    def retrieveBPMN(self):
-
-        params = {'org' : self.organization.key}    
+    def uploadReferenceModel(self, bpmnfilename):
         headers = self.getHeaders()
-        url = f"{self.getURL()}/integration/export/{self.key}/BPMN"
-        if self.sendGetRequest(url=url, verify=self.verify, params=params, headers=headers, functionName='retrieve bpmn'):
-            return self.getResponseData()     
+        url=f'{self.getURL()}/integration/csv/{self.key}/upload-model'
+        files={'file': (bpmnfilename, open(bpmnfilename, 'rb'),'text/zip')},
+        if self.sendPostRequest(url=url, verify=self.verify, params=self.getParams(), headers=headers, files=files, functionName='upload reference'):
+            return self.getResponseData()
+        
+    # GENERIC METHOD CALLED BY MOST get /integration/processes/
+        
+    def dumpJsonToFile(self, jsondata, filename='jsonOutput'):
+        if self._dumpToFile:
+            json_object = json.dumps(jsondata, indent=4)
+            # Serializing json
+            with open(f'json_result_examples/{filename}.json', "w") as outfile:
+                outfile.write(json_object)
+
+    def _retrieveIntegrationProcesses(self, urlTail, params=None):
+        if params == None:
+            params = {'org' : self.organization.key}    
+        url= f'{self.getURL()}/integration/processes/{self.key}/{urlTail}'
+        functionName = 'retrieve ' + urlTail
+        headers = self.getHeaders()
+        if self.sendGetRequest(url=url, verify=self.verify, params=params, headers=headers, functionName=functionName):
+            return self.getResponseData()
+            
+
+    def retrieveKPISettings(self, fromMaster=False):
+        params = {'org' : self.organization.key, 'fromMaster' : fromMaster}
+        jsondata = self._retrieveIntegrationProcesses('kpi-settings', params=params)
+        if jsondata:
+            self._dumpToFile(jsondata, 'kpi-settings')
+            return jsondata
+                        
+    def _retrieveIntegrationProcessesWithFilters(self, urlTail, filters, jobkeyfunction, jsonStopField, jsonStopValue=None):
+        url= f'{self.getURL()}/integration/processes/{self.key}/{urlTail}'
+        functionName = f'retrieve {urlTail} with filters'
+        data = json.dumps(filters)
+        headers = self.getHeaders()
+        params =  {'org' : self.organization.key}
+        if self.sendPostRequest(url=url, verify=self.verify, params=params, headers=headers, data=data, functionName=functionName):
+                # Async call --- the caller need to loop on get job status that it is completed
+            job_key = self.getResponseData() # that's the job key
+        else:
+            return None
+        runningCall = 1
+        print("Process Mining: refreshing with filters (please wait)")
+        spinner = spinning_cursor()
+        while  runningCall : # The job APIs are not homogeneous. Requires workarounds
+            if jobkeyfunction(job_key):
+                jsondata = self.getResponseData()
+                if jsondata[jsonStopField]:
+                    if jsonStopValue and jsondata[jsonStopField]==jsonStopValue:
+                        runningCall = 0
+                    elif jsonStopValue == None:
+                         runningCall = 0                      
+            else:
+                return
+            sys.stdout.write(next(spinner))
+            sys.stdout.flush()
+            sys.stdout.write('\b')
+            time.sleep(SPINNING_RATE)
+        return self.getResponseData()  
+
+    def retrieveModelStatistics(self, filters=None):
+        # jsondata['processAnalysis'], jsondata['model']['nodes'], jsondata['model']['edges']
+        if filters == None:
+            return self._retrieveIntegrationProcesses('model-statistics')
+        else:
+            return self._retrieveIntegrationProcessesWithFilters('model-statistics',filters, self.retrieveModelStatisticsJobStatus, 'model')
+              
+    def getTransitionStatistics(self, ModelStatistics, sourceActivity=None, targetActivity=None):
+        if sourceActivity == None:
+            return ModelStatistics['model']['edges']
+        for transition in ModelStatistics['model']['edges']:
+            if transition['sourceActivity'] == sourceActivity and transition['targetActivity'] == targetActivity:
+                return transition
+    
+    def getActivityStatistics(self, ModelStatistics, activityName=None):
+        if activityName==None:
+            return ModelStatistics['model']['nodes']
+        for activity in ModelStatistics['model']['nodes']:
+            if activity['activityName'] == activityName:
+                return activity
+            
+    def getProcessStatistics(self, ModelStatistics):
+        return ModelStatistics['processAnalysis']
+
+    def retrieveDeviationsJobStatus(self, job_key):
+        if self.sendGetRequest(
+            f'{self.getURL()}/integration/jobs/deviations/{job_key}',
+            verify=self.verify,
+            params={},   
+            headers=self.getHeaders(),
+            functionName='get deviations job status'):
+
+            return self.getResponseData()
+        
+    def retrieveDeviations(self, filters=None):
+        if filters == None:
+            return self._retrieveIntegrationProcesses('deviations') 
+        else:
+            return self._retrieveIntegrationProcessesWithFilters('deviations',filters, self.retrieveDeviationsJobStatus, 'status','complete')
+
+    def retrieveFilters(self):
+        if self._retrieveIntegrationProcesses('filters'):
+            jsondata = self.getResponseData()
+            return jsondata['filters']  # remove the filters layer
+
+    def retrieveTemplates(self):
+        params = {'org' : self.organization.key}    
+        url= f'{self.getURL()}/integration/projects/{self.key}/filter-templates'
+        functionName = 'retrieve filter-templates'
+        headers = self.getHeaders()
+        if self.sendGetRequest(url=url, verify=self.verify, params=params, headers=headers, functionName=functionName):
+            return self.getResponseData()
+
+    def retrieveKpiJobStatus(self, job_key):
+        if self.sendGetRequest(
+            f'{self.getURL()}/integration/jobs/kpi-status/{job_key}',
+            verify=self.verify,
+            params={},   
+            headers=self.getHeaders(),
+            functionName='get kpi-status job status'):
+
+            return self.getResponseData()
+                
+    def retrieveKpiStatus(self, filters=None):
+        if filters == None:
+            return self._retrieveIntegrationProcesses('kpi-status') 
+        else:
+            return self._retrieveIntegrationProcessesWithFilters('kpi-status',filters, self.retrieveKpiJobStatus, 'status','complete')
+
+    def retrieveVariants(self):
+        params = {'org' : self.organization.key, 'page' : 0, 'size' : 30}    
+        jsondata = self._retrieveIntegrationProcesses('variants', params=params)
+        if jsondata:
+            return jsondata['items']
+        
+    def retrieveStatus(self):
+        return self._retrieveIntegrationProcesses('status')  
+        
+    def retrieveSettings(self, fromMaster=False):
+        params = {'org' : self.organization.key, 'fromMaster' : fromMaster}    
+        return self._retrieveIntegrationProcesses('project-settings', params=params)  
+        
+    def retrieveSettingsActivityCost(self, fromMaster=False):
+        params = {'org' : self.organization.key, 'fromMaster' : fromMaster}    
+        return self._retrieveIntegrationProcesses('project-settings/activities-cost', params=params)
+    
+    def retrieveSettingsActivityWorkingTime(self, fromMaster=False):
+        params = {'org' : self.organization.key, 'fromMaster' : fromMaster}    
+        return self._retrieveIntegrationProcesses('project-settings/activities-working-time', params=params)
+    
+    def retrieveBPMN(self):
+        return self._retrieveIntegrationProcesses('BPMN') 
+     
+    def retrieveMetaInfo(self):
+        return self._retrieveIntegrationProcesses('meta') 
+    
+    def retrieveCustomMetrics(self):
+        return self._retrieveIntegrationProcesses('custom-metrics') 
+    
+    def setActivityCost(self, activityName, cost, type='Manual', endDate=None):
+        jsondata = {'cost': cost, 'type': type}
+        if endDate: jsondata['endDate'] = endDate
+        data = json.dumps(jsondata)
+        return self.sendPostRequest(
+            url=f'{self.getURL()}/integration/processes/{self.key}/project-settings/activities-cost/{activityName}',
+            verify=self.verify,
+            params={'org' : self.organization.key},
+            headers=self.getHeaders(),
+            data=data,
+            files=None,
+            functionName='set activity cost')
+    

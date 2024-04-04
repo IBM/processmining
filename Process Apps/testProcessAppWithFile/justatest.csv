@@ -1,0 +1,5 @@
+processid,activity,date
+p1,analyze request,2023-01-01
+p1,approve request,2023-01-02
+p2,approve request,2023-01-02
+p2,reject request,2023-01-04

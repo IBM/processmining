@@ -1,0 +1,98 @@
+{
+    "process": {
+        "kpis": [
+            {
+                "name": "case-throughput",
+                "warningThreshold": 1.0,
+                "criticalThreshold": 19.0,
+                "warningThresholdUnit": "DAYS",
+                "criticalThresholdUnit": "DAYS",
+                "unitType": "timestamp"
+            },
+            {
+                "name": "case-cost",
+                "warningThreshold": 16.0,
+                "criticalThreshold": 17.0,
+                "warningThresholdUnit": "MONEY",
+                "criticalThresholdUnit": "MONEY",
+                "unitType": "double"
+            }
+        ]
+    },
+    "activities": [
+        {
+            "activityName": "default",
+            "kpis": [
+                {
+                    "name": "activity-throughput",
+                    "warningThreshold": 1.0,
+                    "criticalThreshold": 2.0,
+                    "warningThresholdUnit": "DAYS",
+                    "criticalThresholdUnit": "DAYS",
+                    "unitType": "timestamp"
+                },
+                {
+                    "name": "activity-duration",
+                    "warningThreshold": 1.0,
+                    "criticalThreshold": 2.0,
+                    "warningThresholdUnit": "DAYS",
+                    "criticalThresholdUnit": "DAYS",
+                    "unitType": "timestamp"
+                },
+                {
+                    "name": "activity-wait-queue",
+                    "warningThreshold": 1.0,
+                    "criticalThreshold": 2.0,
+                    "warningThresholdUnit": "DAYS",
+                    "criticalThresholdUnit": "DAYS",
+                    "unitType": "timestamp"
+                },
+                {
+                    "name": "resource-allocation",
+                    "warningThreshold": 0.33,
+                    "criticalThreshold": 0.66,
+                    "warningThresholdUnit": "percent",
+                    "criticalThresholdUnit": "percent",
+                    "unitType": "double"
+                }
+            ]
+        },
+        {
+            "activityName": "BO Service Closure",
+            "kpis": [
+                {
+                    "name": "activity-throughput",
+                    "warningThreshold": 24.0,
+                    "criticalThreshold": 30.0,
+                    "warningThresholdUnit": "HOURS",
+                    "criticalThresholdUnit": "HOURS",
+                    "unitType": "timestamp"
+                },
+                {
+                    "name": "activity-duration",
+                    "warningThreshold": 20.0,
+                    "criticalThreshold": 30.0,
+                    "warningThresholdUnit": "HOURS",
+                    "criticalThresholdUnit": "HOURS",
+                    "unitType": "timestamp"
+                },
+                {
+                    "name": "activity-wait-queue",
+                    "warningThreshold": 1.0,
+                    "criticalThreshold": 2.0,
+                    "warningThresholdUnit": "DAYS",
+                    "criticalThresholdUnit": "DAYS",
+                    "unitType": "timestamp"
+                },
+                {
+                    "name": "resource-allocation",
+                    "warningThreshold": 0.33,
+                    "criticalThreshold": 0.66,
+                    "warningThresholdUnit": "percent",
+                    "criticalThresholdUnit": "percent",
+                    "unitType": "double"
+                }
+            ]
+        }
+    ]
+}

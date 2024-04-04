@@ -1,0 +1,62 @@
+[
+    {
+        "activity": "Authorization Requested",
+        "type": "BOTH",
+        "value": 0.33,
+        "endDate": null
+    },
+    {
+        "activity": "BO Service Closure",
+        "type": "BOTH",
+        "value": 1.0,
+        "endDate": null
+    },
+    {
+        "activity": "BO Service Closure",
+        "type": "AUTOMATIC",
+        "value": 0.016666666666667,
+        "endDate": null
+    },
+    {
+        "activity": "Evaluating Request (WITH registered letter)",
+        "type": "BOTH",
+        "value": 1.33,
+        "endDate": null
+    },
+    {
+        "activity": "Pending Request for acquittance of heirs",
+        "type": "BOTH",
+        "value": 1.0,
+        "endDate": null
+    },
+    {
+        "activity": "Back-Office Adjustment Requested ",
+        "type": "BOTH",
+        "value": 2.0,
+        "endDate": null
+    },
+    {
+        "activity": "Evaluating Request (NO registered letter)",
+        "type": "BOTH",
+        "value": 2.0,
+        "endDate": null
+    },
+    {
+        "activity": "Request created",
+        "type": "BOTH",
+        "value": 1.0,
+        "endDate": null
+    },
+    {
+        "activity": "Network Service Closure",
+        "type": "BOTH",
+        "value": 1.5,
+        "endDate": null
+    },
+    {
+        "activity": "__DEFAULT__",
+        "type": "BOTH",
+        "value": 0.0,
+        "endDate": null
+    }
+]

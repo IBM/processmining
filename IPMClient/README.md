@@ -129,25 +129,68 @@ project = organization.getProjectByName(name)
 
 IPMProject instances are created by client.createProject(name) or by client.retrieveProjects()
 
+Methods for managing the project model
 ```
 project.uploadCSVApplyBackupRunMining(csvfile, idpfile)
 
 project.uploadCSV(csvfilename)
+
 project.uploadApplyBackup(idpfilename)
 project.uploadBackup(ipdfilename)
 project.applyBackup(backupId) 
 project.retrieveBackupList()
-project.getBackupList()
+project.deleteBackup(backupId)
+ 
+project.uploadReferenceModel(bpmnfilename)
+
 project.runMining()
+```
 
-project.retrieveMetaInfo()
-project.retrieveInformation()
-project.getInfo()
-project.getPerformance()
-project.getNavigation()
-project.retrieveWorkflow()
-project.retrieveBPMN()
 
+The following methods retrieve project status, statistics, variants, filters, ... as JSON objects.
+Examples of JSON returned by these methods are available in the directory [json_result_examples](./json_result_examples).
+
+```
+filters = project.retrieveFilters()
+templates = project.retrieveTemplates()
+settings = project.retrieveKPISettings()
+settings = project.retrieveSettings(fromMaster=False) # if using a snapshot, can be retrieved from parent
+activityCosts = project.retrieveSettingsActivityCost(fromMaster=False) # if using a snapshot, can be retrieved from parent
+activityWorkingTime = project.retrieveSettingsActivityWorkingTime(fromMaster=False) # if using a snapshot, can be retrieved from parent
+status = project.retrieveStatus()
+information = project.retrieveMetaInfo()
+information = project.retrieveInformation()
+```
+
+This method is useful to save a JSON object into a filename
+```
+project.dumpJsonToFile(result, filename) 
+```
+
+Methods returning process deviations and variants
+```
+deviations = project.retrieveDeviations(filters=None) # transient filters can be applied
+variants = project.retrieveVariants() # top 30 variants
+kpiStatus = project.retrieveKpiStatus(filters=None) # transient filters can be applied
+```
+
+Methods returning statistical data
+```
+modelStats = project.retrieveModelStatistics(filters=None)
+```
+The following methods facilitate the parsing of ModelStatistics JSON. You need first to call
+```project.retrieveModelStatistics()```.
+```
+allActivityStats = project.getActivityStatistics(modelStats) 
+BOStats = project.getActivityStatistics(modelStats,'BO Service Closure')
+AllTransitionStats = project.getTransitionStatistics(modelStats)
+startRequestCreatedStats = project.getTransitionStatistics(modelStats, 'START', 'Request created')
+processStats = project.getProcessStatistics(modelStats)
+customMetrics = project.retrieveCustomMetrics()
+```
+
+Methods related to dashboards
+```
 project.dashboards = project.retrieveDashboards()
 project.getDashboards()
 dashboard = project.getDashboardByName()

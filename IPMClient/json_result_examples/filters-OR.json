@@ -1,0 +1,13 @@
+{
+    "filters": [
+        {
+            "filterType": "attribute",
+            "label": "CLOSURE_REASON is \"1 - Client lost\", \"2 - Keep bank account. Same dip\"",
+            "attributeKey": "CLOSURE_REASON",
+            "attributeValue": "1 - Client lost|2 - Keep bank account. Same dip",
+            "matchCases": true,
+            "matchingRule": "ANY",
+            "inclusiveTimeSpan": false
+        }
+    ]
+}

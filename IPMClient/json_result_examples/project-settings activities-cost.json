@@ -1,0 +1,38 @@
+[
+    {
+        "activity": "Pending Request for acquittance of heirs",
+        "cost": 2.0,
+        "type": "MANUAL",
+        "endDate": null
+    },
+    {
+        "activity": "BO Service Closure",
+        "cost": 1.0,
+        "type": "MANUAL",
+        "endDate": null
+    },
+    {
+        "activity": "BO Service Closure",
+        "cost": 0.2,
+        "type": "AUTOMATIC",
+        "endDate": null
+    },
+    {
+        "activity": "Back-Office Adjustment Requested ",
+        "cost": 2.0,
+        "type": "MANUAL",
+        "endDate": null
+    },
+    {
+        "activity": "Network Service Closure",
+        "cost": 0.1,
+        "type": "AUTOMATIC",
+        "endDate": null
+    },
+    {
+        "activity": "__DEFAULT__",
+        "cost": 0.5,
+        "type": "BOTH",
+        "endDate": null
+    }
+]
