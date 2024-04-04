@@ -1,0 +1,147 @@
+[
+    {
+        "templateId": "65965cee9b06410ce8355e7a",
+        "name": "No Sim",
+        "filters": [
+            {
+                "filterType": "running",
+                "label": "Exclude running cases",
+                "excludeCases": "running"
+            },
+            {
+                "filterType": "simulation",
+                "label": "Exclude simulated cases",
+                "excludeCases": "simulated"
+            }
+        ],
+        "owner": "task.miner",
+        "shared": true
+    },
+    {
+        "templateId": "65965cee9b06410ce8355e7b",
+        "name": "Only Sim",
+        "filters": [
+            {
+                "filterType": "running",
+                "label": "Exclude running cases",
+                "excludeCases": "running"
+            },
+            {
+                "filterType": "simulation",
+                "label": "Exclude as-is cases",
+                "excludeCases": "asIs"
+            }
+        ],
+        "owner": "task.miner",
+        "shared": true
+    },
+    {
+        "templateId": "65965cee9b06410ce8355e7c",
+        "name": "Branch 6",
+        "filters": [
+            {
+                "filterType": "running",
+                "label": "Exclude running cases",
+                "excludeCases": "running"
+            },
+            {
+                "filterType": "attribute",
+                "label": "INSTITUTE_NR is \"6\"",
+                "attributeKey": "INSTITUTE_NR",
+                "attributeValue": "6",
+                "matchCases": true,
+                "matchingRule": "ANY",
+                "inclusiveTimeSpan": false
+            }
+        ],
+        "owner": "task.miner",
+        "shared": true
+    },
+    {
+        "templateId": "65965cee9b06410ce8355e7d",
+        "name": "As-Is",
+        "filters": [
+            {
+                "filterType": "simulation",
+                "label": "Exclude simulated cases",
+                "excludeCases": "simulated"
+            }
+        ],
+        "owner": "task.miner",
+        "shared": false
+    },
+    {
+        "templateId": "65965cee9b06410ce8355e7e",
+        "name": "As Is",
+        "filters": [
+            {
+                "filterType": "simulation",
+                "label": "Exclude simulated cases",
+                "excludeCases": "simulated"
+            }
+        ],
+        "owner": "task.miner",
+        "shared": false
+    },
+    {
+        "templateId": "65df194f83b8cc46751ccb94",
+        "name": "To-Be",
+        "filters": [
+            {
+                "filterType": "simulation",
+                "label": "Exclude as-is cases",
+                "excludeCases": "asIs"
+            }
+        ],
+        "owner": "task.miner",
+        "shared": false
+    },
+    {
+        "templateId": "65df1acba619fe3260f1f042",
+        "name": "clientlost",
+        "filters": [
+            {
+                "filterType": "attribute",
+                "label": "CLOSURE_REASON is \"1 - Client lost\"",
+                "attributeKey": "CLOSURE_REASON",
+                "attributeValue": "1 - Client lost",
+                "matchCases": true,
+                "matchingRule": "ANY",
+                "inclusiveTimeSpan": false
+            }
+        ],
+        "owner": "task.miner",
+        "shared": false
+    },
+    {
+        "templateId": "65df1afca619fe3260f1f196",
+        "name": "relationschanged",
+        "filters": [
+            {
+                "filterType": "attribute",
+                "label": "CLOSURE_REASON is \"6 - Relationship changed\"",
+                "attributeKey": "CLOSURE_REASON",
+                "attributeValue": "6 - Relationship changed",
+                "matchCases": true,
+                "matchingRule": "ANY",
+                "inclusiveTimeSpan": false
+            }
+        ],
+        "owner": "task.miner",
+        "shared": false
+    },
+    {
+        "templateId": "65df2646a619fe3260f202d6",
+        "name": "top5",
+        "filters": [
+            {
+                "filterType": "variant",
+                "label": "top5",
+                "variant": "1311839531|-442488819|-1361806382|358704624|-587405032",
+                "matchCases": true
+            }
+        ],
+        "owner": "task.miner",
+        "shared": false
+    }
+]

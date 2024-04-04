@@ -1,0 +1,79 @@
+[
+    {
+        "deviationType": "INSERTED_ACTIVITY",
+        "activityName": "Network Adjustment Requested",
+        "caseCount": 235,
+        "caseRatio": 0.04583577140628048,
+        "steps": 9.4,
+        "throughput": 2965027412.765956,
+        "cost": 17.34370212765958
+    },
+    {
+        "deviationType": "INSERTED_ACTIVITY",
+        "activityName": "Back-Office Adjustment Requested ",
+        "caseCount": 586,
+        "caseRatio": 0.11429685976204408,
+        "steps": 8.100682593856662,
+        "throughput": 1384646122.866893,
+        "cost": 19.99723549488053
+    },
+    {
+        "deviationType": "INSERTED_START_ACTIVITY",
+        "activityName": "Network Service Closure",
+        "caseCount": 2,
+        "caseRatio": 0.0003900916715428126,
+        "steps": 6.0,
+        "throughput": 1077619000.0,
+        "cost": 10.31
+    },
+    {
+        "deviationType": "INSERTED_RELATION",
+        "startActivity": "Pending Request for Reservation Closure",
+        "endActivity": "Request completed with account closure",
+        "caseCount": 5,
+        "caseRatio": 0.0009752291788570314,
+        "steps": 6.4,
+        "throughput": 587166600.0,
+        "cost": 11.51
+    },
+    {
+        "deviationType": "INSERTED_RELATION",
+        "startActivity": "Pending Request for Reservation Closure",
+        "endActivity": "Pending Request for Reservation Closure",
+        "caseCount": 1,
+        "caseRatio": 0.0001950458357714063,
+        "steps": 8.0,
+        "throughput": 922615000.0,
+        "cost": 12.31
+    },
+    {
+        "deviationType": "INSERTED_RELATION",
+        "startActivity": "Authorization Requested",
+        "endActivity": "Pending Request for Reservation Closure",
+        "caseCount": 21,
+        "caseRatio": 0.004095962551199532,
+        "steps": 6.142857142857143,
+        "throughput": 995399142.8571428,
+        "cost": 9.238571428571431
+    },
+    {
+        "deviationType": "INSERTED_RELATION",
+        "startActivity": "BO Service Closure",
+        "endActivity": "Pending Liquidation Request",
+        "caseCount": 4,
+        "caseRatio": 0.0007801833430856252,
+        "steps": 6.0,
+        "throughput": 669821750.0,
+        "cost": 11.31
+    },
+    {
+        "deviationType": "INSERTED_RELATION",
+        "startActivity": "Request created",
+        "endActivity": "Authorization Requested",
+        "caseCount": 11,
+        "caseRatio": 0.0021455041934854693,
+        "steps": 6.1818181818181825,
+        "throughput": 896791000.0,
+        "cost": 10.582727272727272
+    }
+]

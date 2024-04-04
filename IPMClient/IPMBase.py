@@ -54,12 +54,15 @@ class Base():
         if self.trace: self.trace(response, function_name)
 
         jresponse = response.json()
-        if response.status_code == 200 and jresponse['success']:
+        if (response.status_code == 200 or response.status_code == 202) and jresponse['success']:
             match function_name:
                 case 'get token': self.response_data = {'data': jresponse['sign'], 'success': True, 'status_code': 200}
                 case 'create project': self.response_data = {'data': jresponse['projectKey'], 'success': True, 'status_code': 200}
                 case 'upload backup': self.response_data = {'data': jresponse['backupInfo'], 'success': True, 'status_code': 200}
                 case 'delete project': self.response_data = {'data': jresponse['projectKey'], 'success': True, 'status_code': 200}
+                case 'delete backup': self.response_data = {'data': None, 'success': True, 'status_code': 200}
+                case 'get deviations job status': self.response_data = {'data': jresponse, 'success': True, 'status_code': 200}
+                case 'get kpi-status job status': self.response_data = {'data': jresponse, 'success': True, 'status_code': 200}
                 case default: self.response_data = {'data':jresponse['data'], 'success':True, 'status_code': 200}
             return
         elif 'data' in jresponse:

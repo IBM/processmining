@@ -69,3 +69,9 @@ mylog.csv
 mysummary.csv
 IPMClient/IPMConfig.json
 REST_API_Examples/__pycache__/ProcessMining_API.cpython-310.pyc
+IPMClient/IPMConfig_raffaello.json
+IPMClient/Raffaello.py
+IPMClient/Nextgen.py
+IPMClient/test.py
+IPMClient/testIPMClient.ipynb
+IPMClient/IPMConfig_nextgen.json

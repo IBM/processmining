@@ -1,0 +1,112 @@
+[
+    {
+      "filterType": "attribute",
+      "label": "Activity is \"Goods Received\"",
+      "attributeValue": "Goods Received",
+      "attributeKey": "process",
+      "matchCases": true,
+      "timeSpanFrom": "2017-01-13",
+      "matchingRule": "ANY",
+      "timeSpanTo": "2022-01-13",
+      "operator": "LT",
+      "timeUnit": "DAYS",
+      "timeValue": 1,
+      "inclusiveTimeSpan": true
+    },
+    {
+      "filterType": "kpi",
+      "label": "Retain cases within KPI boundaries (Activity wait time,Activity service time)",
+      "kpis": [
+        "service-range",
+        "waittime-range"
+      ],
+      "retainCritical": false
+    },
+    {
+      "filterType": "pattern",
+      "label": "<Invoice Check>.*<Goods Check> path time under 4 days",
+      "attributeKey": "activity",
+      "pattern": "<Invoice Check>.*<Goods Check>",
+      "matchCases": true,
+      "matchingRule": "ANY",
+      "operator": "LT",
+      "timeValue": 4,
+      "timeUnit": "DAYS"
+    },
+    {
+      "filterType": "outliers",
+      "label": "Include Outliers",
+      "matchCases": true,
+      "includeServiceTime": true,
+      "includeWaitTime": true,
+      "includeLeadTime": true,
+      "range": "both",
+      "activity": null,
+      "outlierLevel": 2.5
+    },
+    {
+      "filterType": "parallelism",
+      "label": "Include parallelism between Invoice Check and Wait",
+      "sourceActivity": "Invoice Check",
+      "targetActivity": "Wait",
+      "matchCases": true
+    },
+    {
+      "filterType": "relation",
+      "label": "Invoice Check directly follows Wait",
+      "sourceActivity": "Invoice Check",
+      "targetActivity": "Wait",
+      "matchCases": true
+    },
+    {
+      "filterType": "rework",
+      "label": "Rework of Invoice Check",
+      "sourceActivity": "Invoice Check",
+      "matchCases": true
+    },
+    {
+      "filterType": "throughput",
+      "label": "Case lead time under 86400000 MILLISECONDS",
+      "operator": "LTE",
+      "timeUnit": "MILLISECONDS",
+      "timeValue": 86400000,
+      "matchCases": true
+    },
+    {
+      "filterType": "timespan",
+      "label": " from Sep 14, 2016 until Sep 15, 2016",
+      "startTime": "2016-09-14T00:00:00Z",
+      "endTime": "2016-09-14T23:59:59Z",
+      "inclusiveTimeSpan": false,
+      "matchCases": true
+    },
+    {
+      "filterType": "variant",
+      "variant": "1578805807",
+      "label": "NewVariant",
+      "matchCases": true
+    },
+    {
+      "filterType": "running",
+      "label": "Exclude running cases",
+      "excludeCases": "running"
+    },
+    {
+      "filterType": "simulation",
+      "label": "Exclude simulated cases",
+      "excludeCases": "simulated"
+    },
+    {
+      "filterType": "conformant",
+      "label": "Exclude non conformant cases",
+      "excludeCases": "nonConformance"
+    },
+    {
+      "filterType": "customMetric",
+      "label": "metricName = Pending Liquidation Request",
+      "customMetricName": "metricName",
+      "operator": "E",
+      "customMetricValue": "Pending Liquidation Request",
+      "matchCases": true
+    }
+  ]

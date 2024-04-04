@@ -44,4 +44,4 @@ class Dashboard(ipmb.Base):
         for widget in widgets:
             if widget.name == name:
                 return widget
-        self.setResponseDataFailed()
+        self._setResponseKO()

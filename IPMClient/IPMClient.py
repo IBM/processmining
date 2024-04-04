@@ -145,10 +145,31 @@ class Client(ipmb.Base):
             # Remove account from each organization
             organizations = self.getOrganizations()
             for organization in organizations:
-                organization._removeFromAccounts(account)
+                if organization.accounts:
+                    for index, item in enumerate(organization.accounts):
+                        organization.accounts.pop(index)
             return account
         else:
             return False   
+        
+    # GROUPS
+        
+    def retrieveGroups(self):
+        url = f'{self.url}/user-management/integration/groups'
+        return self.sendGetRequest(
+            url=url, verify=self.verify, params={}, headers=self.getHeaders(), functionName='retrieve groups')
+    
+    def getGroupByName(self, groups, groupName):
+        for group in groups:
+            if group['groupName'] == groupName:
+                return group
+            
+    def addAccountToGroup(self, account, groupId):
+        url = f'{self.url}/user-management/integration/groups/{groupId}/accounts'
+        data = json.dumps({'username': account.username})
+        return self.sendPostRequest(
+            url=url, verify=self.verify, params={}, headers=self.getHeaders(), data=data, functionName='add account to group')        
+
  
     # ORGANIZATION MANAGEMENT
     
@@ -264,6 +285,14 @@ class Client(ipmb.Base):
                 organization._setProjects(self.projects)
         return self.projects
     
+    def retrieveLastAccessedProcesses(self):
+        if self.sendGetRequest(url=f"{self.url}/integration/access/processes",
+                        verify=self.verify,
+                        headers=self.getHeaders(),
+                        params={},
+                        functionName='retrieve last accessed projects'):
+            self.lastAccessedProjects = []
+    
     def createProject(self, organization, name):
         existingProject = self.getProjectByName(name)
         if existingProject:
@@ -328,3 +357,5 @@ class Client(ipmb.Base):
             if item == project:
                 projects.pop(index)
                 return project
+            
+    

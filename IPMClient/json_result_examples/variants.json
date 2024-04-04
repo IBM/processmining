@@ -1,0 +1,760 @@
+[
+    {
+        "steps": 7,
+        "caseLevelCustomMetrics": {
+            "CUSTOMTEST": 0.4888164026095048,
+            "COUNTACTIVITIES": 7.0,
+            "MYPATHTIME": 58535532.38583431,
+            "WORKINGDAYS": 10.085973904939431
+        },
+        "id": -442488819,
+        "frequency": 4292,
+        "subProcessFrequency": 0,
+        "ratio": 0.8371367271308757,
+        "avgDuration": 1063297098,
+        "activityNames": [
+            "Request created",
+            "Network Service Closure",
+            "Authorization Requested",
+            "BO Service Closure",
+            "Pending Request for Reservation Closure",
+            "Pending Liquidation Request",
+            "Request completed with account closure"
+        ],
+        "minTime": 1500381574000,
+        "maxTime": 1551497673000,
+        "totalCost": 50688.519999998054,
+        "avgCost": 11.81
+    },
+    {
+        "steps": 8,
+        "caseLevelCustomMetrics": {
+            "CUSTOMTEST": 0.4927536231884055,
+            "COUNTACTIVITIES": 8.0,
+            "MYPATHTIME": 48404211.9565217,
+            "WORKINGDAYS": 11.324275362318845
+        },
+        "id": -323752684,
+        "frequency": 552,
+        "subProcessFrequency": 0,
+        "ratio": 0.10766530134581627,
+        "avgDuration": 1270292975,
+        "activityNames": [
+            "Request created",
+            "Network Service Closure",
+            "Authorization Requested",
+            "BO Service Closure",
+            "Pending Request for Reservation Closure",
+            "Pending Liquidation Request",
+            "Back-Office Adjustment Requested ",
+            "Request completed with account closure"
+        ],
+        "minTime": 1517484193000,
+        "maxTime": 1551697551000,
+        "totalCost": 10935.120000000003,
+        "avgCost": 19.810000000000002
+    },
+    {
+        "steps": 9,
+        "caseLevelCustomMetrics": {
+            "CUSTOMTEST": 0.4750000000000001,
+            "COUNTACTIVITIES": 9.0,
+            "MYPATHTIME": 55574208.33333335,
+            "WORKINGDAYS": 22.174999999999997
+        },
+        "id": -1388276355,
+        "frequency": 120,
+        "subProcessFrequency": 0,
+        "ratio": 0.023405500292568753,
+        "avgDuration": 2561439584,
+        "activityNames": [
+            "Request created",
+            "Network Service Closure",
+            "Authorization Requested",
+            "BO Service Closure",
+            "Network Adjustment Requested",
+            "BO Service Closure",
+            "Pending Request for Reservation Closure",
+            "Pending Liquidation Request",
+            "Request completed with account closure"
+        ],
+        "minTime": 1504888343000,
+        "maxTime": 1551496484000,
+        "totalCost": 1957.1999999999953,
+        "avgCost": 16.310000000000002
+    },
+    {
+        "steps": 9,
+        "caseLevelCustomMetrics": {
+            "CUSTOMTEST": 0.5573770491803279,
+            "COUNTACTIVITIES": 9.0,
+            "MYPATHTIME": 157479065.57377046,
+            "WORKINGDAYS": 25.229508196721305
+        },
+        "id": 1981038055,
+        "frequency": 61,
+        "subProcessFrequency": 0,
+        "ratio": 0.011897795982055783,
+        "avgDuration": 2876317328,
+        "activityNames": [
+            "Request created",
+            "Network Service Closure",
+            "Authorization Requested",
+            "Network Adjustment Requested",
+            "Authorization Requested",
+            "BO Service Closure",
+            "Pending Request for Reservation Closure",
+            "Pending Liquidation Request",
+            "Request completed with account closure"
+        ],
+        "minTime": 1519211850000,
+        "maxTime": 1551496717000,
+        "totalCost": 922.3200000000002,
+        "avgCost": 15.120000000000001
+    },
+    {
+        "steps": 11,
+        "caseLevelCustomMetrics": {
+            "CUSTOMTEST": 0.5,
+            "COUNTACTIVITIES": 11.0,
+            "MYPATHTIME": 14815000.000000004,
+            "WORKINGDAYS": 34.36363636363636
+        },
+        "id": 242968301,
+        "frequency": 22,
+        "subProcessFrequency": 0,
+        "ratio": 0.004291008386970939,
+        "avgDuration": 4002045728,
+        "activityNames": [
+            "Request created",
+            "Network Service Closure",
+            "Authorization Requested",
+            "BO Service Closure",
+            "Network Adjustment Requested",
+            "BO Service Closure",
+            "Network Adjustment Requested",
+            "BO Service Closure",
+            "Pending Request for Reservation Closure",
+            "Pending Liquidation Request",
+            "Request completed with account closure"
+        ],
+        "minTime": 1517499376000,
+        "maxTime": 1551496548000,
+        "totalCost": 457.82000000000005,
+        "avgCost": 20.810000000000002
+    },
+    {
+        "steps": 6,
+        "caseLevelCustomMetrics": {
+            "CUSTOMTEST": 0.5882352941176471,
+            "COUNTACTIVITIES": 6.0,
+            "MYPATHTIME": 121552352.94117649,
+            "WORKINGDAYS": 9.588235294117647
+        },
+        "id": -1275709620,
+        "frequency": 17,
+        "subProcessFrequency": 0,
+        "ratio": 0.003315779208113907,
+        "avgDuration": 996584530,
+        "activityNames": [
+            "Request created",
+            "Network Service Closure",
+            "Authorization Requested",
+            "Pending Request for Reservation Closure",
+            "Pending Liquidation Request",
+            "Request completed with account closure"
+        ],
+        "minTime": 1536316486000,
+        "maxTime": 1550201121000,
+        "totalCost": 132.77,
+        "avgCost": 7.8100000000000005
+    },
+    {
+        "steps": 10,
+        "caseLevelCustomMetrics": {
+            "CUSTOMTEST": 0.5,
+            "COUNTACTIVITIES": 10.0,
+            "MYPATHTIME": 59700.0,
+            "WORKINGDAYS": 25.8
+        },
+        "id": 1791136378,
+        "frequency": 10,
+        "subProcessFrequency": 0,
+        "ratio": 0.0019504583577140628,
+        "avgDuration": 2972937400,
+        "activityNames": [
+            "Request created",
+            "Network Service Closure",
+            "Authorization Requested",
+            "Network Adjustment Requested",
+            "Authorization Requested",
+            "BO Service Closure",
+            "Pending Request for Reservation Closure",
+            "Pending Liquidation Request",
+            "Back-Office Adjustment Requested ",
+            "Request completed with account closure"
+        ],
+        "minTime": 1520245359000,
+        "maxTime": 1550666568000,
+        "totalCost": 231.20000000000002,
+        "avgCost": 23.12
+    },
+    {
+        "steps": 10,
+        "caseLevelCustomMetrics": {
+            "CUSTOMTEST": 0.6666666666666666,
+            "COUNTACTIVITIES": 10.0,
+            "MYPATHTIME": 459327444.4444444,
+            "WORKINGDAYS": 39.111111111111114
+        },
+        "id": 421604772,
+        "frequency": 9,
+        "subProcessFrequency": 0,
+        "ratio": 0.0017554125219426564,
+        "avgDuration": 4616192889,
+        "activityNames": [
+            "Request created",
+            "Network Service Closure",
+            "Authorization Requested",
+            "BO Service Closure",
+            "Network Adjustment Requested",
+            "BO Service Closure",
+            "Pending Request for Reservation Closure",
+            "Pending Liquidation Request",
+            "Back-Office Adjustment Requested ",
+            "Request completed with account closure"
+        ],
+        "minTime": 1526915536000,
+        "maxTime": 1548848598000,
+        "totalCost": 218.79000000000002,
+        "avgCost": 24.310000000000002
+    },
+    {
+        "steps": 6,
+        "caseLevelCustomMetrics": {
+            "CUSTOMTEST": 0.4444444444444444,
+            "COUNTACTIVITIES": 6.0,
+            "MYPATHTIME": -1.0,
+            "WORKINGDAYS": 8.222222222222221
+        },
+        "id": 409535583,
+        "frequency": 9,
+        "subProcessFrequency": 0,
+        "ratio": 0.0017554125219426564,
+        "avgDuration": 850864778,
+        "activityNames": [
+            "Request created",
+            "Authorization Requested",
+            "BO Service Closure",
+            "Pending Request for Reservation Closure",
+            "Pending Liquidation Request",
+            "Request completed with account closure"
+        ],
+        "minTime": 1537376071000,
+        "maxTime": 1544671755000,
+        "totalCost": 88.29,
+        "avgCost": 9.81
+    },
+    {
+        "steps": 9,
+        "caseLevelCustomMetrics": {
+            "CUSTOMTEST": 0.8,
+            "COUNTACTIVITIES": 9.0,
+            "MYPATHTIME": 87200.0,
+            "WORKINGDAYS": 16.6
+        },
+        "id": 699208156,
+        "frequency": 5,
+        "subProcessFrequency": 0,
+        "ratio": 0.0009752291788570314,
+        "avgDuration": 1813595400,
+        "activityNames": [
+            "Request created",
+            "Network Service Closure",
+            "Authorization Requested",
+            "BO Service Closure",
+            "Pending Request for Reservation Closure",
+            "Back-Office Adjustment Requested ",
+            "Pending Request for Reservation Closure",
+            "Pending Liquidation Request",
+            "Request completed with account closure"
+        ],
+        "minTime": 1533635910000,
+        "maxTime": 1548300063000,
+        "totalCost": 101.55000000000001,
+        "avgCost": 20.310000000000002
+    },
+    {
+        "steps": 6,
+        "caseLevelCustomMetrics": {
+            "CUSTOMTEST": 0.75,
+            "COUNTACTIVITIES": 6.0,
+            "MYPATHTIME": 34750.0,
+            "WORKINGDAYS": 5.25
+        },
+        "id": 903900540,
+        "frequency": 4,
+        "subProcessFrequency": 0,
+        "ratio": 0.0007801833430856252,
+        "avgDuration": 503304500,
+        "activityNames": [
+            "Request created",
+            "Network Service Closure",
+            "Authorization Requested",
+            "BO Service Closure",
+            "Pending Request for Reservation Closure",
+            "Request completed with account closure"
+        ],
+        "minTime": 1537960273000,
+        "maxTime": 1548732529000,
+        "totalCost": 45.24,
+        "avgCost": 11.31
+    },
+    {
+        "steps": 6,
+        "caseLevelCustomMetrics": {
+            "CUSTOMTEST": 0.75,
+            "COUNTACTIVITIES": 6.0,
+            "MYPATHTIME": 55000.0,
+            "WORKINGDAYS": 7.0
+        },
+        "id": -1280696109,
+        "frequency": 4,
+        "subProcessFrequency": 0,
+        "ratio": 0.0007801833430856252,
+        "avgDuration": 669821750,
+        "activityNames": [
+            "Request created",
+            "Network Service Closure",
+            "Authorization Requested",
+            "BO Service Closure",
+            "Pending Liquidation Request",
+            "Request completed with account closure"
+        ],
+        "minTime": 1541435752000,
+        "maxTime": 1549077230000,
+        "totalCost": 45.24,
+        "avgCost": 11.31
+    },
+    {
+        "steps": 11,
+        "caseLevelCustomMetrics": {
+            "CUSTOMTEST": 0.6666666666666667,
+            "COUNTACTIVITIES": 11.0,
+            "MYPATHTIME": 107000.0,
+            "WORKINGDAYS": 18.0
+        },
+        "id": -1176877759,
+        "frequency": 3,
+        "subProcessFrequency": 0,
+        "ratio": 0.0005851375073142189,
+        "avgDuration": 2068594000,
+        "activityNames": [
+            "Request created",
+            "Network Service Closure",
+            "Authorization Requested",
+            "Network Adjustment Requested",
+            "Authorization Requested",
+            "Network Adjustment Requested",
+            "Authorization Requested",
+            "BO Service Closure",
+            "Pending Request for Reservation Closure",
+            "Pending Liquidation Request",
+            "Request completed with account closure"
+        ],
+        "minTime": 1532705696000,
+        "maxTime": 1545708441000,
+        "totalCost": 55.29,
+        "avgCost": 18.43
+    },
+    {
+        "steps": 7,
+        "caseLevelCustomMetrics": {
+            "CUSTOMTEST": 0.6666666666666667,
+            "COUNTACTIVITIES": 7.0,
+            "MYPATHTIME": 45333.333333333336,
+            "WORKINGDAYS": 7.666666666666666
+        },
+        "id": -383793739,
+        "frequency": 3,
+        "subProcessFrequency": 0,
+        "ratio": 0.0005851375073142189,
+        "avgDuration": 806199667,
+        "activityNames": [
+            "Request created",
+            "Network Service Closure",
+            "Authorization Requested",
+            "Pending Request for Reservation Closure",
+            "Pending Liquidation Request",
+            "Back-Office Adjustment Requested ",
+            "Request completed with account closure"
+        ],
+        "minTime": 1539696308000,
+        "maxTime": 1550579378000,
+        "totalCost": 47.43,
+        "avgCost": 15.81
+    },
+    {
+        "steps": 11,
+        "caseLevelCustomMetrics": {
+            "CUSTOMTEST": 0.0,
+            "COUNTACTIVITIES": 11.0,
+            "MYPATHTIME": 45000.0,
+            "WORKINGDAYS": 11.0
+        },
+        "id": -251224873,
+        "frequency": 2,
+        "subProcessFrequency": 0,
+        "ratio": 0.0003900916715428126,
+        "avgDuration": 1176638000,
+        "activityNames": [
+            "Request created",
+            "Network Service Closure",
+            "Authorization Requested",
+            "Network Adjustment Requested",
+            "Authorization Requested",
+            "BO Service Closure",
+            "Network Adjustment Requested",
+            "BO Service Closure",
+            "Pending Request for Reservation Closure",
+            "Pending Liquidation Request",
+            "Request completed with account closure"
+        ],
+        "minTime": 1544542909000,
+        "maxTime": 1546311930000,
+        "totalCost": 39.24,
+        "avgCost": 19.62
+    },
+    {
+        "steps": 13,
+        "caseLevelCustomMetrics": {
+            "CUSTOMTEST": 1.0,
+            "COUNTACTIVITIES": 13.0,
+            "MYPATHTIME": 125425000.0,
+            "WORKINGDAYS": 78.0
+        },
+        "id": 206019677,
+        "frequency": 2,
+        "subProcessFrequency": 0,
+        "ratio": 0.0003900916715428126,
+        "avgDuration": 9293988500,
+        "activityNames": [
+            "Request created",
+            "Network Service Closure",
+            "Authorization Requested",
+            "BO Service Closure",
+            "Network Adjustment Requested",
+            "BO Service Closure",
+            "Network Adjustment Requested",
+            "BO Service Closure",
+            "Network Adjustment Requested",
+            "BO Service Closure",
+            "Pending Request for Reservation Closure",
+            "Pending Liquidation Request",
+            "Request completed with account closure"
+        ],
+        "minTime": 1527608204000,
+        "maxTime": 1550027081000,
+        "totalCost": 50.620000000000005,
+        "avgCost": 25.310000000000002
+    },
+    {
+        "steps": 6,
+        "caseLevelCustomMetrics": {
+            "CUSTOMTEST": 0.0,
+            "COUNTACTIVITIES": 6.0,
+            "MYPATHTIME": -1.0,
+            "WORKINGDAYS": 10.0
+        },
+        "id": -1063438984,
+        "frequency": 2,
+        "subProcessFrequency": 0,
+        "ratio": 0.0003900916715428126,
+        "avgDuration": 1077619000,
+        "activityNames": [
+            "Network Service Closure",
+            "Authorization Requested",
+            "BO Service Closure",
+            "Pending Request for Reservation Closure",
+            "Pending Liquidation Request",
+            "Request completed with account closure"
+        ],
+        "minTime": 1541172697000,
+        "maxTime": 1542251938000,
+        "totalCost": 20.62,
+        "avgCost": 10.31
+    },
+    {
+        "steps": 11,
+        "caseLevelCustomMetrics": {
+            "CUSTOMTEST": 0.5,
+            "COUNTACTIVITIES": 11.0,
+            "MYPATHTIME": 65000.0,
+            "WORKINGDAYS": 74.5
+        },
+        "id": 565856140,
+        "frequency": 2,
+        "subProcessFrequency": 0,
+        "ratio": 0.0003900916715428126,
+        "avgDuration": 8815119000,
+        "activityNames": [
+            "Request created",
+            "Network Service Closure",
+            "Authorization Requested",
+            "BO Service Closure",
+            "Pending Request for Reservation Closure",
+            "Back-Office Adjustment Requested ",
+            "Network Adjustment Requested",
+            "BO Service Closure",
+            "Pending Request for Reservation Closure",
+            "Pending Liquidation Request",
+            "Request completed with account closure"
+        ],
+        "minTime": 1528199387000,
+        "maxTime": 1542251313000,
+        "totalCost": 49.620000000000005,
+        "avgCost": 24.810000000000002
+    },
+    {
+        "steps": 13,
+        "caseLevelCustomMetrics": {
+            "CUSTOMTEST": 1.0,
+            "COUNTACTIVITIES": 13.0,
+            "MYPATHTIME": 48000.0,
+            "WORKINGDAYS": 10.0
+        },
+        "id": -621007302,
+        "frequency": 1,
+        "subProcessFrequency": 0,
+        "ratio": 0.0001950458357714063,
+        "avgDuration": 1012517000,
+        "activityNames": [
+            "Request created",
+            "Network Service Closure",
+            "Authorization Requested",
+            "BO Service Closure",
+            "Pending Request for Reservation Closure",
+            "Back-Office Adjustment Requested ",
+            "Pending Request for Reservation Closure",
+            "Back-Office Adjustment Requested ",
+            "Pending Request for Reservation Closure",
+            "Back-Office Adjustment Requested ",
+            "Pending Request for Reservation Closure",
+            "Pending Liquidation Request",
+            "Request completed with account closure"
+        ],
+        "minTime": 1541412072000,
+        "maxTime": 1542424589000,
+        "totalCost": 37.31,
+        "avgCost": 37.31
+    },
+    {
+        "steps": 8,
+        "caseLevelCustomMetrics": {
+            "CUSTOMTEST": 0.0,
+            "COUNTACTIVITIES": 8.0,
+            "MYPATHTIME": 61000.0,
+            "WORKINGDAYS": 8.0
+        },
+        "id": -1341256635,
+        "frequency": 1,
+        "subProcessFrequency": 0,
+        "ratio": 0.0001950458357714063,
+        "avgDuration": 922615000,
+        "activityNames": [
+            "Request created",
+            "Network Service Closure",
+            "Authorization Requested",
+            "BO Service Closure",
+            "Pending Request for Reservation Closure",
+            "Pending Liquidation Request",
+            "Pending Request for Reservation Closure",
+            "Request completed with account closure"
+        ],
+        "minTime": 1545390212000,
+        "maxTime": 1546312827000,
+        "totalCost": 12.31,
+        "avgCost": 12.31
+    },
+    {
+        "steps": 8,
+        "caseLevelCustomMetrics": {
+            "CUSTOMTEST": 0.0,
+            "COUNTACTIVITIES": 8.0,
+            "MYPATHTIME": -1.0,
+            "WORKINGDAYS": 7.0
+        },
+        "id": 1363387727,
+        "frequency": 1,
+        "subProcessFrequency": 0,
+        "ratio": 0.0001950458357714063,
+        "avgDuration": 664072000,
+        "activityNames": [
+            "Request created",
+            "Authorization Requested",
+            "BO Service Closure",
+            "Network Adjustment Requested",
+            "BO Service Closure",
+            "Pending Request for Reservation Closure",
+            "Pending Liquidation Request",
+            "Request completed with account closure"
+        ],
+        "minTime": 1539859354000,
+        "maxTime": 1540523426000,
+        "totalCost": 14.31,
+        "avgCost": 14.31
+    },
+    {
+        "steps": 13,
+        "caseLevelCustomMetrics": {
+            "CUSTOMTEST": 1.0,
+            "COUNTACTIVITIES": 13.0,
+            "MYPATHTIME": 88000.0,
+            "WORKINGDAYS": 29.0
+        },
+        "id": 2027749319,
+        "frequency": 1,
+        "subProcessFrequency": 0,
+        "ratio": 0.0001950458357714063,
+        "avgDuration": 3263603000,
+        "activityNames": [
+            "Request created",
+            "Network Service Closure",
+            "Authorization Requested",
+            "Network Adjustment Requested",
+            "Authorization Requested",
+            "BO Service Closure",
+            "Network Adjustment Requested",
+            "BO Service Closure",
+            "Network Adjustment Requested",
+            "BO Service Closure",
+            "Pending Request for Reservation Closure",
+            "Pending Liquidation Request",
+            "Request completed with account closure"
+        ],
+        "minTime": 1540975595000,
+        "maxTime": 1544239198000,
+        "totalCost": 24.12,
+        "avgCost": 24.12
+    },
+    {
+        "steps": 12,
+        "caseLevelCustomMetrics": {
+            "CUSTOMTEST": 1.0,
+            "COUNTACTIVITIES": 12.0,
+            "MYPATHTIME": 39000.0,
+            "WORKINGDAYS": 12.0
+        },
+        "id": -1614973344,
+        "frequency": 1,
+        "subProcessFrequency": 0,
+        "ratio": 0.0001950458357714063,
+        "avgDuration": 1446159000,
+        "activityNames": [
+            "Request created",
+            "Network Service Closure",
+            "Authorization Requested",
+            "Network Adjustment Requested",
+            "Authorization Requested",
+            "Network Adjustment Requested",
+            "Authorization Requested",
+            "BO Service Closure",
+            "Pending Request for Reservation Closure",
+            "Pending Liquidation Request",
+            "Back-Office Adjustment Requested ",
+            "Request completed with account closure"
+        ],
+        "minTime": 1550251465000,
+        "maxTime": 1551697624000,
+        "totalCost": 26.43,
+        "avgCost": 26.43
+    },
+    {
+        "steps": 10,
+        "caseLevelCustomMetrics": {
+            "CUSTOMTEST": 1.0,
+            "COUNTACTIVITIES": 10.0,
+            "MYPATHTIME": 146000.0,
+            "WORKINGDAYS": 12.0
+        },
+        "id": 709115173,
+        "frequency": 1,
+        "subProcessFrequency": 0,
+        "ratio": 0.0001950458357714063,
+        "avgDuration": 1325348000,
+        "activityNames": [
+            "Request created",
+            "Network Service Closure",
+            "Authorization Requested",
+            "BO Service Closure",
+            "Pending Request for Reservation Closure",
+            "Back-Office Adjustment Requested ",
+            "Pending Request for Reservation Closure",
+            "Pending Liquidation Request",
+            "Back-Office Adjustment Requested ",
+            "Request completed with account closure"
+        ],
+        "minTime": 1546420970000,
+        "maxTime": 1547746318000,
+        "totalCost": 28.310000000000002,
+        "avgCost": 28.310000000000002
+    },
+    {
+        "steps": 6,
+        "caseLevelCustomMetrics": {
+            "CUSTOMTEST": 0.0,
+            "COUNTACTIVITIES": 6.0,
+            "MYPATHTIME": -1.0,
+            "WORKINGDAYS": 13.0
+        },
+        "id": 468230663,
+        "frequency": 1,
+        "subProcessFrequency": 0,
+        "ratio": 0.0001950458357714063,
+        "avgDuration": 1542846000,
+        "activityNames": [
+            "Request created",
+            "Authorization Requested",
+            "Pending Request for Reservation Closure",
+            "Pending Liquidation Request",
+            "Back-Office Adjustment Requested ",
+            "Request completed with account closure"
+        ],
+        "minTime": 1541169308000,
+        "maxTime": 1542712154000,
+        "totalCost": 13.81,
+        "avgCost": 13.81
+    },
+    {
+        "steps": 12,
+        "caseLevelCustomMetrics": {
+            "CUSTOMTEST": 0.0,
+            "COUNTACTIVITIES": 12.0,
+            "MYPATHTIME": 29000.0,
+            "WORKINGDAYS": 38.0
+        },
+        "id": -549418444,
+        "frequency": 1,
+        "subProcessFrequency": 0,
+        "ratio": 0.0001950458357714063,
+        "avgDuration": 4482112000,
+        "activityNames": [
+            "Request created",
+            "Network Service Closure",
+            "Authorization Requested",
+            "BO Service Closure",
+            "Network Adjustment Requested",
+            "BO Service Closure",
+            "Network Adjustment Requested",
+            "BO Service Closure",
+            "Pending Request for Reservation Closure",
+            "Pending Liquidation Request",
+            "Back-Office Adjustment Requested ",
+            "Request completed with account closure"
+        ],
+        "minTime": 1533559470000,
+        "maxTime": 1538041582000,
+        "totalCost": 28.810000000000002,
+        "avgCost": 28.810000000000002
+    }
+]
