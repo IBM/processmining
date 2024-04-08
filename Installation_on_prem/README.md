@@ -8,10 +8,10 @@ There are two choices: Process Mining (PM) and Task Mining (TM) on the same serv
 
 ## Installing PM and TM on the same server
 That's the easiest.
-[Installing PM and TM on the same server](processmining_taskmining_on_prem_same_server.md)
+[Installing PM and TM on the same server](./1_14_4_processmining_taskmining_on_prem_same_server.md)
 
 ## Installing PM and TM on distinct servers
-A bit more difficult, but largely feasible
-[Installing PM and TM on distinct servers](processmining_taskmining_on_prem_distinct_servers.md)
+A bit more difficult, but largely feasible (not updated since 1.14.1)
+[Installing PM and TM on distinct servers](./Previous%20releases/1_14_1_processmining_taskmining_on_prem_distinct_servers.md)
 
 
