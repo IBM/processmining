@@ -328,6 +328,18 @@ alter user taskminer with encrypted password 'Tmppwd_1';
 grant all privileges on database pmdb to taskminer;
 ```
 
+## Update Process Mining configuration file
+```
+cd $PM_HOME/etc
+vi processmining.conf
+```
+Search the instruction that starts with taskmining, and replace "" with the URL of process mining
+```
+taskmining : {
+  url : "https://YOURPROCESSMINING.com" #Complete task mining url starting with https:// 
+}
+```
+
 ## Task Mining Startup
 ```
 $TM_HOME/bin/tm-web.sh start
