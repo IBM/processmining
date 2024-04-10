@@ -1,4 +1,10 @@
 # BAW BPM Process App
+
+WARNING: this version 1.14.4 (March 2024), a new version of the BAW process app has been released by the Process Mining development team. For more information, read the official documentation: [BAW App](https://www.ibm.com/docs/en/process-mining/1.14.4?topic=SSWR2IP_1.14.4/process-mining-documentation/user-manuals/accelerator/Using_the_custom_Process_App_for_BAW.htm)
+
+You can download the asset from this link: [Download](https://github.com/nikhil-ps-ibm/processmining_externalFilesbyDocs/blob/BAWAssets/Process%20Apps/BAW-IBM-Process-Mining-Assets.zip)
+
+## OBSOLETE
 This process app relies on BAW BPM REST API to fetch instances and tasks from the BAW database, and to create an event for each BPD instance task.
 
 This is a simplified and limited version of the BAW Accelerator https://github.com/IBM/ibm-process-mining-BAW-accelerator. This standalone version should be used whenever you need to fetch several thousands of tasks. You can leverage multi threading increase the speed by 10 times, you can recover from errors, and so forth.
