@@ -1,6 +1,6 @@
 # BAW BPM Process App
 
-WARNING: this version 1.14.4 (March 2024), a new version of the BAW process app has been released by the Process Mining development team. For more information, read the official documentation: [BAW App](https://www.ibm.com/docs/en/process-mining/1.14.4?topic=SSWR2IP_1.14.4/process-mining-documentation/user-manuals/accelerator/Using_the_custom_Process_App_for_BAW.htm)
+WARNING: Since version 1.14.4 (March 2024), a new version of the BAW process app has been released by the Process Mining development team. For more information, read the official documentation: [BAW App](https://www.ibm.com/docs/en/process-mining/1.14.4?topic=SSWR2IP_1.14.4/process-mining-documentation/user-manuals/accelerator/Using_the_custom_Process_App_for_BAW.htm)
 
 You can download the asset from this link: [Download](https://github.com/nikhil-ps-ibm/processmining_externalFilesbyDocs/blob/BAWAssets/Process%20Apps/BAW-IBM-Process-Mining-Assets.zip)
 
