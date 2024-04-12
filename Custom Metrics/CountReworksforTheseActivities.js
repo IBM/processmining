@@ -1,20 +1,18 @@
 var customMetric = {
 	caseMetric: function(aCase) {
-        var filteredActivities = ['activity1', 'activity2'];
+        var filteredActivities = ['BO Service Closure', 'activity2'];
         var counters = [];
         var nbr_reworks = 0;
         for (var i=0; i< filteredActivities.length; i++)
             counters.push(0);
 		for(var k = 0 ; k < aCase.size(); k++) {
-			var event = aCase.get(k);          
-            var activity = event.getEventClass();
-            var index = filteredActivities.indexOf(activity);
-            if (index > 0){ // one of the activities searched
+            var index = filteredActivities.indexOf(aCase.get(k).getEventClass());
+            if (index >= 0) // one of the activities searched
                 counters[index]++;
-            }
         }
-        for (var i=0; i< counters.length; i++)
-            nbr_reworks += counters[i]; 
+        for (var j=0; j< counters.length; j++)
+            if (counters[j] > 1)
+                nbr_reworks += counters[j]; 
 		return nbr_reworks;
 	}
 };
