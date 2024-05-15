@@ -10,6 +10,7 @@ class Widget(ipmb.Base):
         self.jsondata = jsonWidget
         self.values = None
         self.jsondata = None
+        self.dataframe = None
 
     def getHeaders(self):
         return self.dashboard.getHeaders()
@@ -35,8 +36,6 @@ class Widget(ipmb.Base):
             return self.dataframe
     
     def toCSV(self, filename, replace=True):
-        if self.dataframe == None:
-            self.toDataFrame()
         if replace:
             filename = filename+'.csv'
         else:

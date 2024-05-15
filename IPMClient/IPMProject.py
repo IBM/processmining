@@ -212,7 +212,7 @@ class Project(ipmb.Base):
         headers = self.getHeaders()
         headers['content-type'] = 'application/x-www-form-urlencoded'
         if self.sendPostRequest(
-            url=f"{self.getURL()}/analytics/integration/projects/{self.key}/query",
+            url=f"{self.getURL()}/analytics/integration/{self.key}/query",
             verify=self.verify,
             params={'org' : self.organization.key},
             headers=headers,
@@ -364,8 +364,8 @@ class Project(ipmb.Base):
         else:
             return self._retrieveIntegrationProcessesWithFilters('kpi-status',filters, self.retrieveKpiJobStatus, 'status','complete')
 
-    def retrieveVariants(self):
-        params = {'org' : self.organization.key, 'page' : 0, 'size' : 30}    
+    def retrieveVariants(self, size):
+        params = {'org' : self.organization.key, 'page' : 0, 'size' : size}    
         jsondata = self._retrieveIntegrationProcesses('variants', params=params)
         if jsondata:
             return jsondata['items']
