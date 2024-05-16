@@ -6,6 +6,14 @@ This Python class library greatly facilitates the use of IBM Process Mining REST
 
 An IPMClient object stores information that was retrieved from IBM Process Mining. This reduced the amount of REST API requests.
 
+## Integrating IBM Process Mining with Cognos Analytics and S3
+
+[CognosAnalyticsClient.py](./CognosAnalyticsClient.py) is a utility library to ease the connection to Cognos Analytics and to upload files.
+[IPM_CognosAnalytics.ipynb](./IPM_CognosAnalytics.ipynb.py) is a jupyter notebook that is using both IPMClient and CognosAnalyticsClient to upload Process Mining data to Cognos Analytics
+
+[COS.ipynb](COS.ipynb) is a jupyter notebook that shows how to upload data to S3
+
+
 ## Getting and retrieving objects
 Method names starting with retrieve (ex client.retrieveProjects) explicitly call the REST API. They are used initially, or to refresh some data.
 Method names starting with get (ex client.getProjects) return the local client.projects list. If this list is empy, the function call its retrieve equivalent (ex client.retrieveProjects()).
