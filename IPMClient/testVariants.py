@@ -11,10 +11,12 @@ with open(ipmConfigFilename, 'r') as file:
 
 ipmClient = ipm.Client(ipmConfig['url'], ipmConfig['userid'], ipmConfig['apikey'])
 ipmProject = ipmClient.getProjectByName('Bank Account Closure')
-variants = ipmProject.retrieveVariants(300)
-df = pd.DataFrame(variants)
-df.keys()
-df=df[['steps', 'id', 'frequency',
-       'subProcessFrequency', 'ratio', 'avgDuration', 'activityNames',
-       'minTime', 'maxTime', 'totalCost', 'avgCost']]
-df.to_csv('allVariants.csv', index=None)
+res = ipmProject.retrieveSettingsActivityCost()
+print(res)
+#variants = ipmProject.retrieveVariants(300)
+#df = pd.DataFrame(variants)
+#df.keys()
+#df=df[['steps', 'id', 'frequency',
+#       'subProcessFrequency', 'ratio', 'avgDuration', 'activityNames',
+#       'minTime', 'maxTime', 'totalCost', 'avgCost']]
+#df.to_csv('allVariants.csv', index=None)

@@ -90,3 +90,5 @@ IPMClient/acticityStatsFromWidget.csv
 IPMClient/allVariants.csv
 IPMClient/variants.csv
 IPMClient/variants2.csv
+IPMClient/COSConfig.json
+IPMClient/testVariants.py
