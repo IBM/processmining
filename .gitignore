@@ -92,3 +92,7 @@ IPMClient/variants.csv
 IPMClient/variants2.csv
 IPMClient/COSConfig.json
 IPMClient/testVariants.py
+IPMClient/completedCasesStartDate.csv
+IPMClient/patPlay.ipynb
+IPMClient/setupTechzone.py
+IPMClient/testPermissionsOrgandTenant.py

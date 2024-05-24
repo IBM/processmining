@@ -2,6 +2,7 @@ import IPMBase as ipmb
 import IPMTenant as ipmt
 import json
 
+# Requires Admin permission; 'Owners' only can run this class
 class Account(ipmb.Base):
     def __init__(self, tenant, jsondata):
         ipmb.Base.__init__(self)
@@ -12,7 +13,6 @@ class Account(ipmb.Base):
         self.firstname = jsondata['firstName']
         self.key = jsondata['accountId']
         self.jsondata = jsondata
-        self.status = True
         dataExample = {
             "firstName": "John",
             "lastName": "Sam",

@@ -15,19 +15,21 @@ def spinning_cursor():
             yield cursor
 
 class Project(ipmb.Base):
-    def __init__(self, organization, name, key, jsondata=None):
+    def __init__(self, client, name, key, orgkey, jsondata=None):
         ipmb.Base.__init__(self)
-        self.client = organization.client
-        self.organization = organization
+        self.client = client
+        if orgkey == 'User Private' or orgkey == 'local organization':
+            orgkey = ''
+        self.orgkey = orgkey
         self.key = key
         self.name = name
         self.dashboards = []
+        self.data = jsondata
 
         if jsondata: # project retrieved from retrieveProjects
             self.data = jsondata
             return
         # else project created by the client
-
 
     def getHeaders(self):
         return self.client.getHeaders()
@@ -38,7 +40,7 @@ class Project(ipmb.Base):
     def uploadCSV(self, csv_filename, datasetOverride=False):
 
         url=f'{self.getURL()}/integration/csv/{self.key}/upload'
-        params={'org' : self.organization.key, 'dataSetOverride' : datasetOverride}
+        params={'org' : self.orgkey, 'dataSetOverride' : datasetOverride}
         headers={"Authorization": f"Bearer {self.client.token}"}
         files={'file': (csv_filename, open(csv_filename, 'rb'),'text/zip')}
         if self.sendPostRequest(url=url,params=params,headers=headers,files=files,functionName='upload csv'):
@@ -90,7 +92,7 @@ class Project(ipmb.Base):
         if self.sendPostRequest(
             url=f'{self.getURL()}/integration/processes/{self.key}/upload-backup',
             verify=self.verify,
-            params={'org' : self.organization.key},      
+            params={'org' : self.orgkey},      
             headers={"Authorization": "Bearer %s" % self.client.token},
             files={'file': (backupfilename, open(backupfilename, 'rb'),'text/zip')},
             functionName='upload backup'):
@@ -101,7 +103,7 @@ class Project(ipmb.Base):
         if self.sendGetRequest(
             url=f'{self.getURL()}/integration/processes/{self.key}/backups',
             verify=self.verify,
-            params={'org' : self.organization.key},      
+            params={'org' : self.orgkey},      
             headers=self.getHeaders(),
             functionName='retrieve backup list'):
             return self.getResponseData()['backups']
@@ -111,7 +113,7 @@ class Project(ipmb.Base):
             url=f'{self.getURL()}/integration/processes/{self.key}/backups/{backupId}',
             verify=self.verify,
             headers=self.getHeaders(),
-            params={'org' : self.organization.key},
+            params={'org' : self.orgkey},
             functionName='delete backup'
         ):
             return self.isResponseKO()
@@ -121,7 +123,7 @@ class Project(ipmb.Base):
             url=f'{self.getURL()}/integration/processes/{self.key}/backups/{backupId}',
             verify=self.verify,
             headers=self.getHeaders(),
-            params={'org' : self.organization.key},
+            params={'org' : self.orgkey},
             functionName='apply backup'
         ):
             return self.isResponseOK()
@@ -139,7 +141,7 @@ class Project(ipmb.Base):
     def runMining(self):
         if self.sendPostRequest(
             url=f'{self.getURL()}/integration/csv/{self.key}/create-log',
-            params={'org' : self.organization.key},
+            params={'org' : self.orgkey},
             headers=self.getHeaders(),
             data=None,
             files=None,
@@ -172,7 +174,7 @@ class Project(ipmb.Base):
         if self.sendGetRequest(
             url=f"{self.getURL()}/integration/processes/{self.key}",
             verify=self.verify,
-            params={'org' : self.organization.key},
+            params={'org' : self.orgkey},
             headers=self.getHeaders(),
             functionName='retrieve project info'):
 
@@ -190,7 +192,7 @@ class Project(ipmb.Base):
         if self.sendGetRequest(
             url=f"{self.getURL()}/analytics/integration/dashboard/{self.key}/list",
             verify=self.verify,
-            params={'org' : self.organization.key},
+            params={'org' : self.orgkey},
             headers=self.getHeaders(),
             functionName='retrieve dashboards'):
 
@@ -214,7 +216,7 @@ class Project(ipmb.Base):
         if self.sendPostRequest(
             url=f"{self.getURL()}/analytics/integration/{self.key}/query",
             verify=self.verify,
-            params={'org' : self.organization.key},
+            params={'org' : self.orgkey},
             headers=headers,
             data=data,
             files=None,
@@ -250,7 +252,7 @@ class Project(ipmb.Base):
 
     def _retrieveIntegrationProcesses(self, urlTail, params=None):
         if params == None:
-            params = {'org' : self.organization.key}    
+            params = {'org' : self.orgkey}    
         url= f'{self.getURL()}/integration/processes/{self.key}/{urlTail}'
         functionName = 'retrieve ' + urlTail
         headers = self.getHeaders()
@@ -259,7 +261,7 @@ class Project(ipmb.Base):
             
 
     def retrieveKPISettings(self, fromMaster=False):
-        params = {'org' : self.organization.key, 'fromMaster' : fromMaster}
+        params = {'org' : self.orgkey, 'fromMaster' : fromMaster}
         jsondata = self._retrieveIntegrationProcesses('kpi-settings', params=params)
         if jsondata:
             self._dumpToFile(jsondata, 'kpi-settings')
@@ -270,7 +272,7 @@ class Project(ipmb.Base):
         functionName = f'retrieve {urlTail} with filters'
         data = json.dumps(filters)
         headers = self.getHeaders()
-        params =  {'org' : self.organization.key}
+        params =  {'org' : self.orgkey}
         if self.sendPostRequest(url=url, verify=self.verify, params=params, headers=headers, data=data, functionName=functionName):
                 # Async call --- the caller need to loop on get job status that it is completed
             job_key = self.getResponseData() # that's the job key
@@ -341,7 +343,7 @@ class Project(ipmb.Base):
             return jsondata['filters']  # remove the filters layer
 
     def retrieveTemplates(self):
-        params = {'org' : self.organization.key}    
+        params = {'org' : self.orgkey}    
         url= f'{self.getURL()}/integration/projects/{self.key}/filter-templates'
         functionName = 'retrieve filter-templates'
         headers = self.getHeaders()
@@ -365,7 +367,7 @@ class Project(ipmb.Base):
             return self._retrieveIntegrationProcessesWithFilters('kpi-status',filters, self.retrieveKpiJobStatus, 'status','complete')
 
     def retrieveVariants(self, size):
-        params = {'org' : self.organization.key, 'page' : 0, 'size' : size}    
+        params = {'org' : self.orgkey, 'page' : 0, 'size' : size}    
         jsondata = self._retrieveIntegrationProcesses('variants', params=params)
         if jsondata:
             return jsondata['items']
@@ -374,15 +376,15 @@ class Project(ipmb.Base):
         return self._retrieveIntegrationProcesses('status')  
         
     def retrieveSettings(self, fromMaster=False):
-        params = {'org' : self.organization.key, 'fromMaster' : fromMaster}    
+        params = {'org' : self.orgkey, 'fromMaster' : fromMaster}    
         return self._retrieveIntegrationProcesses('project-settings', params=params)  
         
     def retrieveSettingsActivityCost(self, fromMaster=False):
-        params = {'org' : self.organization.key, 'fromMaster' : fromMaster}    
+        params = {'org' : self.orgkey, 'fromMaster' : fromMaster}    
         return self._retrieveIntegrationProcesses('project-settings/activities-cost', params=params)
     
     def retrieveSettingsActivityWorkingTime(self, fromMaster=False):
-        params = {'org' : self.organization.key, 'fromMaster' : fromMaster}    
+        params = {'org' : self.orgkey, 'fromMaster' : fromMaster}    
         return self._retrieveIntegrationProcesses('project-settings/activities-working-time', params=params)
     
     def retrieveBPMN(self):
@@ -401,7 +403,7 @@ class Project(ipmb.Base):
         return self.sendPostRequest(
             url=f'{self.getURL()}/integration/processes/{self.key}/project-settings/activities-cost/{activityName}',
             verify=self.verify,
-            params={'org' : self.organization.key},
+            params={'org' : self.orgkey},
             headers=self.getHeaders(),
             data=data,
             files=None,

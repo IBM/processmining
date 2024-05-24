@@ -3,8 +3,11 @@ import IPMClient as ipmc
 import IPMProject as ipmp
 import json
 
+# Organizations require Admin permissions. Owners are not enough
+# The purpose of Organization is to manage accounts of the organization
+# As a facility we store the processes that are connected with the organization
 class Organization(ipmb.Base):
-    def __init__(self, client, jsondata):
+    def init__BAK(self, client, jsondata):
         ipmb.Base.__init__(self)
         self.client = client
         self.accounts = []
@@ -16,7 +19,17 @@ class Organization(ipmb.Base):
         self.owner = jsondata['owner']
         self.status = True
         self.jsondata = jsondata
-        
+
+    def __init__(self, client, jsondata):
+        ipmb.Base.__init__(self)
+        self.client = client
+        self.name = jsondata['name']
+        self.key = jsondata['key']
+        self.description = jsondata['description']
+        self.owner = jsondata['owner']
+        self.accounts = []
+        self._setProjects()
+        self.jsondata = jsondata        
     
     def getHeaders(self):
         return self.client.getHeaders()
@@ -44,8 +57,8 @@ class Organization(ipmb.Base):
 
     # MANAGE ACCOUNTS
 
-    def retrieveAccounts(self):
-        if self.key == 0: # API can't be called with key == 0 
+    def retrieveAccounts_BAK(self):
+        if self.key == 0: # API can't be called with key == 0 BUT THERE A NO OTHER USERS FOR A PRIVATE ORG!!!
             key = self.realKey
         else:
             key = self.key
@@ -67,6 +80,24 @@ class Organization(ipmb.Base):
                         self.accounts.append(account)
         return self.accounts
         
+    def retrieveAccounts(self):
+        self.accounts = []
+        if self.sendGetRequest(
+            url=f'{self.getURL()}/user-management/integration/organizations/{self.key}/accounts',
+            verify=self.verify,
+            headers=self.getHeaders(), 
+            params={},
+            functionName='retrieve accounts'):
+
+            jsonaccounts = self.getResponseData()
+            tenant = self.client.getCurrentTenant()
+            tenantAccounts = tenant.getAccounts()
+            for item in jsonaccounts:
+                # get the accounts from the Tenant
+                for account in tenantAccounts:
+                    if account.key == item['id']:
+                        self.accounts.append(account)
+        return self.accounts
 
     def getAccounts(self):
         if self.accounts: return self.accounts
@@ -131,10 +162,12 @@ class Organization(ipmb.Base):
         self._setResponseKO()
 
     
-    def _setProjects(self, projects):
+    def _setProjects(self):
+        if not self.client.projects:
+            self.client.retrieveProjects()
         self.projects = []
-        for project in projects:
-            if project.organization == self:
+        for project in self.client.projects:
+            if project.orgkey == self.key:
                 self.projects.append(project)
     
     def _removeProject(self, project):
