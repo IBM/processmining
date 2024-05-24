@@ -12,11 +12,10 @@ class Client(ipmb.Base):
         self.user_id = userid
         self.api_key = apikey
         self.getToken()
-        self.tenants = self.retrieveTenants()
-        self.currentTenant = self.getTenantByKey('-1') # This is the Default tenant
+        self.tenants = None
+        self.currentTenant = None
         self.projects = []
         self.organizations = []
-        self.localOrganization = None
 
     def getToken(self):
         if self.sendPostRequest(url=f"{self.url}/integration/sign",
@@ -54,7 +53,6 @@ class Client(ipmb.Base):
             if tenant.name == name: return tenant
         self._setResponseKO()
 
-
     def getTenantByKey(self, key):
         tenants = self.getTenants()
         for tenant in tenants:
@@ -64,7 +62,11 @@ class Client(ipmb.Base):
     def setCurrentTenant(self, tenant):
         self.currentTenant = tenant
 
-    def getCurrentTenant(self): return self.currentTenant
+    def getCurrentTenant(self): 
+        if self.currentTenant is None:
+            self.tenants = self.retrieveTenants()
+            self.currentTenant = self.getTenantByKey('-1')
+        return self.currentTenant
 
     # ACCOUNT MANAGEMENT
     def retrieveAccounts(self, tenant=None)->list:
@@ -102,7 +104,7 @@ class Client(ipmb.Base):
             "country": "IN",
             "email": "john.sam@ibm.com",
             "agentEnabled": True,
-            "technicalUser": True,
+            "technicalUser": False,
             "active": True,
             "password": "string",
             "username": "john.sam"
@@ -176,14 +178,10 @@ class Client(ipmb.Base):
     def getOrganizations(self):
         if self.organizations: return self.organizations
         return self.retrieveOrganizations()
-    
-    def getLocalOrganization(self)->ipmo.Organization:
-        for organization in self.getOrganizations():
-            if organization.name == 'local organization':
-                self.localOrganization = organization
-                return organization
 
     def retrieveOrganizations(self)->list:
+        # Organizations are only used to add/remove accounts
+        # Local organizations are not always returned. But we don't need them as we don't need to add accounts to private orgs
         self.organizations = []
         if self.sendGetRequest(url=f"{self.url}/user-management/integration/organizations",
                         verify=self.verify,
@@ -192,15 +190,7 @@ class Client(ipmb.Base):
                         functionName='retrieve organizations'):
             organizations = self.getResponseData()
             for org_data in organizations:
-                if org_data['name'] == 'local organization':
-                    # although there is a different key, we need to use 0 for the local org!
-                    org_data['realKey'] = org_data['key']
-                    org_data['key'] = 0
-                else:
-                    org_data['realKey'] = org_data['key']
                 organization = ipmo.Organization(self, org_data)
-                if organization.key == 0:
-                    self.localOrganization = organization
                 self.organizations.append(organization)
         return self.organizations 
         
@@ -218,10 +208,9 @@ class Client(ipmb.Base):
                 params={},
                 data=json.dumps({ "name": name, "description": description}),
                 functionName='create organization'):
-
-                self.getResponseData()['realKey'] = self.getResponseData()['key']
                 organization = ipmo.Organization(self, self.getResponseData())
                 # add to the client if direct creation (instead as from the client)
+                
                 self.organizations.append(organization)
                 return organization
         
@@ -270,20 +259,12 @@ class Client(ipmb.Base):
                         functionName='retrieve projects'):
                         
             projects = self.getResponseData()
-            organizations = self.getOrganizations()
-            for project_data in projects:
-                if project_data['organizationTitle'] == 'User Private' or project_data['organizationTitle'] == 'local organization':
-                    organization = self.localOrganization
-                else:
-                    organization = self.getOrganizationByKey(project_data['organization'])
-                    
-                project = ipmp.Project(organization, project_data['projectTitle'],project_data['projectName'],  project_data)
+
+            for project_data in projects:        
+                project = ipmp.Project(self, project_data['projectTitle'], project_data['projectName'], project_data['organization'], project_data)
                 self.projects.append(project)
-                
-            # reset the project list for all the organizations
-            for organization in organizations:
-                organization._setProjects(self.projects)
         return self.projects
+    
     
     def retrieveLastAccessedProcesses(self):
         if self.sendGetRequest(url=f"{self.url}/integration/access/processes",
@@ -292,8 +273,8 @@ class Client(ipmb.Base):
                         params={},
                         functionName='retrieve last accessed projects'):
             self.lastAccessedProjects = []
-    
-    def createProject(self, organization, name):
+        
+    def createProject(self, name, orgkey=''): #orgkey='' for local org
         existingProject = self.getProjectByName(name)
         if existingProject:
             print(f"--Process Mining: WARNING project {name} exists already")
@@ -305,31 +286,28 @@ class Client(ipmb.Base):
         if self.sendPostRequest(
             f'{self.url}/integration/processes',
             verify=self.verify,
-            params={'org' : organization.key},
+            params={'org' : orgkey},
             headers=self.getHeaders(),
-            data=json.dumps({ 'title' : name, 'org' : organization.key}),
+            data=json.dumps({ 'title' : name, 'org' : orgkey}),
             files=None,
             functionName='create project'):
 
             key = self.getResponseData()
-            project = ipmp.Project(organization, name, key)
+            project = ipmp.Project(self, name, key, orgkey)
             self.projects.append(project)
-            organization.projects.append(project)
             return project
-
+    
     def deleteProject(self, project):
+
         if self.sendDeleteRequest(
             url=f"{self.url}/integration/processes/{project.key}",
             verify=self.verify,
-            params={'org' : project.organization.key},
+            params={'org' : project.orgkey},
             headers=self.getHeaders(),
             functionName='delete project'):
 
             # remove from client project list
             self._removeProject(project)
-            # remove from organization project list
-            project.organization._removeProject(project)
-
         return project
 
     def getProjects(self):

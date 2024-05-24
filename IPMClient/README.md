@@ -30,7 +30,7 @@ Example:
 import IPMClient as ipm
 client = ipm.IPMClient('https://processmining.com', 'john.smith', '12345RTY')
 organization = client.getOrganizationByName('myFinance')
-client.createProject(organization, 'new project')
+client.createProject('new project', organization.key)
 ```
 
 
@@ -66,7 +66,21 @@ client = ipm.Client(url, userid, apikey)
 
 `client.getToken()` is called in the constructor. It could ne renewed on demand as the token expires.
 
+### Projects -- manage IPMProject objets
+```
+projects = client.retrieveProjects() # Call the REST API to refresh to project list
+projects = client.getProjects() # return the local list or call retrieveProjects() if empty
+project = client.getProjectByName(name) # find by name in the local list or retrieve the list if empty
+project = client.getProjectByKey(key) # find by key in the local list or retrieve the list if empty
+project = client.createProject(name, orgkey)
+project = client.deleteProject(project)
+```
+
+The following classes handle artefacts retrieved from IBM Process Mining, or artefacts created in IBM Process Mining by the client.
+
 ### Manage IPMTenant objects
+These methods require administration permissions.
+
 You can ignore the tenant. By default, the client is using the default client named '-1'
 If you need to explicitly manage a client, get the Tenants, and call `client.setCurrentTenant(tenant)`.
 
@@ -80,6 +94,8 @@ tenant = client.setCurrentTenant(tenant) # all tenant operations are through thi
 ```
 
 ### Manage IPMAccount objects
+These methods require administration permissions.
+
 ```
 accounts = client.retrieveAccounts(tenant=None) # retrieves the list of accounts of tenant or of the current tenant via the REST API
 accounts = client.getAccounts(tenant=None) # return the list of accounts or retrieves it if empty
@@ -88,6 +104,8 @@ account = client.createAccount(accountData, tenant=None) # create an account (JS
 account = client.deleteAccount(account, tenant=None)
 ```
 ### Organizations -- manage IPMOrganization objects
+These methods require administration permissions.
+
 ```
 organizations = client.retrieveOrganizations() # Calls the REST API to refresh the organization list
 organizations = client.getOrganizations() # returns the organization list, or call retrieveOrganization() if empty
@@ -98,19 +116,9 @@ organization = client.createOrganization(name, description)
 organization = client.deleteOrganization(organization)
 ```
 
-### Projects -- manage IPMProject objets
-```
-projects = client.retrieveProjects() # Call the REST API to refresh to project list
-projects = client.getProjects() # return the local list or call retrieveProjects() if empty
-project = client.getProjectByName(name) # find by name in the local list or retrieve the list if empty
-project = client.getProjectByKey(key) # find by key in the local list or retrieve the list if empty
-project = client.createProject(organization, name)
-project = client.deleteProject(project)
-```
-
-The following classes handle artefacts retrieved from IBM Process Mining, or artefacts created in IBM Process Mining by the client.
-
 ## IPMTenant Class
+This class requires administration permissions.
+
 Operations on Accounts can be done through the client. Using the Tenant class is optional.
 
 IPMTenant instances are create by client.retrieveTenants(), that is called during the instantiation of IPMClient instance
@@ -120,6 +128,7 @@ account = tenant.getAccountByUserName(username)
 ```
 
 ## IPMOrganization Class
+This class requires administration permissions.
 
 IPMOrganization instances are created by client.retrieveOrganizations() or by client.createOrganization()
 ```
@@ -225,6 +234,8 @@ widget.toCSV(csvfilename, replace=True) # add timestamp to filename if replace==
 ```
 
 ## IPMAccount Class
+This class requires administration permissions.
+
 IPMAccount instances are created by client.createAccount() and by client.retrieveAccounts() # using the currentTenant (the default one by default)
 
 ```
