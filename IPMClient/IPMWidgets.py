@@ -23,7 +23,7 @@ class Widget(ipmb.Base):
         else: return self.retrieveValues()
 
     def retrieveValues(self):
-        params = {'org' : self.dashboard.project.organization.key}      
+        params = {'org' : self.dashboard.project.orgkey}      
         headers = self.getHeaders()
         url = "%s/analytics/integration/dashboard/%s/%s/%s/retrieve" % (self.getURL(), self.dashboard.project.key, self.dashboard.id, self.name)
         if self.sendGetRequest(url=url, verify=self.verify, params=params, headers=headers, functionName='retrieve widget values'):

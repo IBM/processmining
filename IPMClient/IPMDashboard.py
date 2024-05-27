@@ -17,7 +17,7 @@ class Dashboard(ipmb.Base):
         return self.project.client.url
     
     def retrieveWidgets(self):
-        params = {'org' : self.project.organization.key}      
+        params = {'org' : self.project.orgkey}      
         headers = self.getHeaders()
         url = "%s/analytics/integration/dashboard/%s/%s/list" % (self.getURL(), self.project.key, self.id)
         if self.sendGetRequest(
