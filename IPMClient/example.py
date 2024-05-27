@@ -6,7 +6,7 @@ import os
 def main(argv):
 
     getConfigFrom = 'FILE'
-    configFileName = './IPMConfig.json'
+    configFileName = 'IPMClient/IPMConfig.json'
 
     # update the clienturation with your environment
     # retrieve from OS variables
@@ -32,27 +32,14 @@ def main(argv):
     
     testOrg2 = client.createOrganization('anOrg2', 'this is anOrg2')
     if client.isResponseKO(): return
-    
-    #COProject = client.createProject(testOrg2, 'CO')
-    #if client.isResponseKO(): return
-        
-
-    #COProject.uploadCSVApplyBackupRunMining('./data/Client Onboarding.zip', './data/Client Onboarding.idp')
-    #if client.isResponseKO(): return
-
-    #dashboard = COProject.getDashboardByName('TestAPI1')
-    #if COProject.isResponseOK():
-    #    widget = dashboard.getWidgetByName('test-widget-table-1')
-    #    if dashboard.isResponseOK():
-    #        widget.retrieveValues()
-    #        widget.toCSV('test-widget-table-1.csv', True) #replace existing csv if any    
+ 
     testOrg3 = client.getOrganizationByName('anOrg3')
     if testOrg3:
         client.deleteOrganization(testOrg3)
     
     testOrg3 = client.createOrganization('anOrg3', 'this is anOrg3')
-    COProject3 = client.createProject(testOrg3, 'CO3')
-    COProject3.uploadCSVApplyBackupRunMining('./data/Client Onboarding.zip', './data/Client Onboarding.idp')
+    COProject3 = client.createProject('CO3',testOrg3.key)
+    COProject3.uploadCSVApplyBackupRunMining('IPMClient/data/Client Onboarding.zip', 'IPMClient/data/Client Onboarding.idp')
 
     newaccountdata = {
         "firstName": "John",
@@ -60,7 +47,7 @@ def main(argv):
         "country": "FR",
         "email": "john.sam@ibm.com",
         "agentEnabled": True,
-        "technicalUser": True,
+        "technicalUser": False,
         "active": True,
         "password": "John12345!",
         "username": "john.sam"
