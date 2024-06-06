@@ -161,7 +161,8 @@ class Client(ipmb.Base):
         return self.sendGetRequest(
             url=url, verify=self.verify, params={}, headers=self.getHeaders(), functionName='retrieve groups')
     
-    def getGroupByName(self, groups, groupName):
+    def getGroupByName(self, groupName):
+        groups = self.retrieveGroups()
         for group in groups:
             if group['groupName'] == groupName:
                 return group
