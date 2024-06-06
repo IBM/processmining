@@ -96,3 +96,8 @@ IPMClient/completedCasesStartDate.csv
 IPMClient/patPlay.ipynb
 IPMClient/setupTechzone.py
 IPMClient/testPermissionsOrgandTenant.py
+IPMClient/blocked_at_pending_liquidation_request.csv
+IPMClient/completedCasesBizData.csv
+IPMClient/completedCasesDates.csv
+IPMClient/IPM_CognosAnalytics copy.ipynb
+IPMClient/users_to_add.csv
