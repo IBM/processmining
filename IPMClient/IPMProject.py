@@ -118,8 +118,8 @@ class Project(ipmb.Base):
             headers=self.getHeaders(),
             functionName='get svg'):
 
-            encodedbpmn = self.getResponseData()
-            return base64.b64decode(encodedbpmn).decode('utf-8')
+            encodedsvg = self.getResponseData()
+            return base64.b64decode(encodedsvg).decode('utf-8')
           
     def uploadBackup(self, backupfilename):
 
