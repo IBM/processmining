@@ -3,6 +3,7 @@ import IPMDashboard as ipmd
 import sys
 import time
 import json
+import base64
 
 import requests, json, urllib3
 requests.packages.urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -87,6 +88,39 @@ class Project(ipmb.Base):
             return self.getResponseData()      
     
         
+    def retrieveBPMN(self, withGateways=True):
+        if self.sendGetRequest(
+            f'{self.getURL()}/integration/export/{self.key}/BPMN',
+            verify=self.verify,
+            params={'org' : self.orgkey, 'withGateways':withGateways},   
+            headers=self.getHeaders(),
+            functionName='get bpmn'):
+
+            encodedbpmn = self.getResponseData()
+            return base64.b64decode(encodedbpmn).decode('utf-8')
+        
+    def retrieveSVG(self, applyKPI=False, viewType=0):
+        ''' Use one of these numbers
+        0 - Frequency view
+        1 - Performance view (Avg)
+        2 - Performance view (Max)
+        3 - Performance view (Min)
+        4 - Performance view (Median)
+        5 - Rework view
+        6 - Performance view (Weighted)
+        7 - Cost view
+        8 - Overall cost view
+        '''
+        if self.sendGetRequest(
+            f'{self.getURL()}/integration/csv/{self.key}/workflow',
+            verify=self.verify,
+            params={'org' : self.orgkey, 'applyKPI' : applyKPI, 'viewType' : viewType},   
+            headers=self.getHeaders(),
+            functionName='get svg'):
+
+            encodedbpmn = self.getResponseData()
+            return base64.b64decode(encodedbpmn).decode('utf-8')
+          
     def uploadBackup(self, backupfilename):
 
         if self.sendPostRequest(
@@ -386,9 +420,6 @@ class Project(ipmb.Base):
     def retrieveSettingsActivityWorkingTime(self, fromMaster=False):
         params = {'org' : self.orgkey, 'fromMaster' : fromMaster}    
         return self._retrieveIntegrationProcesses('project-settings/activities-working-time', params=params)
-    
-    def retrieveBPMN(self):
-        return self._retrieveIntegrationProcesses('BPMN') 
      
     def retrieveMetaInfo(self):
         return self._retrieveIntegrationProcesses('meta') 
