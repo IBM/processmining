@@ -236,6 +236,15 @@ class Project(ipmb.Base):
                 self.dashboards.append(ipmd.Dashboard(self, dashboard))
             return self.dashboards
         
+    def retrieveQueryJobStatus(self, job_key):
+        if self.sendGetRequest(
+            url=f"{self.getURL()}/analytics/integration/jobs/query/{job_key}",
+            verify=self.verify,
+            params={'org' : self.orgkey},
+            headers=self.getHeaders(),
+            functionName='get query job status'):
+            return self.getResponseData()
+            
     def retrieveFromSQL(self, query):
         exampleData =  {
             "templateId": "62bde8bd2895512725a62ca5",
@@ -244,11 +253,11 @@ class Project(ipmb.Base):
             "activitiesConformance": "ONLY_CONFORMANT",
             "keepLast": True
             }
-        data = "params={'query': '%s'}" % query
+        data = "{'query': '%s'}" % query
         headers = self.getHeaders()
-        headers['content-type'] = 'application/x-www-form-urlencoded'
+        headers['content-type'] = 'application/json'
         if self.sendPostRequest(
-            url=f"{self.getURL()}/analytics/integration/{self.key}/query",
+            url=f"{self.getURL()}/analytics/integration/projects/{self.key}/query",
             verify=self.verify,
             params={'org' : self.orgkey},
             headers=headers,
@@ -256,7 +265,26 @@ class Project(ipmb.Base):
             files=None,
             functionName='retrieve from SQL'
         ):
-            return self.getResponseData()
+            # check the jobid until the query is complete
+                    # Wait until job key is complete
+            job_key = self.getResponseData()
+            runningCall = 1
+            print("Process Mining: SQL query processing (please wait)")
+            spinner = spinning_cursor()
+            while  runningCall :
+                job_status = self.retrieveQueryJobStatus(job_key)['status']
+                if job_status == 'COMPLETED': 
+                    runningCall = 0
+                if job_status == 'ERROR': 
+                    runningCall = 0
+                    print("Error while querying with SQL")
+
+                sys.stdout.write(next(spinner))
+                sys.stdout.flush()
+                sys.stdout.write('\b')
+                time.sleep(SPINNING_RATE)
+
+            return self.getResponseData() 
 
     def getDashboardByName(self, name):
         dashboards = self.getDashboards()

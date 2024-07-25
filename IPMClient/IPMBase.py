@@ -63,6 +63,7 @@ class Base():
                 case 'delete backup': self.response_data = {'data': None, 'success': True, 'status_code': 200}
                 case 'get deviations job status': self.response_data = {'data': jresponse, 'success': True, 'status_code': 200}
                 case 'get kpi-status job status': self.response_data = {'data': jresponse, 'success': True, 'status_code': 200}
+                case 'get query job status': self.response_data = {'data': jresponse, 'success': True, 'status_code': 200}
                 case default: self.response_data = {'data':jresponse['data'], 'success':True, 'status_code': 200}
             return
         elif 'data' in jresponse:

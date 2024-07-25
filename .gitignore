@@ -102,3 +102,5 @@ IPMClient/completedCasesDates.csv
 IPMClient/IPM_CognosAnalytics copy.ipynb
 IPMClient/users_to_add.csv
 mySVG.svg
+IPMClient/anjana.json
+IPMClient/IPM_CognosAnalytics_Anjana.py
