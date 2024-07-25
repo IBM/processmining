@@ -59,9 +59,9 @@ def main(argv):
     headers['content-type'] = 'application/x-www-form-urlencoded'
     data = "params={'query': '%s'}" % query
     res = ipmProject.sendPostRequest(
-                url=f"{ipmProject.getURL()}/analytics/integration/{ipmProject.key}/query",
+                url=f"{ipmProject.getURL()}/analytics/integration/projects/{ipmProject.key}/query",
                 verify=ipmProject.verify,
-                params={'org' : ipmProject.organization.key},
+                params={'org' : ipmProject.orgkey},
                 headers=headers,
                 data=data,
                 files=None,
@@ -78,7 +78,7 @@ def main(argv):
     with open(cognosConfigFilename, 'r') as file:
         cognosConfig = json.load(file)
 
-
+'''
     cognosCredentials =  cog.cognosCreateCredentials(cognosConfig)    
     auth = cog.cognosCreateSession(cognosConfig['url'], credentials=cognosCredentials)
     cog.cognosUploadFile(cognosConfig['url'], auth['authkey'], auth['authvalue'], filename='processStats.csv', append=False, silent=False)
@@ -86,7 +86,7 @@ def main(argv):
     cog.cognosUploadFile(cognosConfig['url'], auth['authkey'], auth['authvalue'], filename='transitionStats.csv', append=False, silent=False)
     cog.cognosUploadFile(cognosConfig['url'], auth['authkey'], auth['authvalue'], filename='completedCases.csv', append=False, silent=False)
     cog.cognosUploadFile(cognosConfig['url'], auth['authkey'], auth['authvalue'], filename='activityStatsFromWidget.csv', append=False, silent=False)
-
+'''
 
 if __name__ == "__main__":
     main(sys.argv)
