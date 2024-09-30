@@ -1,0 +1,10 @@
+{
+    "apikey": "w_e7iClXZv1L4EZN4OfpGPUsQhKdnR3jgVFhD6uVTcNG",
+    "endpoints": "https://control.cloud-object-storage.cloud.ibm.com/v2/endpoints",
+    "iam_apikey_description": "Auto-generated for key crn:v1:bluemix:public:cloud-object-storage:global:a/36c46e8f45ad4d8395e2955c8b5a4cf4:cd24c66b-2121-437a-8942-ad6c8f27ca4d:resource-key:8e081733-cf6c-49ba-975f-48fbf6030c2a",
+    "iam_apikey_id": "ApiKey-4345baee-6f71-4ad8-a308-b822ea0a8566",
+    "iam_apikey_name": "cloud-object-storage-cos-standard-patrickmegard",
+    "iam_role_crn": "crn:v1:bluemix:public:iam::::serviceRole:Writer",
+    "iam_serviceid_crn": "crn:v1:bluemix:public:iam-identity::a/36c46e8f45ad4d8395e2955c8b5a4cf4::serviceid:ServiceId-c90ea459-1570-4883-831c-f05f9875701b",
+    "resource_instance_id": "crn:v1:bluemix:public:cloud-object-storage:global:a/36c46e8f45ad4d8395e2955c8b5a4cf4:cd24c66b-2121-437a-8942-ad6c8f27ca4d::"
+}

@@ -1,0 +1,27 @@
+sourceActivity,targetActivity,frequency,avgDuration,medianDuration,minDuration,maxDuration,parallelFrequency,caseRepetition,avgRepetition
+START,Request created,116325,0,0,0,0,0,0,0.0
+Request completed with account closure,STOP,88409,0,0,0,0,0,0,0.0
+Back-Office Adjustment Requested ,Request completed with account closure,7622,0,0,0,0,0,0,0.0
+Pending Request for Reservation Closure,Pending Liquidation Request,93611,74045,0,0,920208000,15,0,0.0
+BO Service Closure,Pending Request for Reservation Closure,92819,7772,0,0,161509000,0,204,2.0588235294117645
+BO Service Closure,Network Adjustment Requested,9478,10208213,0,0,8354796000,0,1612,2.3114143920595533
+Authorization Requested,BO Service Closure,44560,7110249,0,0,1880315000,0,0,0.0
+Network Adjustment Requested,BO Service Closure,8928,7535465,0,0,1129105000,0,1539,2.3112410656270304
+Pending Liquidation Request,Request completed with account closure,73595,0,0,0,0,13,0,0.0
+Pending Liquidation Request,Back-Office Adjustment Requested ,9081,1487575,0,0,842569000,0,0,0.0
+Pending Liquidation Request,Pending Request for acquittance of heirs,7029,1847381,0,0,383904000,2,0,0.0
+Pending Request for acquittance of heirs,Request completed with account closure,7079,0,0,0,0,0,0,0.0
+Request created,BO Service Closure,5715,4086280,0,0,2712944000,0,0,0.0
+Request created,Evaluating Request (NO registered letter),41115,1961847,0,0,6284881000,0,0,0.0
+Request created,Network Service Closure,47652,15546345,0,0,14408265000,0,0,0.0
+Request created,Request deleted,10780,0,0,0,0,0,0,0.0
+Request created,Evaluating Request (WITH registered letter),6931,3055681,0,0,2040188000,0,0,0.0
+Request created,Pending Request for Network Information,1332,18757972,0,0,1112812000,0,0,0.0
+Evaluating Request (NO registered letter),Network Service Closure,40039,78133364,1066000,0,10929838000,0,0,0.0
+Evaluating Request (NO registered letter),Request completed with customer recovery,236,0,0,0,0,0,0,0.0
+Network Service Closure,BO Service Closure,44651,6725010,0,0,1545996000,0,3,2.0
+Network Service Closure,Authorization Requested,45583,1911858,0,0,5987061000,0,0,0.0
+Request completed with customer recovery,STOP,263,0,0,0,0,0,0,0.0
+Request deleted,STOP,13954,0,0,0,0,0,0,0.0
+Evaluating Request (WITH registered letter),Network Service Closure,5753,57362579,1457000,0,7758899000,0,0,0.0
+Pending Request for Network Information,Pending Request for Reservation Closure,1126,1955,0,0,238000,0,2,2.0

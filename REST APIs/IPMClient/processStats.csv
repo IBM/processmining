@@ -1,0 +1,2 @@
+minThroughputTime,maxThroughputTime,avgThroughputTime,stdThroughputTime,medianThroughputTime,minArrivalRate,maxArrivalRate,avgArrivalRate,minTime,maxTime,filteredCases,filteredEvents,totalCases,totalEvents
+0,50103159000,1611148418,2659370632,902080000,1,675,222.87954110898667,1492694540000,1551906966000,116566,730336,116566,730336

@@ -1,0 +1,8 @@
+firstName,lastName,country,email,agentEnabled,technicalUser,active,password,username
+User1,Lab,FR,User1.Lab@ibm.com,True,False,True,Passw0rd!,user1.lab
+User2,Lab,FR,User2.Lab@ibm.com,True,False,True,Passw0rd!,user2.lab
+User3,Lab,FR,User3.Lab@ibm.com,True,False,True,Passw0rd!,user3.lab
+User4,Lab,FR,User4.Lab@ibm.com,True,False,True,Passw0rd!,user4.lab
+User5,Lab,FR,User5.Lab@ibm.com,True,False,True,Passw0rd!,user5.lab
+User6,Lab,FR,User6.Lab@ibm.com,True,False,True,Passw0rd!,user6.lab
+User7,Lab,FR,User7.Lab@ibm.com,True,False,True,Passw0rd!,user7.lab
