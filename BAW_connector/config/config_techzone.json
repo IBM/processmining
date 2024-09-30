@@ -1,0 +1,36 @@
+{
+    "JOB": {
+        "job_name": "techzone",
+        "exit": 0
+    },
+    "BAW": {
+        "root_url": "https://ibmbaw:9443/",
+        "user": "admin",
+        "password": "admin",
+        "password_env_var": "",
+        "project": "HSS",
+        "process_name": "Standard HR Open New Position",
+        "from_date": "2021-01-15T15:16:50Z",
+        "from_date_criteria": "modifiedAfter",
+        "to_date": "2022-12-15T15:17:13Z",
+        "to_date_criteria": "modifiedBefore",
+        "paging_size": 0,
+        "status_filter": "",
+        "loop_rate": 0,
+        "thread_count": 1,
+        "instance_limit": 1,
+        "offset": 0,
+        "task_data_variables": [],
+        "export_exposed_variables": false,
+        "csv_at_each_loop": false,
+        "trigger_csv_beyond": 500000
+    },
+    "IPM": {
+        "url": "",
+        "user_id": "",
+        "api_key": "",
+        "org_key": "",
+        "project_key": "",
+        "version": "1.13.1+"
+    }
+}

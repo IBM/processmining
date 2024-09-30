@@ -1,0 +1,16 @@
+attr-activity,# cases,avg duration,median duration
+Request created,116329.0,2.6708261112113796E7,60000.0
+BO Service Closure,96306.0,1.8981998641957682E8,1.1008E8
+Pending Request for Reservation Closure,94035.0,932217.8232425128,128000.0
+Pending Liquidation Request,93683.0,1.0170696969599992E8,7.9243E7
+Network Service Closure,93501.0,6.701648622577694E7,148000.0
+Request completed with account closure,88424.0,188.41038632045266,0.0
+Authorization Requested,45677.0,8.501452610147665E7,2852000.0
+Evaluating Request (NO registered letter),41123.0,8.521241563115543E7,2042000.0
+Request deleted,13958.0,0.0,0.0
+Back-Office Adjustment Requested ,10063.0,5.9311920314471826E7,1.7255E7
+Network Adjustment Requested,8275.0,2.6684533072499454E8,2.0527E7
+Evaluating Request (WITH registered letter),7115.0,5.735765101897395E7,2972000.0
+Pending Request for acquittance of heirs,7094.0,3.815564068226679E7,1.3966E7
+Pending Request for Network Information,1338.0,4.259866526857977E8,3.63733E8
+Request completed with customer recovery,263.0,0.0,0.0
