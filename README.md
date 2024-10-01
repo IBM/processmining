@@ -12,11 +12,11 @@ Check the [list of available process apps](./Process%20Apps/README.md)
 [BAW-IBM-Process-Mining-Assets](./Process%20Apps/BAW-IBM-Process-Mining-Assets/) contains the process app documented and supported in the product. I found several issues with clients using this connector/process app, I recommend using [BAW_connector](./BAW_connector/) instead.
 
 ## Use cases - Examples
-Feel free to create process mining projects from these [examples](./Datasets_usecases/README.md)
+Feel free to create process mining projects from these [examples](./Datasets_usecases/README.md), and to contribute new ones.
 
 ## Custom Accelerators (public)
 Accelerators are programs used to create the event log from external data sources. They include the connection to the data source, the data transformation, and, optionally, the upload of the final CSV into a process mining project. Accelerators can be multi-threaded and can provide recovery mechanisms. They are helpful when large amounts of data requiring several hours of connection are collected.
-- BAW Accelerator for BPM: [code](./BAW_connector/README.md)
+- BAW Accelerator for BPM: [python](./BAW_connector/README.md)
 - BAW Accelerator for Case (no code) : https://github.com/MalekJabri/BAWAccelerator
 
 ## Custom Accelerators (IBM consultants only)
@@ -27,7 +27,7 @@ These accelerators are available to IBMers only.
 
 ## Installation scripts
 Traditional installation of process mining and task mining on premises  [Installation scripts](./Installation_on_prem/README.md).
-Following this script might accelerate the installation process for POCs. 
+Following this script might accelerate the installation process for POCs. Note: this script is for version 1.14. Version 1.15 adds MonetDB for nextgen.
 
 ## REST APIs
 [REST APIs](./REST%20APIs/) contains [IPMClient](./REST%20APIs/IPMClient/), a powerful python library that simplifies drastically the use of Process Mining REST API in a python program. Most REST APIs are implemented and you can easily request analytics results, create projects, upload data, create users, and many more, through a few python line of code.
