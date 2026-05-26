@@ -1,9 +1,0 @@
-{
-    "apikey": "",
-    "endpoints": "https://control.cloud-object-storage.cloud.ibm.com/v2/endpoints",
-    "iam_apikey_description": ""
-    "iam_apikey_name": "cloud-object-storage-cos-standard-patrickmegard",
-    "iam_role_crn": "crn:v1:bluemix:public:iam::::serviceRole:Writer",
-    "iam_serviceid_crn": "",
-    "resource_instance_id": ""
-}
