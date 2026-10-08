@@ -19,5 +19,5 @@ pytz==2024.1
 requests==2.31.0
 six==1.16.0
 tqdm==4.66.4
-urllib3==2.1.0
+urllib3==2.8.0
 yarl==1.9.4
